@@ -1,0 +1,196 @@
+/* Tailwind 入口；基础控件由 TARP 自行维护，直接使用 Base UI 状态属性。 */
+@import "tailwindcss";
+@import "tw-animate-css";
+@source "../../../../../node_modules/streamdown/dist/*.js";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 桌面控件保留焦点与快捷键行为，但不绘制网页式焦点框；文本编辑保留状态提示。
+ * 放在 layer 外，统一覆盖组件的 focus-visible 工具类和浏览器默认轮廓。
+ */
+:focus:not(input, textarea, [contenteditable]:not([contenteditable="false"]), [role="textbox"]) {
+  outline: none;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-inset-ring-shadow: 0 0 #0000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  /* 中文只走系统界面无衬线。衬线族会落到宋体、楷体等印刷体，禁止使用。 */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-serif: var(--font-sans);
+}
+
+/* 亮色参考 Codex 的中性灰白层次：白色内容区、浅灰侧栏和淡灰边框。
+ * HTML 启动脚本会在首帧按用户选择设置 .dark。
+ */
+:root {
+  --radius: 0.5rem;
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #282828;
+  --card: #ffffff;
+  --popover: #ffffff;
+  --popover-foreground: #282828;
+  --primary: #282828;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #383838;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #ebebeb;
+  --accent-foreground: #282828;
+  --destructive: #c42b2b;
+  --border: #e8e8e8;
+  --input: #dedede;
+  --ring: #8a8a8a;
+  --sidebar: #f9f9f9;
+  --sidebar-foreground: #383838;
+  --sidebar-accent: #ebebeb;
+  --sidebar-accent-foreground: #282828;
+  --scrollbar-thumb: transparent;
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--ring) 56%, transparent);
+  --scrollbar-thumb-active: color-mix(in srgb, var(--ring) 82%, transparent);
+}
+
+/* 暗色令牌；所有 Tailwind 语义色会随这个作用域自动更新。 */
+.dark {
+  color-scheme: dark;
+  --background: #171717;
+  --foreground: #ededed;
+  --card: #1e1e1e;
+  --popover: #222222;
+  --popover-foreground: #ededed;
+  --primary: #ededed;
+  --primary-foreground: #171717;
+  --secondary: #2b2b2b;
+  --secondary-foreground: #dedede;
+  --muted: #262626;
+  --muted-foreground: #a0a0a0;
+  --accent: #333333;
+  --accent-foreground: #ededed;
+  --destructive: #ef8c8c;
+  --border: #303030;
+  --input: #3e3e3e;
+  --ring: #a3a3a3;
+  --sidebar: #111111;
+  --sidebar-foreground: #dedede;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #ededed;
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--ring) 62%, transparent);
+  --scrollbar-thumb-active: color-mix(in srgb, var(--ring) 86%, transparent);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  /* 原生滚动区与 ScrollArea 统一：默认隐藏滑块，悬停显示，拖动时保持可见。
+     保留滚动条宽度，避免显隐导致正文、表格或聊天消息重新换行。 */
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  *::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    min-height: 28px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: var(--scrollbar-thumb);
+    background-clip: padding-box;
+    transition: background-color 160ms ease;
+  }
+
+  /* 悬停进入滚动内容区时提前显出滑块，不要求精确命中滑块本身。 */
+  *:hover::-webkit-scrollbar-thumb,
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: var(--scrollbar-thumb-active);
+    background-clip: padding-box;
+  }
+
+  html,
+  body,
+  #app {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    min-width: 960px;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* 控件使用桌面箭头；正文链接仍使用手形，内容复制不受影响。 */
+  button,
+  summary,
+  [role="button"],
+  [role="menuitem"],
+  [role="tab"],
+  [data-ui-control] {
+    cursor: default;
+    user-select: none;
+  }
+
+  nav,
+  label,
+  [aria-hidden="true"] {
+    user-select: none;
+  }
+
+  a[href]:not([data-ui-control]),
+  button[data-document-link] {
+    cursor: pointer;
+  }
+
+  input,
+  textarea,
+  [contenteditable]:not([contenteditable="false"]),
+  [role="alert"],
+  [data-copyable] {
+    user-select: text;
+  }
+}

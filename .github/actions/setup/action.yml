@@ -1,0 +1,19 @@
+name: 安装仓库开发环境
+description: 安装根级 packageManager 指定的 Bun 和 workspace 依赖
+runs:
+  using: composite
+  steps:
+    - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+      with:
+        bun-version-file: package.json
+    - name: 从根目录安装依赖
+      shell: bash
+      env:
+        SIMPLE_GIT_HOOKS: "0"
+      run: bun install --frozen-lockfile
+    - name: 安装 Linux 系统 WebView 依赖
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libwebkit2gtk-4.1-0 libgtk-3-0 libayatana-appindicator3-1 librsvg2-2

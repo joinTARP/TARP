@@ -1,0 +1,1 @@
+{ "fields": { "gmText": { "type": "text", "visibility": "gm", "required": true } } }

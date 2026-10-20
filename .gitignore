@@ -1,0 +1,10 @@
+node_modules/
+out/
+release/
+.hutch/
+.cottontail-tmp/
+!/scripts/release/
+.DS_Store
+.env
+.env.*
+!.env.example

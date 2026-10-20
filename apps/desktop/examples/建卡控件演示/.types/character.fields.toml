@@ -1,0 +1,158 @@
+designation = "character"
+name = "人物"
+
+[fields.role]
+type = "enum"
+label = "身份"
+options = ["文书", "探险者", "护卫", "当地人", "灵体", "学者", "其他"]
+required = true
+
+[fields.hp]
+type = "number"
+label = "命中防护"
+required = true
+mutable = true
+
+[fields.armor]
+type = "number"
+label = "护甲"
+mutable = true
+
+[fields.status]
+type = "text"
+label = "状态"
+compute = "$self.hp > 0 ? '仍可行动' : '失去行动能力'"
+
+[fields.attributes]
+type = "object"
+label = "属性"
+
+[fields.attributes.fields.strength]
+type = "number"
+label = "力量"
+required = true
+mutable = true
+
+[fields.attributes.fields.dexterity]
+type = "number"
+label = "敏捷"
+required = true
+mutable = true
+
+[fields.attributes.fields.willpower]
+type = "number"
+label = "意志"
+required = true
+mutable = true
+
+[fields.attacks]
+type = "list"
+label = "攻击"
+
+[fields.attacks.item]
+type = "object"
+
+[fields.attacks.item.fields.name]
+type = "text"
+label = "名称"
+required = true
+
+[fields.attacks.item.fields.damage]
+type = "text"
+label = "伤害"
+required = true
+
+[fields.attacks.item.fields.description]
+type = "text"
+label = "描述"
+
+[fields.equipment]
+type = "list"
+label = "装备"
+mutable = true
+
+[fields.equipment.item]
+type = "reference"
+targets = ["item"]
+
+[fields.faction]
+type = "reference"
+label = "所属派系"
+targets = ["faction"]
+
+[fields.tags]
+type = "list"
+label = "标签"
+
+[fields.tags.item]
+type = "text"
+
+[fields.details]
+type = "text"
+label = "详情"
+
+[fields.secret]
+type = "text"
+label = "秘密"
+visibility = "gm"
+
+[[creationFlow.workbench.stages]]
+id = "identity"
+title = "身份"
+
+[[creationFlow.workbench.stages.tasks]]
+id = "name"
+title = "你的名字"
+kind = "input"
+bind = "name"
+
+[[creationFlow.workbench.stages.tasks]]
+id = "role"
+title = "你的身份"
+kind = "choice"
+bind = "role"
+options = ["文书", "探险者", "护卫", "当地人", "灵体", "学者", "其他"]
+
+[[creationFlow.workbench.stages]]
+id = "attributes"
+title = "属性"
+
+[[creationFlow.workbench.stages.tasks]]
+id = "hp"
+title = "命中防护"
+kind = "roll"
+bind = "hp"
+
+[creationFlow.workbench.stages.tasks.dice]
+count = 1
+sides = 6
+
+[[creationFlow.workbench.stages.tasks]]
+id = "strength"
+title = "力量"
+kind = "roll"
+bind = "attributes.strength"
+
+[creationFlow.workbench.stages.tasks.dice]
+count = 3
+sides = 6
+
+[[creationFlow.workbench.stages.tasks]]
+id = "dexterity"
+title = "敏捷"
+kind = "roll"
+bind = "attributes.dexterity"
+
+[creationFlow.workbench.stages.tasks.dice]
+count = 3
+sides = 6
+
+[[creationFlow.workbench.stages.tasks]]
+id = "willpower"
+title = "意志"
+kind = "roll"
+bind = "attributes.willpower"
+
+[creationFlow.workbench.stages.tasks.dice]
+count = 3
+sides = 6

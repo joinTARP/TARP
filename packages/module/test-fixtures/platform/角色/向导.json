@@ -1,0 +1,9 @@
+{
+  "name": "向导",
+  "stats": { "vigor": 8, "agility": 6, "insight": 5 },
+  "hp": 12,
+  "reserve": 4,
+  "settlements": [],
+  "effects": [],
+  "ability_records": [{ "document": "能力/观察", "bonus": 1 }]
+}

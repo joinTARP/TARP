@@ -1,0 +1,31 @@
+{
+  "fields": {
+    "name": {
+      "type": "text",
+      "compute": "'测试事件'"
+    },
+    "source_name": {
+      "type": "text",
+      "visibility": "gm"
+    },
+    "source_body": {
+      "type": "text",
+      "visibility": "gm"
+    },
+    "description": {
+      "type": "text",
+      "compute": "null",
+      "hideWhenEmpty": true
+    },
+    "body": {
+      "type": "text",
+      "compute": "null",
+      "hideWhenEmpty": true
+    },
+    "gmText": {
+      "type": "text",
+      "visibility": "gm",
+      "required": true
+    }
+  }
+}

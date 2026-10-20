@@ -1,0 +1,13 @@
+{
+  "fields": {
+    "kind": { "type": "enum", "options": ["fixed", "attribute", "resource", "index"] },
+    "base_value": { "type": "number" },
+    "attribute": { "type": "enum", "options": ["vigor", "agility", "insight"] },
+    "divisor": { "type": "number" },
+    "resource": { "type": "text" },
+    "label": {
+      "type": "text",
+      "compute": "$self.attribute ? $self.attribute + '/' + ($self.divisor ?? 1) : String($self.base_value ?? 0)"
+    }
+  }
+}

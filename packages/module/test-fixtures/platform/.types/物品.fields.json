@@ -1,0 +1,16 @@
+{
+  "fields": {
+    "name": { "type": "text", "compute": "$self.discovered ? $self.publicName : '未发现的物品'" },
+    "source_name": { "type": "text", "visibility": "gm" },
+    "description": { "type": "text", "compute": "null", "hideWhenEmpty": true },
+    "body": {
+      "type": "text",
+      "compute": "$self.discovered ? $self.publicText : null",
+      "hideWhenEmpty": true
+    },
+    "discovered": { "type": "boolean", "mutable": true, "visibility": "gm", "required": true },
+    "publicName": { "type": "text", "mutable": true, "visibility": "gm", "required": true },
+    "publicText": { "type": "text", "mutable": true, "visibility": "gm", "required": true },
+    "gmText": { "type": "text", "visibility": "gm", "required": true }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@tarp/core",
+  "version": "0.1.0",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "exports": {
+    "./shared": "./src/shared/index.ts",
+    "./shared/*": "./src/shared/*.ts",
+    "./node": {
+      "browser": null,
+      "default": "./src/node/index.ts"
+    },
+    "./node/*": {
+      "browser": null,
+      "default": "./src/node/*.ts"
+    },
+    "./testing/*": "./src/testing/*.ts"
+  },
+  "scripts": {
+    "typecheck": "bun --bun x --no-install tsc --noEmit",
+    "test": "bun ../../scripts/test.ts --scope @tarp/core",
+    "test:changed": "bun ../../scripts/test.ts --scope @tarp/core --changed"
+  },
+  "dependencies": {
+    "@colyseus/schema": "5.0.34",
+    "@earendil-works/pi-ai": "1.2.0",
+    "@earendil-works/pi-coding-agent": "1.2.0",
+    "@jointarp/module": "workspace:*",
+    "@orpc/contract": "^2.0.0-beta.36",
+    "@orpc/server": "^2.0.0-beta.36",
+    "es-toolkit": "^1.52.0",
+    "fast-json-patch": "^3.1.1",
+    "kysely": "^0.29.6",
+    "mdast-util-from-markdown": "^2.0.3",
+    "mdast-util-gfm": "^3.1.0",
+    "mdast-util-to-markdown": "^2.1.2",
+    "micromark-extension-gfm": "^3.0.0",
+    "nanoid": "^6.0.2",
+    "quickjs-emscripten": "^0.32.0",
+    "typebox": "1.3.7",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@orpc/client": "^2.0.0-beta.36",
+    "@types/bun": "^1.4.0",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "bun": ">=1.4.0"
+  }
+}

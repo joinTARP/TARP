@@ -1,0 +1,39 @@
+{
+  "name": "平台测试模组",
+  "description": "仅用于平台功能验证的固定数据，无剧情或冒险规则。",
+  "system": "平台测试",
+  "pages": ["概览.md"],
+  "preludeFlow": {
+    "steps": [
+      {
+        "id": "intro",
+        "type": "introduction",
+        "title": "前置步骤测试",
+        "body": "前置步骤测试文本。"
+      }
+    ]
+  },
+  "gameStarts": [
+    {
+      "id": "arrival",
+      "name": "测试开局",
+      "characterTypeIds": ["角色"],
+      "playablePaths": ["角色/向导", "角色/工匠", "角色/学者", "角色/旅人"],
+      "allowCreate": false,
+      "aiCompanions": {
+        "角色/向导": "AI 队友预设测试值：角色/向导",
+        "角色/工匠": "AI 队友预设测试值：角色/工匠",
+        "角色/学者": "AI 队友预设测试值：角色/学者",
+        "角色/旅人": "AI 队友预设测试值：角色/旅人"
+      },
+      "opening": {
+        "mode": "scripted",
+        "beats": [
+          {
+            "text": "脚本开场测试文本。"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "designation": "character",
+  "fields": {
+    "stats": {
+      "type": "object",
+      "fields": {
+        "vigor": {
+          "type": "number",
+          "required": true,
+          "mutable": true
+        },
+        "agility": {
+          "type": "number",
+          "required": true,
+          "mutable": true
+        },
+        "insight": {
+          "type": "number",
+          "required": true,
+          "mutable": true
+        }
+      }
+    },
+    "hp": {
+      "type": "number",
+      "required": true,
+      "mutable": true
+    },
+    "reserve": {
+      "type": "number",
+      "required": true,
+      "mutable": true
+    },
+    "capacity": {
+      "type": "number",
+      "compute": "$self.stats.vigor + $self.stats.insight"
+    },
+    "effects": {
+      "type": "list",
+      "mutable": true,
+      "item": {
+        "type": "text"
+      }
+    },
+    "settlements": {
+      "type": "list",
+      "mutable": true,
+      "item": {
+        "type": "text"
+      }
+    },
+    "ability_records": {
+      "type": "list",
+      "mutable": true,
+      "item": {
+        "type": "object",
+        "fields": {
+          "document": {
+            "type": "reference",
+            "targets": ["能力"],
+            "required": true
+          },
+          "bonus": {
+            "type": "number"
+          },
+          "growth": {
+            "type": "number"
+          },
+          "override": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "abilities": {
+      "type": "list",
+      "compute": "(() => {\n  const paths = new Set();\n  const result = [];\n  for (const record of $self.ability_records ?? []) {\n    if (paths.has(record.document)) throw new Error(\"能力记录重复\");\n    paths.add(record.document);\n    const definition = load(record.document);\n    if (!definition || definition.kind === \"index\") throw new Error(\"无效的能力引用\");\n    if ([record.bonus, record.growth, record.override].some(value => value !== undefined && value < 0))\n      throw new Error(\"能力调整不能为负数\");\n    if (definition.resource) throw new Error(\"此能力通过角色字段维护\");\n    const base = definition.attribute\n      ? floor($self.stats[definition.attribute] / (definition.divisor ?? 1))\n      : definition.base_value;\n    const adjustment = (record.bonus ?? 0) + (record.growth ?? 0);\n    if (adjustment || record.override !== undefined)\n      result.push({ document: record.document, name: definition.name, base, value: record.override ?? base + adjustment });\n  }\n  return result;\n})()",
+      "item": {
+        "type": "object",
+        "fields": {
+          "document": {
+            "type": "reference",
+            "targets": ["能力"],
+            "required": true
+          },
+          "name": {
+            "type": "text",
+            "required": true
+          },
+          "base": {
+            "type": "number",
+            "required": true
+          },
+          "value": {
+            "type": "number",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

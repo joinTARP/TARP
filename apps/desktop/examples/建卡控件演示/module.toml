@@ -1,0 +1,14 @@
+name = "建卡控件演示"
+description = "独立展示阶段式建卡：选择身份并批量生成角色属性。"
+
+[[gameStarts]]
+id = "demo"
+name = "控件演示"
+characterTypeIds = ["character"]
+allowCreate = true
+
+[gameStarts.opening]
+mode = "scripted"
+
+[[gameStarts.opening.beats]]
+text = "演示角色已创建。"

@@ -1,0 +1,9 @@
+{
+  "name": "旅人",
+  "stats": { "vigor": 11, "agility": 9, "insight": 8 },
+  "hp": 12,
+  "reserve": 4,
+  "settlements": [],
+  "effects": [],
+  "ability_records": [{ "document": "能力/观察", "bonus": 4 }]
+}

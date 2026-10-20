@@ -1,0 +1,37 @@
+{
+  "designation": "world_state",
+  "fields": {
+    "scenes": {
+      "type": "list",
+      "mutable": true,
+      "required": true,
+      "item": {
+        "type": "object",
+        "fields": {
+          "id": {
+            "type": "text",
+            "required": true
+          },
+          "location": {
+            "type": "reference",
+            "targets": ["地点"],
+            "required": true
+          },
+          "members": {
+            "type": "list",
+            "required": true,
+            "item": {
+              "type": "reference",
+              "targets": ["角色"]
+            }
+          },
+          "activity": {
+            "type": "enum",
+            "options": ["探索", "休息"],
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+/* 动效只作用于聊天等待状态，不改变布局尺寸。 */
+.pendingMessage::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, #d97706 65%, transparent);
+}
+
+/* 输入区浮在消息列表上方；顶部仅留一小段渐隐过渡。 */
+.composerDock {
+  --composer-fade: 12px;
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 20;
+  padding-top: var(--composer-fade);
+  pointer-events: none;
+}
+
+.composerVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    color-mix(in srgb, var(--background) 20%, transparent) calc(var(--composer-fade) * 0.75),
+    color-mix(in srgb, var(--background) 70%, transparent) calc(var(--composer-fade) + 12px),
+    var(--background) 100%
+  );
+}
+
+.composerSurface {
+  pointer-events: auto;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  background: color-mix(in srgb, var(--card) 82%, transparent);
+  backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow:
+    0 1px 2px rgb(15 23 42 / 0.04),
+    0 6px 16px -6px rgb(15 23 42 / 0.1);
+}
+
+.composer {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.6),
+    0 1px 2px rgb(15 23 42 / 0.05),
+    0 10px 28px -8px rgb(15 23 42 / 0.16),
+    0 28px 56px -20px rgb(15 23 42 / 0.14);
+}
+
+:global(.dark) .composerSurface {
+  border-color: color-mix(in srgb, var(--border) 90%, transparent);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.3),
+    0 8px 20px -8px rgb(0 0 0 / 0.5);
+}
+
+:global(.dark) .composer {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.05),
+    0 1px 2px rgb(0 0 0 / 0.3),
+    0 12px 32px -8px rgb(0 0 0 / 0.55),
+    0 32px 64px -20px rgb(0 0 0 / 0.45);
+}
+
+.thinkingDot {
+  animation: breathe 1.8s ease-in-out infinite;
+}
+
+.typingDots {
+  display: inline-flex;
+  height: 12px;
+  align-items: center;
+  gap: 3px;
+}
+
+.typingDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: typingBounce 1.2s ease-in-out infinite both;
+}
+
+.typingDot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.typingDot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.thinkingLabel {
+  animation: thinkingEnter 350ms ease-out both;
+}
+
+@keyframes typingBounce {
+  0%,
+  60%,
+  100% {
+    opacity: 0.45;
+    transform: translateY(0) scale(0.8);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-1.5px) scale(1.2);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes thinkingEnter {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thinkingDot,
+  .typingDot,
+  .thinkingLabel {
+    animation: none;
+  }
+
+  .composer {
+    transition: none;
+  }
+}

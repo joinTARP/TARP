@@ -1,0 +1,7 @@
+{
+  "source_name": "GM_ONLY_TEST_VALUE",
+  "discovered": false,
+  "publicName": "物品公开名称测试值",
+  "publicText": "物品公开正文测试值。",
+  "gmText": "GM_ONLY_TEST_VALUE"
+}

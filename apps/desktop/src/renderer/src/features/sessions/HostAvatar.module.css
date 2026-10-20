@@ -1,0 +1,138 @@
+.avatar {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  perspective: 160px;
+}
+
+.body {
+  display: block;
+  width: 88%;
+  height: 88%;
+  transform-origin: 50% 52%;
+}
+
+.die {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* 先反色骰子，再添加阴影，避免把阴影反成白色光晕。 */
+  filter: invert(1) drop-shadow(0 2px 1px #0000001a);
+}
+
+:global(.dark) .die {
+  filter: drop-shadow(0 2px 1px #0006);
+}
+
+.eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.avatar[data-active="true"] .body {
+  animation: consider 12s ease-in-out infinite;
+}
+
+.avatar[data-active="true"] .gaze {
+  animation: glance 12s ease-in-out infinite;
+}
+
+.avatar[data-active="true"] .eyes {
+  animation: blink 4.3s linear infinite;
+}
+
+/* 独立一层平滑移动，回正也走同一段过渡，不与思考动画争用 transform。 */
+.pointerGaze {
+  transform: translate(var(--gaze-x, 0px), var(--gaze-y, 0px));
+  transition: transform 280ms ease-out;
+}
+
+.avatar[data-active="false"][data-tracking="true"] .pointerGaze {
+  transition: transform 50ms linear;
+}
+
+/* 执行期间视线交给加载动画，鼠标进出不暂停或重置任何动作。 */
+.avatar[data-active="true"] .pointerGaze {
+  transform: translate(0, 0);
+}
+
+/* 每轮先观察、停顿，再翻一圈；为阅读正文保留大段安静时间。 */
+@keyframes consider {
+  0%,
+  8%,
+  38%,
+  55% {
+    transform: rotate(0deg) rotateY(0deg);
+  }
+  15%,
+  23% {
+    transform: translateX(-2px) rotate(-16deg) rotateY(-32deg);
+  }
+  29%,
+  33% {
+    transform: translateX(2px) rotate(14deg) rotateY(32deg);
+  }
+  61% {
+    transform: translateY(-2px) rotate(-10deg) rotateY(-20deg);
+  }
+  69%,
+  75%,
+  100% {
+    transform: rotate(0deg) rotateY(360deg);
+  }
+  85%,
+  90% {
+    transform: translateY(-2px) rotate(12deg) rotateX(-18deg) rotateY(360deg);
+  }
+}
+
+@keyframes glance {
+  0%,
+  8%,
+  38%,
+  78%,
+  100% {
+    transform: translate(0, 0);
+  }
+  15%,
+  23% {
+    transform: translate(-10px, -3px);
+  }
+  29%,
+  33% {
+    transform: translate(10px, 1px);
+  }
+  85%,
+  90% {
+    transform: translate(5px, -8px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  32%,
+  36%,
+  74%,
+  78%,
+  100% {
+    transform: scaleY(1);
+  }
+  34%,
+  76% {
+    transform: scaleY(0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pointerGaze,
+  .avatar[data-active="false"][data-tracking="true"] .pointerGaze {
+    transition: none;
+  }
+
+  .avatar[data-active="true"] .body,
+  .avatar[data-active="true"] .gaze,
+  .avatar[data-active="true"] .eyes {
+    animation: none;
+  }
+}
