@@ -60,7 +60,7 @@ Git 钩子由 monorepo 根目录的 [simple-git-hooks](https://github.com/toplen
 
 GitHub Actions 的版本 tag、跨平台构建、签名配置和 Release 草稿验收见[发布流程](../../docs/发布流程.md)。
 
-应用图标的 1024 × 1024 完整画布主图保存在 `build/tarp-icon-source.png`，不含圆角裁切；`build/icon.png` 供 Windows、Linux 窗口与打包使用。macOS 使用已定稿的 `build/icon-mac.png`：1024 × 1024 透明画布，832 × 832 底板，四边各留白 96 像素。素材已包含圆角与透明留白，直接使用，不再缩放或补边。`build.mac.icons` 指向生成的 `out/icon.iconset`，配置与转换逻辑分别位于 `electrobun.config.ts` 和 `scripts/desktop.ts`。
+应用图标的 1024 × 1024 完整画布主图保存在 `build/tarp-icon-source.png`，不含圆角裁切；`build/icon.png` 供 Linux 窗口与打包使用。Windows 使用由它缩小得到的 `build/icon-win.png`（256 × 256）；Hutch 的 Windows 打包器只接受边长不超过 256 像素的正方形 PNG。更新 `build/icon.png` 时同步生成 Windows 图标。macOS 使用已定稿的 `build/icon-mac.png`：1024 × 1024 透明画布，832 × 832 底板，四边各留白 96 像素。素材已包含圆角与透明留白，直接使用，不再缩放或补边。`build.mac.icons` 指向生成的 `out/icon.iconset`，配置与转换逻辑分别位于 `electrobun.config.ts` 和 `scripts/desktop.ts`。
 
 更新 macOS 图标时直接替换 `build/icon-mac.png`，保留定稿文件自身的圆角和透明留白。开发环境重启应用后生效，发布包需要重新打包。界面中的横版 TARP 字标继续使用原 SVG。
 

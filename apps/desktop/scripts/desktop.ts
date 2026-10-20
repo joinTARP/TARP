@@ -15,7 +15,7 @@ async function run(args: string[], env = process.env) {
     stdin: "inherit",
   });
   const code = await child.exited;
-  if (code) throw new Error(`桌面命令执行失败（${code}）：${args.slice(0, 4).join(" ")}`);
+  if (code) throw new Error(`桌面命令执行失败（${code}）：${args.join(" ")}`);
 }
 
 await run(["bun", "run", "prepare:desktop"]);
