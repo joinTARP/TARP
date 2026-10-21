@@ -53,7 +53,11 @@ jobs:
               headers, _, body = result.stdout.partition("\n\n")
               if missing_ok and re.match(r"HTTP/\S+ 404(?:\s|$)", headers):
                   return None
-              result.check_returncode()
+              if result.returncode:
+                  request_method = method if payload is not None else "GET"
+                  status = headers.splitlines()[0] if headers else "未收到 HTTP 响应"
+                  detail = body.strip() or result.stderr.strip() or "GitHub 未返回错误详情"
+                  raise RuntimeError(f"GitHub API {request_method} {path} 失败：{status}\n{detail}")
               return json.loads(body)
 
           tag_pattern = r"desktop-v((?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*))"
