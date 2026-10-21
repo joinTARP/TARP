@@ -1,0 +1,138 @@
+name: 同步官网桌面版本与更新记录
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 已发布的正式桌面 Release 标签，例如 desktop-v0.1.1
+        required: true
+        type: string
+  release:
+    types: [published, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-website-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: 提交官网桌面版本与更新记录
+    if: github.event_name == 'workflow_dispatch' || (startsWith(github.event.release.tag_name, 'desktop-v') && !github.event.release.draft && !github.event.release.prerelease)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: 更新官网版本与更新记录并创建提交
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_CONTENTS_TOKEN }}
+          SOURCE_GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PYTHON'
+          import base64
+          import json
+          import os
+          import re
+          import subprocess
+
+          if not os.environ.get("GH_TOKEN"):
+              raise RuntimeError("请配置拥有 joinTARP/web-site Contents 读写权限的 WEBSITE_CONTENTS_TOKEN。")
+
+          def api(path, payload=None, method="POST", token=None, missing_ok=False):
+              command = ["gh", "api", path, "--include"]
+              if payload is not None:
+                  command += ["--method", method, "--input", "-"]
+              environment = dict(os.environ)
+              if token:
+                  environment["GH_TOKEN"] = token
+              result = subprocess.run(
+                  command, input=json.dumps(payload) if payload is not None else None,
+                  text=True, capture_output=True, env=environment,
+              )
+              headers, _, body = result.stdout.partition("\n\n")
+              if missing_ok and re.match(r"HTTP/\S+ 404(?:\s|$)", headers):
+                  return None
+              result.check_returncode()
+              return json.loads(body)
+
+          tag_pattern = r"desktop-v((?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*))"
+          def version_key(version):
+              return tuple(map(int, version.split(".")))
+
+          with open(os.environ["GITHUB_EVENT_PATH"]) as event_file:
+              event = json.load(event_file)
+          if os.environ["GITHUB_EVENT_NAME"] == "workflow_dispatch":
+              tag = event["inputs"]["tag"].strip()
+              if not re.fullmatch(tag_pattern, tag):
+                  raise RuntimeError("请输入正式桌面 Release 标签，例如 desktop-v0.1.1。")
+              release_path = "tags/" + tag
+          else:
+              event_release = event["release"]
+              if not re.fullmatch(tag_pattern, event_release["tag_name"]) or event_release["draft"] or event_release["prerelease"]:
+                  raise RuntimeError("仅同步三段数字版本的正式桌面 Release。")
+              release_path = str(event_release["id"])
+
+          release = api(
+              f"repos/{os.environ['GITHUB_REPOSITORY']}/releases/{release_path}",
+              token=os.environ["SOURCE_GH_TOKEN"],
+          )
+          match = re.fullmatch(tag_pattern, release["tag_name"])
+          if not match or release["draft"] or release["prerelease"]:
+              raise RuntimeError("触发同步的 Release 已不再是正式桌面版本。")
+          version = match[1]
+
+          repo = "repos/joinTARP/web-site"
+          head = api(repo + "/git/ref/heads/main")["object"]["sha"]
+          parent = api(repo + "/git/commits/" + head)
+          def read_file(path, missing_ok=False):
+              file = api(f"{repo}/contents/{path}?ref={head}", missing_ok=missing_ok)
+              return base64.b64decode(file["content"]).decode("utf-8") if file is not None else None
+
+          site_path = "src/data/site.ts"
+          source = read_file(site_path)
+          pattern = r"(?m)^export const desktopVersion = '([0-9]+\.[0-9]+\.[0-9]+)';$"
+          current = re.findall(pattern, source)
+          if len(current) != 1:
+              raise RuntimeError("官网 desktopVersion 格式不符合预期，拒绝修改。")
+          updated_source = source
+          if version_key(version) >= version_key(current[0]):
+              expected = {
+                  f"TARP-{version}-windows-x64-setup.zip",
+                  f"TARP-{version}-macos-arm64.dmg",
+                  f"TARP-{version}-linux-x64-setup.tar.gz",
+              }
+              if not expected.issubset({asset["name"] for asset in release["assets"]}):
+                  raise RuntimeError("当前 Release 缺少官网所需的安装包，拒绝同步。")
+              if version_key(version) > version_key(current[0]):
+                  updated_source = re.sub(pattern, f"export const desktopVersion = '{version}';", source)
+
+          changed = []
+          if source != updated_source:
+              changed.append({"path": site_path, "mode": "100644", "type": "blob", "content": updated_source})
+
+          body = (release.get("body") or "").strip() or "此版本未填写更新说明。"
+          metadata = {
+              "version": version,
+              "date": release["published_at"],
+              "source": release["html_url"],
+          }
+          frontmatter = "\n".join(f"{key}: {json.dumps(value, ensure_ascii=False)}" for key, value in metadata.items())
+          content = f"---\n{frontmatter}\n---\n\n{body}\n"
+          path = f"src/content/releases/{version}.md"
+          original = read_file(path, missing_ok=True)
+          if original != content:
+              changed.append({"path": path, "mode": "100644", "type": "blob", "content": content})
+
+          if not changed:
+              print("官网版本与更新记录已同步，无需提交。")
+          else:
+              tree = api(repo + "/git/trees", {"base_tree": parent["tree"]["sha"], "tree": changed})
+              commit = api(repo + "/git/commits", {
+                  "message": f"chore: 同步桌面版本 {version} 与更新记录",
+                  "tree": tree["sha"], "parents": [head],
+              })
+              api(repo + "/git/refs/heads/main", {"sha": commit["sha"], "force": False}, method="PATCH")
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as summary:
+                  summary.write(f"官网版本与更新记录已同步：[查看提交](https://github.com/joinTARP/web-site/commit/{commit['sha']})\n")
+          PYTHON
