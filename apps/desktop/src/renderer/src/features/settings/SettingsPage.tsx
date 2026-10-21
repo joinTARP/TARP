@@ -49,7 +49,7 @@ export default function SettingsPage() {
         ...group,
         items: searchItems(group.items, searchQuery, (item) =>
           item.id === "general"
-            ? [item.label, "模组保存路径", "玩家", "昵称"]
+            ? [item.label, "模组保存路径", "玩家", "昵称", "更新", "版本", "下载", "重启"]
             : item.id === "ai"
               ? [item.label, "模型", "服务商", "API Key", "兼容服务", "订阅", "ChatGPT", "登录"]
               : item.id === "game-defaults"

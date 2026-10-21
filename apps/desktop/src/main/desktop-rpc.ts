@@ -15,6 +15,12 @@ import { ttsRouter } from "./tts/router";
 export type { DesktopRpcContext } from "./desktop-rpc-context";
 
 export const desktopRouter = {
+  updates: {
+    get: procedure.handler(({ context }) => context.updates.get()),
+    check: procedure.handler(({ context }) => context.updates.check()),
+    download: procedure.handler(({ context }) => context.updates.download()),
+    restart: procedure.handler(({ context }) => context.updates.restart()),
+  },
   mcp: {
     get: procedure.handler(({ context }) => context.mcp.get()),
     setEnabled: procedure

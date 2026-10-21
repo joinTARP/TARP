@@ -1,6 +1,7 @@
 import type { GameContext } from "@jointarp/core/node";
 import { os, ORPCError } from "@orpc/server";
 
+import type { AppUpdateService } from "./app-update";
 import { AppConfigError } from "./config/app-config";
 import type { LocalGameSettings } from "./game/local-settings";
 import type { RoomAiSettingsStore } from "./game/room-ai-settings";
@@ -10,6 +11,7 @@ import type { LocalSessionLifecycle } from "./sessions/local-session-lifecycle";
 import type { TtsService } from "./tts/service";
 
 export interface DesktopRpcContext extends GameContext {
+  readonly updates: AppUpdateService;
   readonly mcp: McpService;
   readonly tts: TtsService;
   readonly configFilePath: string;

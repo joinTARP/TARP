@@ -20,8 +20,6 @@ jobs:
     needs: check
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -54,19 +52,8 @@ jobs:
           JS
       - run: bun run --filter @jointarp/module-cli pack
       - run: bun scripts/release/smoke.ts cli
-      - name: 整理发布包、对应源码和校验和
-        run: |
-          mkdir release-assets
-          cp packages/module-cli/out/tarp-module-cli.tgz "release-assets/tarp-$GITHUB_REF_NAME.tgz"
-          git archive --format=tar.gz --prefix="tarp-$GITHUB_REF_NAME/" --output="release-assets/tarp-$GITHUB_REF_NAME-source.tar.gz" HEAD
-          cd release-assets
-          sha256sum -- * > SHA256SUMS.txt
-      - name: 创建或更新草稿
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: bash scripts/release/draft.sh release-assets
       - name: 发布已验收的 npm 包
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TAG: ${{ steps.version.outputs.npm-tag }}
-        run: bun publish "release-assets/tarp-$GITHUB_REF_NAME.tgz" --registry https://registry.npmjs.org --access public --tag "$NPM_TAG"
+        run: bun publish packages/module-cli/out/tarp-module-cli.tgz --registry https://registry.npmjs.org --access public --tag "$NPM_TAG"

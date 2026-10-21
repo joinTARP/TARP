@@ -23,6 +23,9 @@ else
   if [[ "${release_version%%+*}" == *-* ]]; then
     release_flags+=(--prerelease)
   fi
+  if [[ "$release_tag" == desktop-v* ]]; then
+    release_flags+=(--notes "对应版本源码：[ZIP](https://github.com/$release_repo/archive/refs/tags/$release_tag.zip) · [tar.gz](https://github.com/$release_repo/archive/refs/tags/$release_tag.tar.gz)")
+  fi
   gh release create "$release_tag" --repo "$release_repo" --verify-tag \
     --title "TARP $release_tag" --generate-notes "${release_flags[@]}"
 fi

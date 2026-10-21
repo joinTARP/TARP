@@ -4,8 +4,10 @@ import { ChatService, createPiRuntime } from "@jointarp/core/node";
 import { narrationGapMs } from "@jointarp/core/shared/narration";
 import { modulePreviewHash } from "@jointarp/module-cli/commands";
 import { NativeMessagePort, type NativeBridge } from "@shared/native-bridge";
-import Electrobun, { BrowserView, Utils } from "electrobun/main";
+import Electrobun, { BrowserView, Updater, Utils } from "electrobun/main";
 
+import manifest from "../../package.json";
+import { AppUpdateService, createAcceleratedUpdater } from "./app-update";
 import { readAppConfig, resolveAppConfigLocation } from "./config/app-config";
 import { acquireDesktopInstance } from "./desktop-instance";
 import { configureApplicationMenu } from "./desktop-menu";
@@ -39,6 +41,8 @@ import { openHttpLink } from "./window-security";
 export async function startDesktop(modulePath?: string): Promise<void> {
   let mainWindow: DesktopWindow | null = null;
   let shuttingDown = false;
+  let shutdownComplete = false;
+  let shutdownPromise: Promise<void> | undefined;
   let startupAnimationPending = true;
   const configLocation = resolveAppConfigLocation();
   let pendingPreview = modulePath;
@@ -97,6 +101,43 @@ export async function startDesktop(modulePath?: string): Promise<void> {
       }),
   });
   const handler = createDesktopRpcHandler();
+  const updates = new AppUpdateService(
+    {
+      ...createAcceleratedUpdater(Updater),
+      applyUpdate: async () => {
+        try {
+          await shutdown();
+          await Updater.applyUpdate();
+          if (Updater.updateInfo().error) throw new Error(Updater.updateInfo().error);
+        } catch (error) {
+          try {
+            await Utils.showMessageBox({
+              type: "error",
+              title: "更新未能安装",
+              message: "TARP 将退出，请重新打开后重试更新。",
+              detail: error instanceof Error ? error.message : String(error),
+            });
+          } finally {
+            shutdownComplete = true;
+            Utils.quit();
+          }
+        }
+      },
+    },
+    manifest.version,
+    async () => {
+      const { response } = await Utils.showMessageBox({
+        type: "question",
+        title: "重启更新 TARP",
+        message: "现在结束当前运行并重启安装更新吗？",
+        detail: "重启将停止正在进行的 AI 回复和语音播放。请先保存正在编辑的内容。",
+        buttons: ["稍后", "重启更新"],
+        defaultId: 0,
+        cancelId: 0,
+      });
+      return response === 1;
+    },
+  );
   configureDesktopWindows((window) => {
     let port: NativeMessagePort | undefined;
     const rpc = BrowserView.defineRPC<NativeBridge>({
@@ -117,6 +158,7 @@ export async function startDesktop(modulePath?: string): Promise<void> {
                 subscriptionAuth,
                 chat,
                 mcp,
+                updates,
                 isHost: true,
                 player: await gameSettings.player(),
               }),
@@ -157,13 +199,12 @@ export async function startDesktop(modulePath?: string): Promise<void> {
     });
     return window;
   }
-  Electrobun.events.on("before-quit", (event) => {
-    if (shuttingDown) return;
-    event.response = { allow: false };
+  function shutdown(): Promise<void> {
+    if (shutdownPromise) return shutdownPromise;
     shuttingDown = true;
     tts.close();
     closeAllModuleReferences();
-    void Promise.allSettled([
+    shutdownPromise = Promise.allSettled([
       (async () => {
         try {
           await mcp.close();
@@ -173,11 +214,18 @@ export async function startDesktop(modulePath?: string): Promise<void> {
       })(),
       subscriptionAuth.cancel(),
       flushReferenceWindowState(),
-      instance.close(),
-    ]).finally(() => {
+      instance!.close(),
+    ]).then(() => {
       media.close();
-      Utils.quit();
+      shutdownComplete = true;
     });
+    return shutdownPromise;
+  }
+  Electrobun.events.on("before-quit", (event) => {
+    if (shutdownComplete) return;
+    event.response = { allow: false };
+    if (updates.get().state === "installing") return;
+    void shutdown().finally(() => Utils.quit());
   });
   Electrobun.events.on("reopen", () => {
     if (!isWindowOpen(mainWindow)) mainWindow = createMainWindow();
@@ -195,4 +243,5 @@ export async function startDesktop(modulePath?: string): Promise<void> {
   initialized = true;
   mainWindow = createMainWindow();
   await mcp.initialize();
+  void updates.check();
 }

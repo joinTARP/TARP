@@ -2,6 +2,7 @@ import { FolderOpen } from "lucide-react";
 
 import { PageToolbarHeader } from "../../components/StickyPageToolbar";
 import { Button } from "../../components/ui/button";
+import { AppUpdateSettings } from "./AppUpdateSettings";
 import { PlayerSettings } from "./PlayerSettings";
 interface GeneralSettingsPanelProps {
   readonly modulesPath: string | null;
@@ -66,6 +67,7 @@ export function GeneralSettingsPanel({
             </p>
           ) : null}
         </section>
+        <AppUpdateSettings />
       </div>
     </>
   );

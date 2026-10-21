@@ -17,12 +17,15 @@
     },
     "apps/desktop": {
       "name": "@jointarp/desktop",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@base-ui/react": "^1.8.0",
         "@colyseus/schema": "5.0.34",
         "@earendil-works/pi-ai": "1.2.0",
         "@earendil-works/pi-coding-agent": "1.2.0",
+        "@jointarp/core": "workspace:*",
+        "@jointarp/module": "workspace:*",
+        "@jointarp/module-cli": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.32.1",
         "@orpc/client": "^2.0.0-beta.36",
         "@orpc/contract": "^2.0.0-beta.36",
@@ -31,9 +34,6 @@
         "@tanstack/react-query": "^5.103.1",
         "@tanstack/react-router": "^1.170.17",
         "@tanstack/react-virtual": "^3.14.13",
-        "@jointarp/core": "workspace:*",
-        "@jointarp/module": "workspace:*",
-        "@jointarp/module-cli": "workspace:*",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.2.6",
         "es-toolkit": "^1.52.0",
@@ -79,9 +79,9 @@
         "@colyseus/schema": "5.0.34",
         "@earendil-works/pi-ai": "1.2.0",
         "@earendil-works/pi-coding-agent": "1.2.0",
+        "@jointarp/module": "workspace:*",
         "@orpc/contract": "^2.0.0-beta.36",
         "@orpc/server": "^2.0.0-beta.36",
-        "@jointarp/module": "workspace:*",
         "es-toolkit": "^1.52.0",
         "fast-json-patch": "^3.1.1",
         "kysely": "^0.29.6",
@@ -226,6 +226,14 @@
     "@jitl/quickjs-wasmfile-release-asyncify": ["@jitl/quickjs-wasmfile-release-asyncify@0.32.0", "", { "dependencies": { "@jitl/quickjs-ffi-types": "0.32.0" } }, "sha512-3oSwPfja12ICz4aIblB58cuY8JlEq5Txt8Cut4VLo+LH47QN+mzCnSgnbB03hWzg1LBcc+VyyI9UOag7a1NF+Q=="],
 
     "@jitl/quickjs-wasmfile-release-sync": ["@jitl/quickjs-wasmfile-release-sync@0.32.0", "", { "dependencies": { "@jitl/quickjs-ffi-types": "0.32.0" } }, "sha512-BKNDI/TPBfGlLNGYpLrhcDGXmIk4xHm4MRAisOBnOzpXVn9HZWsfmMAc9WMBrAHjvvds6HOikKeaOBKdPdpVrg=="],
+
+    "@jointarp/core": ["@jointarp/core@workspace:packages/core"],
+
+    "@jointarp/desktop": ["@jointarp/desktop@workspace:apps/desktop"],
+
+    "@jointarp/module": ["@jointarp/module@workspace:packages/module"],
+
+    "@jointarp/module-cli": ["@jointarp/module-cli@workspace:packages/module-cli"],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.13", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA=="],
 
@@ -432,14 +440,6 @@
     "@tanstack/store": ["@tanstack/store@0.11.1", "", {}, "sha512-mzTOBhypOuDJAy/D8n2MfUZ1HFkXnmSETviRyhqEC8LUE7/IZQExOTxMANj3KjTofYTkFNpBY67qaVrT41YccA=="],
 
     "@tanstack/virtual-core": ["@tanstack/virtual-core@3.17.11", "", {}, "sha512-+ILjvtHup6Y2hzQ6YzwMgX1Q+oQpxEGOXCEsCNaPoIP0VxMbizIBTmYTDtkerkIQS8/CbP1BRuyt8V/8BCsy1g=="],
-
-    "@jointarp/core": ["@jointarp/core@workspace:packages/core"],
-
-    "@jointarp/desktop": ["@jointarp/desktop@workspace:apps/desktop"],
-
-    "@jointarp/module": ["@jointarp/module@workspace:packages/module"],
-
-    "@jointarp/module-cli": ["@jointarp/module-cli@workspace:packages/module-cli"],
 
     "@turbo/darwin-64": ["@turbo/darwin-64@2.11.10", "", { "os": "darwin", "cpu": "x64" }, "sha512-By4idRap5+nLnMuRzLB4qkOPRlvNdyY1ne4VJYDyUoUB11H94k7uif9mbe3JT8JSNXs1D68uMcBj6hJ/jMQRvA=="],
 
