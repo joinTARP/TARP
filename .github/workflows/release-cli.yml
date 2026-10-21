@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/ci.yml
 
   release:
-    name: 打包、验收并创建 Release 草稿
+    name: 打包、验收并发布 npm 包
     needs: check
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -26,6 +26,14 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: 检查 npm 发布凭据
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [[ -z "$NPM_TOKEN" ]]; then
+            echo '::error::请在仓库 Actions Secrets 配置有 @tarp/module-cli 发布权限的 NPM_TOKEN。'
+            exit 1
+          fi
       - uses: ./.github/actions/setup
       - name: 准备 CLI 兼容性验收运行时
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -33,12 +41,16 @@ jobs:
           node-version: "22.12.0"
           package-manager-cache: false
       - name: 校验 tag 与 CLI 版本
+        id: version
         run: |
           bun run - <<'JS'
+          const { appendFileSync } = require('node:fs');
           const { version } = require('./packages/module-cli/package.json');
           if (process.env.GITHUB_REF_NAME !== `cli-v${version}`) {
             throw new Error(`tag 必须为 cli-v${version}`);
           }
+          const npmTag = version.split('+')[0].includes('-') ? 'next' : 'latest';
+          appendFileSync(process.env.GITHUB_OUTPUT, `npm-tag=${npmTag}\n`);
           JS
       - run: bun run --filter @tarp/module-cli pack
       - run: bun scripts/release/smoke.ts cli
@@ -53,3 +65,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: bash scripts/release/draft.sh release-assets
+      - name: 发布已验收的 npm 包
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TAG: ${{ steps.version.outputs.npm-tag }}
+        run: bun publish "release-assets/tarp-$GITHUB_REF_NAME.tgz" --registry https://registry.npmjs.org --access public --tag "$NPM_TAG"

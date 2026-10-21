@@ -52,9 +52,9 @@ bun run build
 
 发布包只包含 `index.js`、`package.json`、README、GPL v3 LICENSE 和 NOTICE.md。发布时使用独立的 `out/` 目录。`bun run pack` 只生成本地产物，不上传到 npm。
 
-确认包名、scope 权限和版本后，在本子包执行 `bun publish --cwd out` 发布。用户安装的是构建后的 JavaScript，无需在安装时运行 Bun 构建。
+推送与 CLI 版本一致的 `cli-v*` tag 后，GitHub Actions 验收 tgz，再将同一份包自动发布到 npm；需要预先配置 `NPM_TOKEN`。用户安装的是构建后的 JavaScript，无需在安装时运行 Bun 构建。
 
-GitHub Actions 的 CLI tag、独立安装验收、Release 草稿和手动 npm 发布见[发布流程](../../docs/发布流程.md)。
+GitHub Actions 的 CLI tag、独立安装验收、Release 草稿和 npm 自动发布见[发布流程](../../docs/发布流程.md)。
 
 ## 许可证
 
