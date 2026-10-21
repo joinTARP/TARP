@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 
 import { AppShell } from "./components/AppShell";
+import { AppUpdateNotice } from "./components/AppUpdateNotice";
 import { SettingsLayer } from "./components/SettingsLayer";
 import { desktopOrpc, queryClient } from "./desktop-rpc";
 import { HomePage, ModuleLibraryPage } from "./features/modules/HomePage";
@@ -28,6 +29,7 @@ function RootLayout() {
     <>
       <Outlet />
       <SettingsLayer />
+      <AppUpdateNotice />
     </>
   );
 }

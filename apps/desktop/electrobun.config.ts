@@ -10,6 +10,7 @@ export default {
     version: manifest.version,
     description: manifest.description,
   },
+  release: { baseUrl: "https://github.com/joinTARP/TARP/releases/latest/download" },
   build: {
     mainProcess: "bun",
     bun: {
