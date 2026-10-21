@@ -12,7 +12,7 @@ tarp --help
 tarp module validate ./module --json
 ```
 
-安装时自动提供 YAML、Zod、smol-toml，不需要源码仓库。预览仍需安装桌面应用，并设置 `TARP_DESKTOP` 为其可执行文件路径。包名与 scope 需在实际发布前确认。
+安装时自动提供 YAML、Zod、smol-toml，不需要源码仓库。预览仍需安装桌面应用，并设置 `TARP_DESKTOP` 为其可执行文件路径。
 
 完整使用说明只在「官网 CLI 指南」维护。本页保留 npm 最小入口及源码开发、协议验收和发布步骤。
 
