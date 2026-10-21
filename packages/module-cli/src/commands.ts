@@ -1,9 +1,9 @@
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";
 
-import { loadDocumentTypes } from "@jointarp/module/node/document-types";
-import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
-import { validateModule } from "@jointarp/module/node/validate-module";
+import { loadDocumentTypes } from "@tarp/module/node/document-types";
+import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
+import { validateModule } from "@tarp/module/node/validate-module";
 
 export type ModuleCommand =
   | { readonly kind: "desktop" }

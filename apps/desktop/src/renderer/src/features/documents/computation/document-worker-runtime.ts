@@ -1,4 +1,4 @@
-import { DocumentEvaluator } from "@jointarp/module/document-evaluator";
+import { DocumentEvaluator } from "@tarp/module/document-evaluator";
 
 import type { DocumentWorkerRequest, DocumentWorkerResponse } from "./document-worker-protocol";
 import { createSESCompiler } from "./ses-compiler";

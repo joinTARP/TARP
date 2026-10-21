@@ -1,13 +1,13 @@
 import { lstatSync, readFileSync, readdirSync, realpathSync } from "node:fs";
 import { dirname, isAbsolute, join, relative, sep } from "node:path";
 
-import type { DocumentType } from "@jointarp/module/document-type";
+import type { DocumentType } from "@tarp/module/document-type";
 import {
   parseDocumentContent,
   parseStructuredDocument,
   stringifyDocumentContent,
   stringifyStructuredDocument,
-} from "@jointarp/module/node/document-codec";
+} from "@tarp/module/node/document-codec";
 import { cloneDeep, isEqual, isPlainObject, mergeWith } from "es-toolkit";
 import { z } from "zod";
 

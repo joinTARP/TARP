@@ -1,12 +1,12 @@
-import { characterDraftSchema, type Character } from "@jointarp/module/character";
+import { characterDraftSchema, type Character } from "@tarp/module/character";
 import {
   creationAnswerSchema,
   creationProgressSchema,
   type WorkbenchView,
-} from "@jointarp/module/creation-workbench";
-import type { DocumentType } from "@jointarp/module/document-type";
-import { flowAnswerSchema, flowRunSchema, type LaunchConfig } from "@jointarp/module/flow";
-import type { ModuleDocument } from "@jointarp/module/module-document";
+} from "@tarp/module/creation-workbench";
+import type { DocumentType } from "@tarp/module/document-type";
+import { flowAnswerSchema, flowRunSchema, type LaunchConfig } from "@tarp/module/flow";
+import type { ModuleDocument } from "@tarp/module/module-document";
 import { z } from "zod";
 
 import type { ChatMessage } from "./game";

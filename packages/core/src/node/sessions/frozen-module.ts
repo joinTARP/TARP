@@ -1,11 +1,11 @@
 import { join } from "node:path";
 
-import type { DocumentType } from "@jointarp/module/document-type";
-import { launchConfigSchema, validateLaunch, type LaunchConfig } from "@jointarp/module/flow";
-import type { RawModuleDocument } from "@jointarp/module/module-document";
-import { loadDocumentTypes } from "@jointarp/module/node/document-types";
-import { loadModuleDocuments } from "@jointarp/module/node/module-documents";
-import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
+import type { DocumentType } from "@tarp/module/document-type";
+import { launchConfigSchema, validateLaunch, type LaunchConfig } from "@tarp/module/flow";
+import type { RawModuleDocument } from "@tarp/module/module-document";
+import { loadDocumentTypes } from "@tarp/module/node/document-types";
+import { loadModuleDocuments } from "@tarp/module/node/module-documents";
+import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { roomDirectoryForDatabase } from "./session-paths";

@@ -1,8 +1,8 @@
-import { documentIdentity } from "@jointarp/module/document-path";
 import { chatText, visibleAgentMessages } from "@tarp/core/shared/agent-message";
 import { parseCompanionPerformance } from "@tarp/core/shared/companion";
 import type { ChatMessage } from "@tarp/core/shared/game";
 import { parseNarrative, type NarrativeSegment } from "@tarp/core/shared/narrative";
+import { documentIdentity } from "@tarp/module/document-path";
 import { Flag } from "lucide-react";
 import {
   createContext,

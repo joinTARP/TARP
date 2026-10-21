@@ -1,6 +1,6 @@
-import type { Character } from "@jointarp/module/character";
-import type { LaunchConfig } from "@jointarp/module/flow";
-import type { RawModuleDocument } from "@jointarp/module/module-document";
+import type { Character } from "@tarp/module/character";
+import type { LaunchConfig } from "@tarp/module/flow";
+import type { RawModuleDocument } from "@tarp/module/module-document";
 import { z } from "zod";
 
 import { identityIdSchema } from "./identity";

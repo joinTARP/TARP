@@ -6,15 +6,15 @@ import { createServer } from "node:http";
 import { join } from "node:path";
 
 import { fauxAssistantMessage, fauxToolCall } from "@earendil-works/pi-ai";
-import { waitFor } from "@jointarp/module/testing/async";
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
-import { createTestModule } from "@jointarp/module/testing/test-module";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { ChatService, type Runtime } from "@tarp/core/node";
 import { updateGameDocument } from "@tarp/core/node/sessions/game-state";
 import { createSession, openSessionDatabase } from "@tarp/core/node/sessions/session-store";
 import { gameDefaultsSchema } from "@tarp/core/shared/game-defaults";
+import { waitFor } from "@tarp/module/testing/async";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+import { createTestModule } from "@tarp/module/testing/test-module";
 
 import { PlaytestService, playtestCreateSchema } from "./playtest";
 import { startPlaytestMcp } from "./server";

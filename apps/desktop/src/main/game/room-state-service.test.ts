@@ -7,8 +7,6 @@ import { join } from "node:path";
 import { MessageChannel } from "node:worker_threads";
 
 import { Decoder } from "@colyseus/schema";
-import type { WorkbenchView } from "@jointarp/module/creation-workbench";
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/message-port";
 import type { ContractRouterClient } from "@orpc/contract";
@@ -46,6 +44,8 @@ import type { LaunchAction } from "@tarp/core/shared/launch";
 import { ROOM_PROTOCOL_VERSION } from "@tarp/core/shared/room-state";
 import { RoomStateSchema } from "@tarp/core/shared/room-state-schema";
 import { createLaunchTestModule } from "@tarp/core/testing/launch-module";
+import type { WorkbenchView } from "@tarp/module/creation-workbench";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 
 import { RoomConnection } from "../../renderer/src/features/sessions/room-connection";
 import {

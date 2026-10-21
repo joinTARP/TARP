@@ -2,14 +2,14 @@ import { createHash } from "node:crypto";
 import { lstatSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-import type { DocumentData } from "@jointarp/module/document-computations";
+import type { DocumentData } from "@tarp/module/document-computations";
 import {
   collectReferences,
   type DeclaredReferences,
   type DocumentReferenceIndex,
-} from "@jointarp/module/document-references";
-import type { DocumentType } from "@jointarp/module/document-type";
-import { hasInstanceBindings, type InstanceResolver } from "@jointarp/module/instance-state";
+} from "@tarp/module/document-references";
+import type { DocumentType } from "@tarp/module/document-type";
+import { hasInstanceBindings, type InstanceResolver } from "@tarp/module/instance-state";
 import { z } from "zod";
 
 import type { SessionDatabase } from "../storage/session-database";

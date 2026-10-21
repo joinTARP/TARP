@@ -1,15 +1,12 @@
-import { publicValues } from "@jointarp/module/character";
-import {
-  renderHandlebarsTemplate,
-  type TemplateHtmlNode,
-} from "@jointarp/module/handlebars-template";
-import { fieldErrorAtPath, publicFieldErrors } from "@jointarp/module/public-document-field";
+import { publicValues } from "@tarp/module/character";
+import { renderHandlebarsTemplate, type TemplateHtmlNode } from "@tarp/module/handlebars-template";
+import { fieldErrorAtPath, publicFieldErrors } from "@tarp/module/public-document-field";
 import {
   templateComponentSchema,
   templateComponentNode,
   validateTemplateComponent,
   type TemplateLayout,
-} from "@jointarp/module/template-layout";
+} from "@tarp/module/template-layout";
 import { attributesToProps } from "html-react-parser";
 import { createElement, type ReactNode } from "react";
 

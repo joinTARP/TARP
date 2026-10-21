@@ -1,4 +1,4 @@
-import { imageAspectRatio, type ImageAspect } from "@jointarp/module/image-aspect";
+import { imageAspectRatio, type ImageAspect } from "@tarp/module/image-aspect";
 import { cn } from "cn";
 import { useState } from "react";
 

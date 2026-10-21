@@ -40,7 +40,7 @@ jobs:
             throw new Error(`tag 必须为 cli-v${version}`);
           }
           JS
-      - run: bun run --filter @jointarp/module-cli pack
+      - run: bun run --filter @tarp/module-cli pack
       - run: bun scripts/release/smoke.ts cli
       - name: 整理发布包、对应源码和校验和
         run: |

@@ -1,7 +1,7 @@
-import { typeFormatLabel } from "@jointarp/module/document-path";
-import type { DocumentType } from "@jointarp/module/document-type";
 import type { ModuleDocument } from "@shared/desktop-api";
 import { Link } from "@tanstack/react-router";
+import { typeFormatLabel } from "@tarp/module/document-path";
+import type { DocumentType } from "@tarp/module/document-type";
 import { cn } from "cn";
 import { FileCode2, FileText, Shapes } from "lucide-react";
 

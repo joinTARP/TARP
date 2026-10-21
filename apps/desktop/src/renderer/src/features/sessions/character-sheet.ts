@@ -1,5 +1,5 @@
-import type { DocumentType } from "@jointarp/module/document-type";
-import type { ModuleDocument } from "@jointarp/module/module-document";
+import type { DocumentType } from "@tarp/module/document-type";
+import type { ModuleDocument } from "@tarp/module/module-document";
 
 import { buildDocumentSheet, type DocumentSheetModel } from "../modules/document-sheet";
 

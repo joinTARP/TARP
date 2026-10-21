@@ -1,5 +1,5 @@
-import { documentIdentity } from "@jointarp/module/document-path";
 import type { ModuleDocument } from "@shared/desktop-api";
+import { documentIdentity } from "@tarp/module/document-path";
 
 import type { ReferenceDocument } from "./DocumentReferences";
 import type { ReferenceCollectionRow } from "./reference-collection";

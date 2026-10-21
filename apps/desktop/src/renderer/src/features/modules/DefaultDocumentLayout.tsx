@@ -1,5 +1,5 @@
-import { defaultDocumentFields, type PresetLayout } from "@jointarp/module/document-templates";
-import { shouldHideEmptyField } from "@jointarp/module/public-document-field";
+import { defaultDocumentFields, type PresetLayout } from "@tarp/module/document-templates";
+import { shouldHideEmptyField } from "@tarp/module/public-document-field";
 import { Suspense } from "react";
 
 import { DocumentMarkdown, documentMarkdownPlugins } from "./document-markdown";

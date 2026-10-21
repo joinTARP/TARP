@@ -1,4 +1,4 @@
-import type { DocumentPresentation } from "@jointarp/module/document-templates";
+import type { DocumentPresentation } from "@tarp/module/document-templates";
 import { createElement, useLayoutEffect, useRef } from "react";
 
 import {

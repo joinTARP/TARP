@@ -1,13 +1,13 @@
 # 模组开发 CLI
 
-`@jointarp/module-cli` 是同时支持 Node.js 和 Bun 的独立命令行子包。校验使用 `@jointarp/module` 的真实加载器，无需桌面运行时、桌面构建或个人应用配置，不创建存档、不修改模组。
+`@tarp/module-cli` 是同时支持 Node.js 和 Bun 的独立命令行子包。校验使用 `@tarp/module` 的真实加载器，无需桌面运行时、桌面构建或个人应用配置，不创建存档、不修改模组。
 
 ## npm 安装
 
 发布到 npm 后，Node.js 22.12.0 或更新版本可直接运行 `tarp`；Bun 可显式执行同一份 JavaScript 产物：
 
 ```sh
-npm install -g @jointarp/module-cli
+npm install -g @tarp/module-cli
 tarp --help
 tarp module validate ./module --json
 ```
@@ -24,13 +24,13 @@ tarp module validate ./module --json
 
 ```sh
 bun install --frozen-lockfile
-bun run --filter @jointarp/module-cli build
+bun run --filter @tarp/module-cli build
 bun run cli --help
 bun run cli --version
 bun run cli module validate ./apps/desktop/examples/建卡控件演示 --json
 ```
 
-模组路径相对于命令执行目录解析，含空格的路径请加引号。子包提供基于 `#!/usr/bin/env node` 的 `tarp` 可执行入口，指向构建后的 `out/index.js`。也可以直接用 `node packages/module-cli/out/index.js` 或 `bun packages/module-cli/out/index.js` 执行。仅安装 Bun 时，使用显式 `bun` 命令；公开包发布后也可使用 `bunx --bun @jointarp/module-cli`，避免按 Node.js shebang 启动。
+模组路径相对于命令执行目录解析，含空格的路径请加引号。子包提供基于 `#!/usr/bin/env node` 的 `tarp` 可执行入口，指向构建后的 `out/index.js`。也可以直接用 `node packages/module-cli/out/index.js` 或 `bun packages/module-cli/out/index.js` 执行。仅安装 Bun 时，使用显式 `bun` 命令；公开包发布后也可使用 `bunx --bun @tarp/module-cli`，避免按 Node.js shebang 启动。
 
 CLI 的校验输出与退出码属于共享协议：`0` 成功，`1` 校验或操作失败，`2` 参数错误。Agent 使用退出码及 JSON 字段判断，不依赖中文提示措辞。`--json` 包含 `schemaVersion`、`appVersion`、`status`、路径、数量和 `issues`；`appVersion` 是当前执行入口版本。
 
@@ -48,7 +48,7 @@ bun run build
 
 ## 打包与发布
 
-在本子包执行 `bun run pack`，生成 `out/tarp-module-cli.tgz`。构建通过 `Bun.build` 的 Node.js 目标，将 CLI 与 `@jointarp/module` workspace 源码打进 `index.js`；第三方库不打入产物，发布目录中的 `package.json.dependencies` 声明其运行依赖，没有 `workspace:*` 或源码导出。
+在本子包执行 `bun run pack`，生成 `out/tarp-module-cli.tgz`。构建通过 `Bun.build` 的 Node.js 目标，将 CLI 与 `@tarp/module` workspace 源码打进 `index.js`；第三方库不打入产物，发布目录中的 `package.json.dependencies` 声明其运行依赖，没有 `workspace:*` 或源码导出。
 
 发布包只包含 `index.js`、`package.json`、README、GPL v3 LICENSE 和 NOTICE.md。发布时使用独立的 `out/` 目录。`bun run pack` 只生成本地产物，不上传到 npm。
 

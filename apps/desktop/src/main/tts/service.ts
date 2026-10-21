@@ -1,11 +1,11 @@
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 
-import { documentIdentity } from "@jointarp/module/document-path";
-import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
 import { readRoomSettings, updateRoomSettings } from "@tarp/core/node/sessions/room-settings";
 import { readAdventure } from "@tarp/core/node/sessions/room-storage";
 import { roomDirectory } from "@tarp/core/node/sessions/session-store";
+import { documentIdentity } from "@tarp/module/document-path";
+import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
 import { z } from "zod";
 
 import type { ModuleMetadata } from "../../shared/desktop-api";

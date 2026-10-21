@@ -1,4 +1,4 @@
-import type { DocumentField, DocumentType } from "@jointarp/module/document-type";
+import type { DocumentField, DocumentType } from "@tarp/module/document-type";
 
 export function pointerParts(pointer: string): string[] {
   if (!pointer.startsWith("/") || pointer === "/") throw new Error("更新路径必须是 JSON Pointer");

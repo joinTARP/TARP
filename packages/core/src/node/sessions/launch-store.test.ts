@@ -5,8 +5,8 @@ import { mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { creationFlowSchema, launchConfigSchema } from "@jointarp/module/flow";
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { creationFlowSchema, launchConfigSchema } from "@tarp/module/flow";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 import { ZodError } from "zod";
 
 import type { LaunchAction, LaunchState } from "../../shared/launch";

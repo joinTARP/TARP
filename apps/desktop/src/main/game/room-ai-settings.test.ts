@@ -6,11 +6,11 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { builtinProviders } from "@earendil-works/pi-ai/providers/all";
-import { waitFor } from "@jointarp/module/testing/async";
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 import { ChatService } from "@tarp/core/node/game/chat-service";
 import { readRoomSettings } from "@tarp/core/node/sessions/room-settings";
 import { createSession } from "@tarp/core/node/sessions/session-store";
+import { waitFor } from "@tarp/module/testing/async";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 
 import { LocalGameSettings } from "./local-settings";
 import { RoomAiSettingsStore } from "./room-ai-settings";

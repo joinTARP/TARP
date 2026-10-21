@@ -1,6 +1,3 @@
-import { publicValues, type Character } from "@jointarp/module/character";
-import { documentIdentity } from "@jointarp/module/document-path";
-import { visibleDocumentProjection } from "@jointarp/module/module-document";
 import type { ModuleDocument } from "@shared/desktop-api";
 import type { ChatEvent } from "@tarp/core/shared/game";
 import {
@@ -9,6 +6,9 @@ import {
   type SessionModuleResources,
   type RoomEntity,
 } from "@tarp/core/shared/room-state";
+import { publicValues, type Character } from "@tarp/module/character";
+import { documentIdentity } from "@tarp/module/document-path";
+import { visibleDocumentProjection } from "@tarp/module/module-document";
 
 import type { RendererDocumentEvaluator } from "../documents/computation/document-worker-protocol";
 import { WorkerDocumentEvaluator } from "../documents/computation/worker-document-evaluator";

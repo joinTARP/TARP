@@ -1,6 +1,6 @@
-import { defaultDocumentHover, type DocumentType } from "@jointarp/module/document-type";
-import { isDocumentVisible } from "@jointarp/module/module-document";
 import type { ModuleDocument } from "@shared/desktop-api";
+import { defaultDocumentHover, type DocumentType } from "@tarp/module/document-type";
+import { isDocumentVisible } from "@tarp/module/module-document";
 import type { ReactNode } from "react";
 
 import { RoomDocument } from "../sessions/room-document";

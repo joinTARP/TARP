@@ -1,15 +1,15 @@
-import type { DocumentType } from "@jointarp/module/document-type";
+import type { DocumentType } from "@tarp/module/document-type";
 import type {
   ModuleDocument,
   ModuleMetadata,
   ModulePageDocument,
-} from "@jointarp/module/module-document";
+} from "@tarp/module/module-document";
 
 export type {
   ModuleDocument,
   ModuleMetadata,
   ModulePageDocument,
-} from "@jointarp/module/module-document";
+} from "@tarp/module/module-document";
 
 export interface ModuleSummary {
   readonly path: string;

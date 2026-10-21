@@ -15,7 +15,7 @@ import {
   type SessionManager,
   type ToolDefinition,
 } from "@earendil-works/pi-coding-agent";
-import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
+import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
 import { Type } from "typebox";
 
 import { chatText } from "../../shared/agent-message";

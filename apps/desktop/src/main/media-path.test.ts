@@ -4,7 +4,7 @@ import { mkdir, mkdtemp, realpath, rename, rm, symlink } from "node:fs/promises"
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 
 import { documentMediaUrl } from "../shared/document-media";
 import { allowDocumentMediaRoots, resolveMediaRequestFile } from "./media-path";

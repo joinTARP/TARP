@@ -14,7 +14,7 @@ import {
 import { tmpdir } from "node:os";
 import { basename, join } from "node:path";
 
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 
 import { createGameTools } from "../agent/game-tools";
 import { readCharacters } from "./character-db";

@@ -2,12 +2,12 @@ import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 
-import { publicValues } from "@jointarp/module/character";
-import { documentFormat, documentIdentity, documentTypeId } from "@jointarp/module/document-path";
-import type { LaunchConfig } from "@jointarp/module/flow";
-import type { ModuleDocument } from "@jointarp/module/module-document";
-import { parseDocumentContent } from "@jointarp/module/node/document-codec";
 import { ORPCError } from "@orpc/server";
+import { publicValues } from "@tarp/module/character";
+import { documentFormat, documentIdentity, documentTypeId } from "@tarp/module/document-path";
+import type { LaunchConfig } from "@tarp/module/flow";
+import type { ModuleDocument } from "@tarp/module/module-document";
+import { parseDocumentContent } from "@tarp/module/node/document-codec";
 
 import type { LaunchState } from "../../shared/launch";
 import {

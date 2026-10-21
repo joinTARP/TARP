@@ -1,14 +1,14 @@
-import { typeFormatLabel } from "@jointarp/module/document-path";
+import type { ModuleDocument } from "@shared/desktop-api";
+import { Link } from "@tanstack/react-router";
+import { typeFormatLabel } from "@tarp/module/document-path";
 import {
   defaultDocumentCard,
   defaultDocumentHover,
   defaultDocumentReference,
   type DocumentLayoutSection,
   type DocumentType,
-} from "@jointarp/module/document-type";
-import { imageAspectRatio } from "@jointarp/module/image-aspect";
-import type { ModuleDocument } from "@shared/desktop-api";
-import { Link } from "@tanstack/react-router";
+} from "@tarp/module/document-type";
+import { imageAspectRatio } from "@tarp/module/image-aspect";
 import { cn } from "cn";
 
 import { buttonVariants } from "../../components/ui/button";

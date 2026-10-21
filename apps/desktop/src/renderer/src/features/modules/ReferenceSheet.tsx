@@ -1,6 +1,6 @@
-import { documentIdentity } from "@jointarp/module/document-path";
-import { isDocumentVisible } from "@jointarp/module/module-document";
 import type { ModuleDocument } from "@shared/desktop-api";
+import { documentIdentity } from "@tarp/module/document-path";
+import { isDocumentVisible } from "@tarp/module/module-document";
 import { useContext } from "react";
 
 import { Button } from "../../components/ui/button";

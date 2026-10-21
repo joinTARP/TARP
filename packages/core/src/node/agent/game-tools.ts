@@ -1,8 +1,8 @@
 import { basename, dirname, join } from "node:path";
 
 import type { ToolDefinition } from "@earendil-works/pi-coding-agent";
-import { documentTypeId } from "@jointarp/module/document-path";
-import { parseDocumentContent } from "@jointarp/module/node/document-codec";
+import { documentTypeId } from "@tarp/module/document-path";
+import { parseDocumentContent } from "@tarp/module/node/document-codec";
 import { Type } from "typebox";
 import { z } from "zod";
 
