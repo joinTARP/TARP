@@ -1,4 +1,4 @@
-name: 同步官网桌面版本与更新记录
+name: 官网版本与发布记录同步
 
 on:
   workflow_dispatch:
