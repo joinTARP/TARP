@@ -2,8 +2,6 @@ name: 仓库检查
 
 on:
   pull_request:
-  push:
-    branches: ["**"]
   workflow_dispatch:
   workflow_call:
 
@@ -33,3 +31,9 @@ jobs:
       - run: bun run typecheck
       - run: bun run test
       - run: bun run build
+
+  desktop:
+    name: 桌面分发验收
+    if: github.event_name == 'pull_request'
+    needs: check
+    uses: ./.github/workflows/build-desktop.yml

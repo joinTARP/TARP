@@ -1,5 +1,6 @@
-import { it, onTestFinished } from "bun:test";
+import { it, onTestFinished, spyOn } from "bun:test";
 import { strict as assert } from "node:assert";
+import * as fs from "node:fs/promises";
 import { mkdir, mkdtemp, readFile, readdir, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -35,6 +36,30 @@ function store(path: string) {
 it("多个存储实例对同文件完整读改写，保留全部增量和未知字段", async () => {
   const path = join(await directory(), "nested", "config.json");
   await store(path).write({ count: 0, extra: "保留" });
+  await Promise.all(
+    Array.from({ length: 12 }, () =>
+      store(path).update(async (value) => {
+        await Promise.resolve();
+        return { ...value, count: value.count + 1 };
+      }),
+    ),
+  );
+  assert.deepEqual(await store(path).read(), { count: 12, extra: "保留" });
+});
+
+it("原子替换期间旧文件的 realpath 结果变化不会拆散同文件更新队列", async () => {
+  const path = join(await directory(), "config.json");
+  await store(path).write({ count: 0, extra: "保留" });
+  const realpath = fs.realpath;
+  let resolutions = 0;
+  const resolving = spyOn(fs, "realpath").mockImplementation((async (
+    target: Parameters<typeof realpath>[0],
+  ) => {
+    const actual = await realpath(target);
+    // 模拟 Linux 在旧文件已被 rename 替换后返回的描述符路径。
+    return target === path && ++resolutions % 2 === 0 ? `${actual} (deleted)` : actual;
+  }) as typeof realpath);
+  onTestFinished(() => resolving.mockRestore());
   await Promise.all(
     Array.from({ length: 12 }, () =>
       store(path).update(async (value) => {

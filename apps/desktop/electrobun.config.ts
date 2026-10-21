@@ -34,7 +34,7 @@ export default {
       codesign: process.env.TARP_CODESIGN === "1",
       notarize: process.env.TARP_NOTARIZE === "1",
     },
-    win: { bundleCEF: false, icon: "build/icon.png" },
+    win: { bundleCEF: false, icon: "build/icon-win.png" },
     linux: { bundleCEF: false, icon: "build/icon.png" },
   },
   runtime: { exitOnLastWindowClosed: false },
