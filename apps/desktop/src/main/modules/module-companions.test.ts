@@ -2,11 +2,11 @@ import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 import { randomUUID } from "node:crypto";
 
+import { ChatService } from "@jointarp/core/node/game/chat-service";
+import { advanceLaunch, launchState } from "@jointarp/core/node/sessions/launch-store";
+import { createSession } from "@jointarp/core/node/sessions/session-store";
 import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
 import { createTestModule } from "@jointarp/module/testing/test-module";
-import { ChatService } from "@tarp/core/node/game/chat-service";
-import { advanceLaunch, launchState } from "@tarp/core/node/sessions/launch-store";
-import { createSession } from "@tarp/core/node/sessions/session-store";
 
 test("模组预设角色可作为 AI 队友入队，真人角色不可重复占用", async () => {
   const fixture = await createTestModule();

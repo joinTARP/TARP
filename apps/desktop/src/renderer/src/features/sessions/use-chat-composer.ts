@@ -4,9 +4,9 @@ import type {
   SendInput,
   SubmissionMode,
   SteeringSnapshot,
-} from "@tarp/core/shared/game";
-import { parseMentionRefs } from "@tarp/core/shared/mentions";
-import type { ChatActivitySnapshot } from "@tarp/core/shared/room-state";
+} from "@jointarp/core/shared/game";
+import { parseMentionRefs } from "@jointarp/core/shared/mentions";
+import type { ChatActivitySnapshot } from "@jointarp/core/shared/room-state";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { errorMessage, type GameClient } from "./game-client";

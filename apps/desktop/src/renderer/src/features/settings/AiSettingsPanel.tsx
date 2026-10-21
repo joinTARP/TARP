@@ -1,4 +1,4 @@
-import { customAiApis, type AiProviderSettings, type AiSettings } from "@tarp/core/shared/game";
+import { customAiApis, type AiProviderSettings, type AiSettings } from "@jointarp/core/shared/game";
 import { Check, ChevronRight, Eye, EyeOff, Plus } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 

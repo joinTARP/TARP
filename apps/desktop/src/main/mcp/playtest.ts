@@ -1,28 +1,28 @@
 import { join, isAbsolute } from "node:path";
 
-import { sameDocumentIdentity } from "@jointarp/module/document-path";
-import { emptyFlowRun } from "@jointarp/module/flow";
-import type { ChatService } from "@tarp/core/node";
-import { readCharacters } from "@tarp/core/node/sessions/character-db";
-import { gameDocumentViews } from "@tarp/core/node/sessions/game-state";
+import type { ChatService } from "@jointarp/core/node";
+import { readCharacters } from "@jointarp/core/node/sessions/character-db";
+import { gameDocumentViews } from "@jointarp/core/node/sessions/game-state";
 import {
   readLaunchConfig,
   readLaunchRoom,
   saveLaunchProgress,
   saveLaunchRoom,
-} from "@tarp/core/node/sessions/launch-db";
-import { patchRoomSettings, readRoomSettings } from "@tarp/core/node/sessions/room-settings";
+} from "@jointarp/core/node/sessions/launch-db";
+import { patchRoomSettings, readRoomSettings } from "@jointarp/core/node/sessions/room-settings";
 import {
   createSession,
   deleteSession,
   openSessionDatabase,
   readRoomState,
   roomDirectory,
-} from "@tarp/core/node/sessions/session-store";
-import { structuredFile } from "@tarp/core/node/storage/structured-file";
-import { chatText } from "@tarp/core/shared/agent-message";
-import { aiConfigSchema, type Player } from "@tarp/core/shared/game";
-import type { GameDefaults } from "@tarp/core/shared/game-defaults";
+} from "@jointarp/core/node/sessions/session-store";
+import { structuredFile } from "@jointarp/core/node/storage/structured-file";
+import { chatText } from "@jointarp/core/shared/agent-message";
+import { aiConfigSchema, type Player } from "@jointarp/core/shared/game";
+import type { GameDefaults } from "@jointarp/core/shared/game-defaults";
+import { sameDocumentIdentity } from "@jointarp/module/document-path";
+import { emptyFlowRun } from "@jointarp/module/flow";
 import { z } from "zod";
 
 export const playtestCreateSchema = z.strictObject({

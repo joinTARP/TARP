@@ -2,13 +2,13 @@ import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 import { randomUUID } from "node:crypto";
 
-import { advanceTimersByTime, useFakeTimers, useRealTimers } from "@jointarp/module/testing/async";
-import type { ChatMessage, RoomNotification } from "@tarp/core/shared/game";
+import type { ChatMessage, RoomNotification } from "@jointarp/core/shared/game";
 import {
   createRoomReplica,
   createRoomBaseline,
   createRoomEncoder,
-} from "@tarp/core/testing/room-replica";
+} from "@jointarp/core/testing/room-replica";
+import { advanceTimersByTime, useFakeTimers, useRealTimers } from "@jointarp/module/testing/async";
 
 import type { GameClient } from "./game-client";
 import { RoomConnection, type LocalRoomModuleLoader } from "./room-connection";

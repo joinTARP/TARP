@@ -1,5 +1,5 @@
-import type { ChatMessage } from "@tarp/core/shared/game";
-import type { SessionModule } from "@tarp/core/shared/session";
+import type { ChatMessage } from "@jointarp/core/shared/game";
+import type { SessionModule } from "@jointarp/core/shared/session";
 import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
 

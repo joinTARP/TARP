@@ -1,6 +1,6 @@
+import type { GameRoom, GameRoomSummary } from "@jointarp/core/shared/session";
 import { documentMediaUrl } from "@shared/document-media";
 import { Link } from "@tanstack/react-router";
-import type { GameRoom, GameRoomSummary } from "@tarp/core/shared/session";
 import { History } from "lucide-react";
 
 import { Button, buttonVariants } from "../../components/ui/button";

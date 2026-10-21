@@ -1,10 +1,10 @@
-import { applyChatEvent } from "@tarp/core/shared/agent-message";
+import { applyChatEvent } from "@jointarp/core/shared/agent-message";
 import type {
   ChatEvent,
   ChatMessage,
   SubmissionModeSnapshot,
   SteeringSnapshot,
-} from "@tarp/core/shared/game";
+} from "@jointarp/core/shared/game";
 
 import { mergeMessages, type GameClient } from "./game-client";
 

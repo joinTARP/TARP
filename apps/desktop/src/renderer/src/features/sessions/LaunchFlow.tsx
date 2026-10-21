@@ -1,5 +1,5 @@
-import type { LaunchAction, LaunchState } from "@tarp/core/shared/launch";
-import type { RoomLaunchState } from "@tarp/core/shared/room-state";
+import type { LaunchAction, LaunchState } from "@jointarp/core/shared/launch";
+import type { RoomLaunchState } from "@jointarp/core/shared/room-state";
 import { ArrowLeft, ChevronLeft, ChevronRight, Plus, UserRound } from "lucide-react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";

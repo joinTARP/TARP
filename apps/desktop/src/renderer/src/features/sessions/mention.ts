@@ -1,4 +1,4 @@
-import { identityIdSchema } from "@tarp/core/shared/identity";
+import { identityIdSchema } from "@jointarp/core/shared/identity";
 import { z } from "zod";
 
 /** 仅编辑器内部使用的文字和原子标签，不进入房间消息协议。 */

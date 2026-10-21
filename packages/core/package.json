@@ -1,5 +1,5 @@
 {
-  "name": "@tarp/core",
+  "name": "@jointarp/core",
   "version": "0.1.0",
   "private": true,
   "license": "GPL-3.0-only",
@@ -19,8 +19,8 @@
   },
   "scripts": {
     "typecheck": "bun --bun x --no-install tsc --noEmit",
-    "test": "bun ../../scripts/test.ts --scope @tarp/core",
-    "test:changed": "bun ../../scripts/test.ts --scope @tarp/core --changed"
+    "test": "bun ../../scripts/test.ts --scope @jointarp/core",
+    "test:changed": "bun ../../scripts/test.ts --scope @jointarp/core --changed"
   },
   "dependencies": {
     "@colyseus/schema": "5.0.34",

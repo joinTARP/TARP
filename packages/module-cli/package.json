@@ -15,7 +15,7 @@
     "build": "bun scripts/build.mjs",
     "typecheck": "bun --bun x --no-install tsc --noEmit",
     "test": "bun ../../scripts/test.ts --scope @jointarp/module-cli",
-    "pack": "bun run build && bun pm pack --cwd out --filename tarp-module-cli.tgz",
+    "pack": "bun ../../scripts/tasks.ts run build --filter=./packages/module-cli && bun pm pack --cwd out --filename tarp-module-cli.tgz",
     "test:changed": "bun ../../scripts/test.ts --scope @jointarp/module-cli --changed"
   },
   "dependencies": {

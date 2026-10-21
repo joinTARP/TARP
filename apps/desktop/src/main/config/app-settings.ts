@@ -1,11 +1,11 @@
-import { createIdentityId } from "@tarp/core/node/identity";
-import { structuredFile, StructuredFileError } from "@tarp/core/node/storage/structured-file";
-import { playerSchema } from "@tarp/core/shared/game";
+import { createIdentityId } from "@jointarp/core/node/identity";
+import { structuredFile, StructuredFileError } from "@jointarp/core/node/storage/structured-file";
+import { playerSchema } from "@jointarp/core/shared/game";
 import {
   gameDefaultsSchema,
   patchGameDefaults,
   type GameDefaultsPatch,
-} from "@tarp/core/shared/game-defaults";
+} from "@jointarp/core/shared/game-defaults";
 import { z } from "zod";
 
 import { appConfigSchema } from "../../shared/app-config";

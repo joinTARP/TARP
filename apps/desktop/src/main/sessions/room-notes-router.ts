@@ -1,6 +1,6 @@
+import { loadRoomNotes, saveRoomNotes } from "@jointarp/core/node/sessions/session-store";
+import { playerSchema, type Player } from "@jointarp/core/shared/game";
 import { os, ORPCError } from "@orpc/server";
-import { loadRoomNotes, saveRoomNotes } from "@tarp/core/node/sessions/session-store";
-import { playerSchema, type Player } from "@tarp/core/shared/game";
 import { z } from "zod";
 
 interface RoomNotesContext {

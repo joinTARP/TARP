@@ -1,6 +1,6 @@
+import type { Player } from "@jointarp/core/shared/game";
+import type { GameSession } from "@jointarp/core/shared/session";
 import type { Character } from "@jointarp/module/character";
-import type { Player } from "@tarp/core/shared/game";
-import type { GameSession } from "@tarp/core/shared/session";
 import { UserRound } from "lucide-react";
 import { useState } from "react";
 

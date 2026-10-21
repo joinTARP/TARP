@@ -1,8 +1,8 @@
+import type { LaunchState } from "@jointarp/core/shared/launch";
+import type { RoomEntity, RoomReplica } from "@jointarp/core/shared/room-state";
 import { publicDocumentType, type Character } from "@jointarp/module/character";
 import type { ModuleDocument } from "@shared/desktop-api";
 import { keepPreviousData, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { LaunchState } from "@tarp/core/shared/launch";
-import type { RoomEntity, RoomReplica } from "@tarp/core/shared/room-state";
 import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
 
 import { desktopOrpc, desktopRpc } from "../../desktop-rpc";

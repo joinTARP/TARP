@@ -1,5 +1,5 @@
+import type { GameSession } from "@jointarp/core/shared/session";
 import type { Character } from "@jointarp/module/character";
-import type { GameSession } from "@tarp/core/shared/session";
 import { useRef } from "react";
 
 import { Dialog, DialogContent, DialogTitle } from "../../components/ui/dialog";

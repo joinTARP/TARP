@@ -1,12 +1,12 @@
-import { ORPCError } from "@orpc/server";
 import {
   readCompactionSettingsFile,
   saveCompactionSettingsFile,
-} from "@tarp/core/node/game/compaction-settings";
-import { readRoomSettings, updateRoomSettings } from "@tarp/core/node/sessions/room-settings";
-import { readRoomState } from "@tarp/core/node/sessions/session-store";
-import type { CompactionRole, CompactionSettings } from "@tarp/core/shared/compaction-settings";
-import type { AvailableAiModel, RoomAiSettings, ThinkingLevel } from "@tarp/core/shared/game";
+} from "@jointarp/core/node/game/compaction-settings";
+import { readRoomSettings, updateRoomSettings } from "@jointarp/core/node/sessions/room-settings";
+import { readRoomState } from "@jointarp/core/node/sessions/session-store";
+import type { CompactionRole, CompactionSettings } from "@jointarp/core/shared/compaction-settings";
+import type { AvailableAiModel, RoomAiSettings, ThinkingLevel } from "@jointarp/core/shared/game";
+import { ORPCError } from "@orpc/server";
 
 import type { LocalGameSettings } from "./local-settings";
 

@@ -1,7 +1,7 @@
 import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import type { ChatMessage } from "@tarp/core/shared/game";
+import type { ChatMessage } from "@jointarp/core/shared/game";
 
 import { AutomaticSpeechTracker, speechText, splitSpeechText } from "./speech-text";
 import { ttsTextLimit } from "./tts";

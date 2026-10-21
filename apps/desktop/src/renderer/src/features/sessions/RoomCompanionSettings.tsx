@@ -1,6 +1,6 @@
+import type { CompanionModel } from "@jointarp/core/shared/companion";
+import type { CompanionInitiative } from "@jointarp/core/shared/companion-initiative";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { CompanionModel } from "@tarp/core/shared/companion";
-import type { CompanionInitiative } from "@tarp/core/shared/companion-initiative";
 import { Plus, Settings, UserRound, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 

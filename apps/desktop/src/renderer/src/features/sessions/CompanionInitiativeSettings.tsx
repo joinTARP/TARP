@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   companionInitiativeOptions,
   companionInitiativeSchema,
   type CompanionInitiative,
-} from "@tarp/core/shared/companion-initiative";
+} from "@jointarp/core/shared/companion-initiative";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useId, useState } from "react";
 
 import { Button } from "../../components/ui/button";

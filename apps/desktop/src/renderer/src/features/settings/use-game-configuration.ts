@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import {
   patchGameDefaults,
   type GameDefaults,
   type GameDefaultsPatch,
-} from "@tarp/core/shared/game-defaults";
+} from "@jointarp/core/shared/game-defaults";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
 import { desktopOrpc } from "../../desktop-rpc";

@@ -1,6 +1,6 @@
+import type { RoomEntity } from "@jointarp/core/shared/room-state";
 import type { ModuleDocument } from "@shared/desktop-api";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import type { RoomEntity } from "@tarp/core/shared/room-state";
 import type { ReactNode } from "react";
 
 import { desktopRpc } from "../../desktop-rpc";

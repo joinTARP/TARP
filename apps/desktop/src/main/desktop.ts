@@ -1,9 +1,9 @@
 import { isAbsolute, join } from "node:path";
 
+import { ChatService, createPiRuntime } from "@jointarp/core/node";
+import { narrationGapMs } from "@jointarp/core/shared/narration";
 import { modulePreviewHash } from "@jointarp/module-cli/commands";
 import { NativeMessagePort, type NativeBridge } from "@shared/native-bridge";
-import { ChatService, createPiRuntime } from "@tarp/core/node";
-import { narrationGapMs } from "@tarp/core/shared/narration";
 import Electrobun, { BrowserView, Utils } from "electrobun/main";
 
 import { readAppConfig, resolveAppConfigLocation } from "./config/app-config";

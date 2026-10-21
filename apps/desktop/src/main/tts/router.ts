@@ -1,7 +1,7 @@
+import { identityIdSchema } from "@jointarp/core/shared/identity";
 import { eventIterator } from "@orpc/contract";
 import { ORPCError } from "@orpc/server";
 import { ttsVoiceOverrideSchema, ttsChunkSchema, ttsSynthesizeSchema } from "@shared/tts";
-import { identityIdSchema } from "@tarp/core/shared/identity";
 import { z } from "zod";
 
 import { AppConfigError } from "../config/app-config";

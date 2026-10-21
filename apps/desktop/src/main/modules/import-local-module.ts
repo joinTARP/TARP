@@ -1,10 +1,10 @@
 import { mkdir, readdir, realpath } from "node:fs/promises";
 import { basename, join } from "node:path";
 
+import { copyModule, directoryExists } from "@jointarp/core/node/sessions/module-copy";
 import { configFilePath } from "@jointarp/module/node/config-file";
 import { extractModuleZip } from "@jointarp/module/node/extract-zip";
 import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
-import { copyModule, directoryExists } from "@tarp/core/node/sessions/module-copy";
 
 import { assertNoSymlinks, moduleFolderName, publishModule } from "./module-import";
 import { resolveModuleRoot } from "./module-root";

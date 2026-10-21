@@ -1,5 +1,5 @@
 import { Menu } from "@base-ui/react/menu";
-import type { GameRoom } from "@tarp/core/shared/session";
+import type { GameRoom } from "@jointarp/core/shared/session";
 import { Archive, MoreHorizontal, RotateCcw, Trash2 } from "lucide-react";
 import { useState } from "react";
 

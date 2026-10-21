@@ -4,22 +4,22 @@ import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { createTestModule, type TestComputedCharacter } from "@jointarp/module/testing/test-module";
-import { createGameTools } from "@tarp/core/node/agent/game-tools";
-import { ChatService } from "@tarp/core/node/game/chat-service";
+import { createGameTools } from "@jointarp/core/node/agent/game-tools";
+import { ChatService } from "@jointarp/core/node/game/chat-service";
 import {
   gameDocumentViews,
   gameFolderIndex,
   readGamePath,
   updateGameDocument,
-} from "@tarp/core/node/sessions/game-state";
-import { advanceLaunch, launchState } from "@tarp/core/node/sessions/launch-store";
+} from "@jointarp/core/node/sessions/game-state";
+import { advanceLaunch, launchState } from "@jointarp/core/node/sessions/launch-store";
 import {
   createSession,
   gameDirectoryForDatabase,
   openSessionDatabase,
   roomDirectory,
-} from "@tarp/core/node/sessions/session-store";
+} from "@jointarp/core/node/sessions/session-store";
+import { createTestModule, type TestComputedCharacter } from "@jointarp/module/testing/test-module";
 
 test("模组选角与开场隔离秘密，主持可读取资料，字段揭示与结算持久化且失败不写入", async () => {
   const f = await createTestModule();

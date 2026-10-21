@@ -5,8 +5,8 @@ import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+import { initializeAdventure } from "@jointarp/core/node/sessions/room-storage";
 import { call } from "@orpc/server";
-import { initializeAdventure } from "@tarp/core/node/sessions/room-storage";
 
 import { roomNotesRouter } from "./room-notes-router";
 

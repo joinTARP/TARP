@@ -1,7 +1,7 @@
 import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import { parseMentionRefs, resolveMentionRefs } from "@tarp/core/shared/mentions";
+import { parseMentionRefs, resolveMentionRefs } from "@jointarp/core/shared/mentions";
 
 import {
   mentionDraftSchema,

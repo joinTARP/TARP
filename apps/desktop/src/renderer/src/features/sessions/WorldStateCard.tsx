@@ -1,7 +1,7 @@
+import type { GameSession } from "@jointarp/core/shared/session";
 import type { DocumentType } from "@jointarp/module/document-type";
 import type { ModuleDocument } from "@jointarp/module/module-document";
 import { isDocumentVisible } from "@jointarp/module/module-document";
-import type { GameSession } from "@tarp/core/shared/session";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 

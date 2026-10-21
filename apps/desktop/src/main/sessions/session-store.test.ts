@@ -16,16 +16,15 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 import {
   beginAdventureEdit,
   commitAdventureEdit,
   updateAdventureState,
-} from "@tarp/core/node/sessions/adventure-state";
-import { updateGameDocument } from "@tarp/core/node/sessions/game-state";
-import { roomDisplaySettings } from "@tarp/core/node/sessions/room-display-settings";
-import { readRoomSettings } from "@tarp/core/node/sessions/room-settings";
-import { readAdventure } from "@tarp/core/node/sessions/room-storage";
+} from "@jointarp/core/node/sessions/adventure-state";
+import { updateGameDocument } from "@jointarp/core/node/sessions/game-state";
+import { roomDisplaySettings } from "@jointarp/core/node/sessions/room-display-settings";
+import { readRoomSettings } from "@jointarp/core/node/sessions/room-settings";
+import { readAdventure } from "@jointarp/core/node/sessions/room-storage";
 import {
   createSession,
   deleteSession,
@@ -34,7 +33,8 @@ import {
   roomDirectory,
   saveRoomNotes,
   setSessionStatus,
-} from "@tarp/core/node/sessions/session-store";
+} from "@jointarp/core/node/sessions/session-store";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 
 import { documentMediaUrl } from "../../shared/document-media";
 import { resolveMediaRequestFile } from "../media-path";

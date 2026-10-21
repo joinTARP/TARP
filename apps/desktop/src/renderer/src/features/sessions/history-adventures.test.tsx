@@ -1,6 +1,7 @@
 import { test, mock } from "bun:test";
 import { strict as assert } from "node:assert";
 
+import type { GameRoomSummary } from "@jointarp/core/shared/session";
 import {
   createMemoryHistory,
   createRootRoute,
@@ -9,7 +10,6 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
-import type { GameRoomSummary } from "@tarp/core/shared/session";
 import type { ComponentProps, ReactNode } from "react";
 import { renderToReadableStream } from "react-dom/server";
 

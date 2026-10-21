@@ -1,6 +1,6 @@
+import type { GameSession } from "@jointarp/core/shared/session";
 import type { Character } from "@jointarp/module/character";
 import type { DocumentType } from "@jointarp/module/document-type";
-import type { GameSession } from "@tarp/core/shared/session";
 
 import { DocumentReferences } from "../modules/DocumentReferences";
 import { buildCharacterSheet } from "./character-sheet";

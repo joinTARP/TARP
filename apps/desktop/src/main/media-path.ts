@@ -2,7 +2,7 @@ import { realpathSync } from "node:fs";
 import { realpath, stat } from "node:fs/promises";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 
-import { isInsideDirectory } from "@tarp/core/node/storage/path";
+import { isInsideDirectory } from "@jointarp/core/node/storage/path";
 
 export const mediaScheme = "tarp";
 const imagePattern = /\.(avif|gif|jpe?g|png|svg|webp)$/iu;

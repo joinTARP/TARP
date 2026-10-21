@@ -1,9 +1,9 @@
 import { lstat, mkdir, mkdtemp, readdir, rename, rm } from "node:fs/promises";
 import { join, relative } from "node:path";
 
+import { isMissingFile, withFileMutation } from "@jointarp/core/node/storage/file-queue";
 import { loadDocumentTypes } from "@jointarp/module/node/document-types";
 import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
-import { isMissingFile, withFileMutation } from "@tarp/core/node/storage/file-queue";
 
 import { resolveModuleRoot } from "./module-root";
 

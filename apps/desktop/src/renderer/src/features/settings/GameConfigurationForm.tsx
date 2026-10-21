@@ -1,5 +1,5 @@
-import { companionRoleplayInstructions } from "@tarp/core/shared/companion-roleplay";
-import { defaultHostSystemPrompt } from "@tarp/core/shared/host-system-prompt";
+import { companionRoleplayInstructions } from "@jointarp/core/shared/companion-roleplay";
+import { defaultHostSystemPrompt } from "@jointarp/core/shared/host-system-prompt";
 import { useRef, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
