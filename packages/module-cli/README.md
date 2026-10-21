@@ -54,7 +54,7 @@ bun run build
 
 推送与 CLI 版本一致的 `cli-v*` tag 后，GitHub Actions 验收 tgz，再将同一份包自动发布到 npm；需要预先配置 `NPM_TOKEN`。用户安装的是构建后的 JavaScript，无需在安装时运行 Bun 构建。
 
-GitHub Actions 的 CLI tag、独立安装验收、Release 草稿和 npm 自动发布见[发布流程](../../docs/发布流程.md)。
+GitHub Actions 的 CLI tag、独立安装验收和 npm 自动发布见[发布流程](../../docs/发布流程.md)；CLI 不创建 GitHub Release。
 
 ## 许可证
 
