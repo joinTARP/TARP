@@ -1,7 +1,7 @@
 import { join } from "node:path";
 
-import { listSessions, loadSession, loadSessionModuleResources } from "@tarp/core/node";
-import { roomDirectory } from "@tarp/core/node/sessions/session-store";
+import { listSessions, loadSession, loadSessionModuleResources } from "@jointarp/core/node";
+import { roomDirectory } from "@jointarp/core/node/sessions/session-store";
 
 import { allowDocumentMediaRoots } from "../media-path";
 

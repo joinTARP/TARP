@@ -1,5 +1,5 @@
-import { documentIdentity } from "@tarp/module/document-path";
-import { isDocumentVisible } from "@tarp/module/module-document";
+import { documentIdentity } from "@jointarp/module/document-path";
+import { isDocumentVisible } from "@jointarp/module/module-document";
 import { useContext } from "react";
 
 import { useDocumentLibrary } from "./document-library-context";

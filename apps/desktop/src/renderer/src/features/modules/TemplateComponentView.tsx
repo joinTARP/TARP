@@ -1,4 +1,4 @@
-import { itemGridConfig, type TemplateComponent } from "@tarp/module/template-layout";
+import { itemGridConfig, type TemplateComponent } from "@jointarp/module/template-layout";
 import { Suspense } from "react";
 
 import { DocumentMarkdown, documentMarkdownPlugins } from "./document-markdown";

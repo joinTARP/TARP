@@ -2,7 +2,7 @@ import {
   thinkingLevelSchema,
   type ThinkingLevel,
   type AvailableAiModel,
-} from "@tarp/core/shared/game";
+} from "@jointarp/core/shared/game";
 import { Check, Search } from "lucide-react";
 import { useRef, useState } from "react";
 

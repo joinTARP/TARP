@@ -7,45 +7,45 @@ import { join } from "node:path";
 import { MessageChannel } from "node:worker_threads";
 
 import { Decoder } from "@colyseus/schema";
-import { createORPCClient } from "@orpc/client";
-import { RPCLink } from "@orpc/client/message-port";
-import type { ContractRouterClient } from "@orpc/contract";
-import { RPCHandler } from "@orpc/server/message-port";
-import { ChatService } from "@tarp/core/node/game/chat-service";
-import { gameRouter } from "@tarp/core/node/game/game-router";
-import { RoomStateEncoder } from "@tarp/core/node/game/room-state-encoder";
+import { ChatService } from "@jointarp/core/node/game/chat-service";
+import { gameRouter } from "@jointarp/core/node/game/game-router";
+import { RoomStateEncoder } from "@jointarp/core/node/game/room-state-encoder";
 import {
   assertRoomOverlayAdmission,
   projectLaunch,
   projectEntities,
-} from "@tarp/core/node/game/room-state-projection";
-import { readCharacters } from "@tarp/core/node/sessions/character-db";
+} from "@jointarp/core/node/game/room-state-projection";
+import { readCharacters } from "@jointarp/core/node/sessions/character-db";
 import {
   characterSnapshot,
   validateCharacterDraft,
-} from "@tarp/core/node/sessions/character-store";
+} from "@jointarp/core/node/sessions/character-store";
 import {
   materializeCharacter,
   updateGameDocument,
   writeGameDocument,
-} from "@tarp/core/node/sessions/game-state";
-import { launchState } from "@tarp/core/node/sessions/launch-store";
-import { notifyRoomChanged } from "@tarp/core/node/sessions/room-changes";
-import { roomDirectoryForDatabase } from "@tarp/core/node/sessions/session-paths";
+} from "@jointarp/core/node/sessions/game-state";
+import { launchState } from "@jointarp/core/node/sessions/launch-store";
+import { notifyRoomChanged } from "@jointarp/core/node/sessions/room-changes";
+import { roomDirectoryForDatabase } from "@jointarp/core/node/sessions/session-paths";
 import {
   createSession,
   loadSessionModuleResources,
   openSessionDatabase,
   gameDirectoryForDatabase,
-} from "@tarp/core/node/sessions/session-store";
-import { documentRevision } from "@tarp/core/node/sessions/state-version";
-import type { gameContract, RoomNotification } from "@tarp/core/shared/game";
-import type { LaunchAction } from "@tarp/core/shared/launch";
-import { ROOM_PROTOCOL_VERSION } from "@tarp/core/shared/room-state";
-import { RoomStateSchema } from "@tarp/core/shared/room-state-schema";
-import { createLaunchTestModule } from "@tarp/core/testing/launch-module";
-import type { WorkbenchView } from "@tarp/module/creation-workbench";
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+} from "@jointarp/core/node/sessions/session-store";
+import { documentRevision } from "@jointarp/core/node/sessions/state-version";
+import type { gameContract, RoomNotification } from "@jointarp/core/shared/game";
+import type { LaunchAction } from "@jointarp/core/shared/launch";
+import { ROOM_PROTOCOL_VERSION } from "@jointarp/core/shared/room-state";
+import { RoomStateSchema } from "@jointarp/core/shared/room-state-schema";
+import { createLaunchTestModule } from "@jointarp/core/testing/launch-module";
+import type { WorkbenchView } from "@jointarp/module/creation-workbench";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { createORPCClient } from "@orpc/client";
+import { RPCLink } from "@orpc/client/message-port";
+import type { ContractRouterClient } from "@orpc/contract";
+import { RPCHandler } from "@orpc/server/message-port";
 
 import { RoomConnection } from "../../renderer/src/features/sessions/room-connection";
 import {

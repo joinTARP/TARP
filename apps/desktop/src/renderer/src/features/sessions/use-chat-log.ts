@@ -1,5 +1,9 @@
+import type {
+  ChatMessage,
+  SubmissionModeSnapshot,
+  SteeringSnapshot,
+} from "@jointarp/core/shared/game";
 import { AutomaticSpeechTracker, type SpeechPart } from "@shared/speech-text";
-import type { ChatMessage, SubmissionModeSnapshot, SteeringSnapshot } from "@tarp/core/shared/game";
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 import { errorMessage, type GameClient } from "./game-client";

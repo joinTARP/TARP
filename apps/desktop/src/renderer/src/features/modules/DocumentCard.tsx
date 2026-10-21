@@ -1,6 +1,6 @@
+import type { DocumentType } from "@jointarp/module/document-type";
+import { isDocumentVisible } from "@jointarp/module/module-document";
 import type { ModuleDocument } from "@shared/desktop-api";
-import type { DocumentType } from "@tarp/module/document-type";
-import { isDocumentVisible } from "@tarp/module/module-document";
 import { cn } from "cn";
 import { Check } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";

@@ -1,12 +1,12 @@
-import { readDocumentPath } from "@tarp/module/document-field-values";
-import type { DocumentField, DocumentType } from "@tarp/module/document-type";
-import type { ModuleDocument } from "@tarp/module/module-document";
+import { readDocumentPath } from "@jointarp/module/document-field-values";
+import type { DocumentField, DocumentType } from "@jointarp/module/document-type";
+import type { ModuleDocument } from "@jointarp/module/module-document";
 import {
   fieldErrorAtPath,
   getDocumentField,
   getPublicDocumentField,
-} from "@tarp/module/public-document-field";
-import { displayFieldDefinition } from "@tarp/module/template-layout";
+} from "@jointarp/module/public-document-field";
+import { displayFieldDefinition } from "@jointarp/module/template-layout";
 
 export interface LayoutContext {
   document: ModuleDocument;

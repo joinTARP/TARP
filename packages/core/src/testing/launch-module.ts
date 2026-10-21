@@ -2,8 +2,8 @@ import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 
-import { stringifyDocumentContent } from "@tarp/module/node/document-codec";
-import { createWorldStateDefinition } from "@tarp/module/testing/world-state";
+import { stringifyDocumentContent } from "@jointarp/module/node/document-codec";
+import { createWorldStateDefinition } from "@jointarp/module/testing/world-state";
 
 /** 为文件存档及主持工具测试创建真实的临时模组，同时覆盖 TOML 配置和 JSON 文档。 */
 export async function createLaunchTestModule() {

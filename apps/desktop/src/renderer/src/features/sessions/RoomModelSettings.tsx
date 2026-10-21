@@ -1,6 +1,6 @@
+import type { AiConfig } from "@jointarp/core/shared/game";
+import type { RoomAiSettings } from "@jointarp/core/shared/game";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { AiConfig } from "@tarp/core/shared/game";
-import type { RoomAiSettings } from "@tarp/core/shared/game";
 import { useState } from "react";
 
 import { Button } from "../../components/ui/button";

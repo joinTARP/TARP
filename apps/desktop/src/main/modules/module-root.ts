@@ -1,8 +1,8 @@
 import { lstat } from "node:fs/promises";
 import { join } from "node:path";
 
-import { isMissingFile } from "@tarp/core/node/storage/file-queue";
-import { configFilePath } from "@tarp/module/node/config-file";
+import { isMissingFile } from "@jointarp/core/node/storage/file-queue";
+import { configFilePath } from "@jointarp/module/node/config-file";
 
 /** 模组库允许直接内容目录或固定 module/ 外层，根路径本身可以是本地快捷方式。 */
 export async function resolveModuleRoot(directory: string): Promise<string> {

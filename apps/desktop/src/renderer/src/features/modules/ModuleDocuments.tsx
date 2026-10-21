@@ -1,5 +1,5 @@
+import { defaultDocumentList, type DocumentType } from "@jointarp/module/document-type";
 import type { ModuleDocument } from "@shared/desktop-api";
-import { defaultDocumentList, type DocumentType } from "@tarp/module/document-type";
 import { FileText } from "lucide-react";
 import { useEffect } from "react";
 

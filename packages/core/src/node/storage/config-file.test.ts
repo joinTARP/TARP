@@ -4,11 +4,11 @@ import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { parseConfig, stringifyConfig } from "@tarp/module/node/config-file";
-import { loadDocumentTypes } from "@tarp/module/node/document-types";
-import { loadModuleDocuments } from "@tarp/module/node/module-documents";
-import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+import { parseConfig, stringifyConfig } from "@jointarp/module/node/config-file";
+import { loadDocumentTypes } from "@jointarp/module/node/document-types";
+import { loadModuleDocuments } from "@jointarp/module/node/module-documents";
+import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 
 import { createGameTools } from "../agent/game-tools";
 import { createSession } from "../sessions/session-store";

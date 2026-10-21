@@ -4,12 +4,12 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { roomResources } from "@tarp/core/node/agent/pi-runtime";
+import { roomResources } from "@jointarp/core/node/agent/pi-runtime";
 import {
   defaultHostSystemPrompt,
   hostInputInstructions,
-} from "@tarp/core/shared/host-system-prompt";
-import { narrativeInstructions } from "@tarp/core/shared/narrative";
+} from "@jointarp/core/shared/host-system-prompt";
+import { narrativeInstructions } from "@jointarp/core/shared/narrative";
 
 import { readAppConfig, updateAppConfig } from "../config/app-config";
 import { readGameDefaults, updateGameDefaults } from "../config/app-settings";

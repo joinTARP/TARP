@@ -1,4 +1,4 @@
-import type { GameRoom } from "@tarp/core/shared/session";
+import type { GameRoom } from "@jointarp/core/shared/session";
 
 const endedDate = new Intl.DateTimeFormat("zh-CN", {
   year: "numeric",

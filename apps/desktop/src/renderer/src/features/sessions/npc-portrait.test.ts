@@ -1,8 +1,8 @@
 import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
+import type { ChatMessage } from "@jointarp/core/shared/game";
 import type { ModuleDocument } from "@shared/desktop-api";
-import type { ChatMessage } from "@tarp/core/shared/game";
 
 import { createNpcPortraitResolver } from "./npc-portrait";
 import { npcPortraitDocuments } from "./npc-portrait-documents";

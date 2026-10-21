@@ -1,5 +1,5 @@
-import type { LaunchConfig } from "@tarp/module/flow";
-import { emptyFlowRun } from "@tarp/module/flow";
+import type { LaunchConfig } from "@jointarp/module/flow";
+import { emptyFlowRun } from "@jointarp/module/flow";
 
 import type { LaunchProgress, LaunchRoom } from "../../shared/launch";
 import type { SessionDatabase } from "../storage/session-database";

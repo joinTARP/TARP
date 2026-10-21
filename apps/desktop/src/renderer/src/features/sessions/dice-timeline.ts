@@ -1,4 +1,4 @@
-import type { ChatMessage } from "@tarp/core/shared/game";
+import type { ChatMessage } from "@jointarp/core/shared/game";
 
 /** 同一 AI 回合可能先提出检定，掷骰后再继续；按调用位置展开公开正文。 */
 export function diceTimeline(messages: ChatMessage[]): { key: string; message: ChatMessage }[] {

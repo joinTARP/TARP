@@ -4,7 +4,7 @@ import { mkdir, mkdtemp, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 import { renderToStaticMarkup } from "react-dom/server";
 import Markdown from "react-markdown";
 

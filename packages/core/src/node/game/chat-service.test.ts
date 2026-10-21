@@ -8,19 +8,19 @@ import { join } from "node:path";
 import { MessageChannel } from "node:worker_threads";
 
 import { SessionManager } from "@earendil-works/pi-coding-agent";
-import { createORPCClient } from "@orpc/client";
-import { RPCLink } from "@orpc/client/message-port";
-import type { ContractRouterClient } from "@orpc/contract";
-import { RPCHandler } from "@orpc/server/message-port";
-import { launchConfigSchema, type LaunchConfig } from "@tarp/module/flow";
+import { launchConfigSchema, type LaunchConfig } from "@jointarp/module/flow";
 import {
   advanceTimersByTime,
   advanceTimersByTimeAsync,
   useFakeTimers,
   useRealTimers,
   waitFor,
-} from "@tarp/module/testing/async";
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+} from "@jointarp/module/testing/async";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { createORPCClient } from "@orpc/client";
+import { RPCLink } from "@orpc/client/message-port";
+import type { ContractRouterClient } from "@orpc/contract";
+import { RPCHandler } from "@orpc/server/message-port";
 
 import { chatText } from "../../shared/agent-message";
 import type {

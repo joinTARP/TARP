@@ -1,5 +1,5 @@
-import type { Character } from "@tarp/module/character";
-import { sameDocumentIdentity } from "@tarp/module/document-path";
+import type { Character } from "@jointarp/module/character";
+import { sameDocumentIdentity } from "@jointarp/module/document-path";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { markStateChanged, readAdventureState, updateAdventureState } from "./adventure-state";

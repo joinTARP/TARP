@@ -1,8 +1,8 @@
 import { randomBytes } from "node:crypto";
 import { join } from "node:path";
 
+import { structuredFile } from "@jointarp/core/node/storage/structured-file";
 import type { McpStatus } from "@shared/mcp";
-import { structuredFile } from "@tarp/core/node/storage/structured-file";
 import { z } from "zod";
 
 import type { PlaytestService } from "./playtest";

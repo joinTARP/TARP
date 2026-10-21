@@ -1,5 +1,5 @@
+import type { ChatMessage } from "@jointarp/core/shared/game";
 import { useQuery } from "@tanstack/react-query";
-import type { ChatMessage } from "@tarp/core/shared/game";
 import { ChevronRight, Brain, Wrench } from "lucide-react";
 import { useState } from "react";
 

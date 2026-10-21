@@ -1,14 +1,14 @@
-import type { ModuleDocument } from "@shared/desktop-api";
-import type { DocumentType } from "@tarp/module/document-type";
-import { isDocumentVisible } from "@tarp/module/module-document";
+import type { DocumentType } from "@jointarp/module/document-type";
+import { isDocumentVisible } from "@jointarp/module/module-document";
 import {
   fieldErrorAtPath,
   getDocumentField,
   hasFieldErrors,
   getPublicDocumentField,
   shouldHideEmptyField,
-} from "@tarp/module/public-document-field";
-import { displayFieldDefinition } from "@tarp/module/template-layout";
+} from "@jointarp/module/public-document-field";
+import { displayFieldDefinition } from "@jointarp/module/template-layout";
+import type { ModuleDocument } from "@shared/desktop-api";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { gfmFromMarkdown } from "mdast-util-gfm";
 import { gfm } from "micromark-extension-gfm";

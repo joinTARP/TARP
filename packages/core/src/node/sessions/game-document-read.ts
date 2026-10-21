@@ -2,9 +2,9 @@ import { lstatSync } from "node:fs";
 import { lstat, readFile } from "node:fs/promises";
 import { basename, dirname } from "node:path";
 
-import { documentIdentity } from "@tarp/module/document-path";
-import { parseConfig } from "@tarp/module/node/config-file";
-import { parseGameDocumentContent as parseContent } from "@tarp/module/node/game-state-validation";
+import { documentIdentity } from "@jointarp/module/document-path";
+import { parseConfig } from "@jointarp/module/node/config-file";
+import { parseGameDocumentContent as parseContent } from "@jointarp/module/node/game-state-validation";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { readAdventureState } from "./adventure-state";

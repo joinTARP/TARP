@@ -1,8 +1,8 @@
 import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
+import { waitFor } from "@jointarp/module/testing/async";
 import { MutationObserver, QueryClient } from "@tanstack/react-query";
-import { waitFor } from "@tarp/module/testing/async";
 
 import { roomDisplayMutation } from "./room-display-mutation";
 

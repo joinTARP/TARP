@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 
-import { sameDocumentIdentity } from "@tarp/module/document-path";
-import { emptyFlowRun, preludeNarration } from "@tarp/module/flow";
+import { sameDocumentIdentity } from "@jointarp/module/document-path";
+import { emptyFlowRun, preludeNarration } from "@jointarp/module/flow";
 
 import { messageSchema, type ChatMessage } from "../../../shared/game";
 import { narrationLines, startNarrationBeats } from "../../../shared/narration";

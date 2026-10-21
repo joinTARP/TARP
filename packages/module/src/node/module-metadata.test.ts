@@ -4,7 +4,7 @@ import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 
 import { loadModuleDocuments } from "./module-documents";
 import { loadModuleMetadata } from "./module-metadata";

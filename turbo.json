@@ -1,0 +1,50 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "globalDependencies": [
+    "bunfig.toml",
+    "scripts/**/*.ts",
+    "scripts/**/*.mjs",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "globalEnv": ["TARP_TASK_PLATFORM", "TARP_TASK_BUN", "NODE_ENV"],
+  "globalPassThroughEnv": [
+    "HUTCH_HOME",
+    "DASH_HOME",
+    "BUN_INSTALL_CACHE_DIR",
+    "TMPDIR",
+    "TMP",
+    "TEMP"
+  ],
+  "tasks": {
+    "source": {
+      "dependsOn": ["^source"]
+    },
+    "typecheck": {
+      "dependsOn": ["^source"],
+      "outputs": []
+    },
+    "build": {
+      "dependsOn": ["^source"],
+      "outputs": [
+        "out/index.js",
+        "out/package.json",
+        "out/README.md",
+        "out/LICENSE",
+        "out/NOTICE.md"
+      ]
+    },
+    "@jointarp/desktop#build": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "env": ["TARP_CODESIGN", "TARP_NOTARIZE", "ELECTROBUN_*"],
+      "outputs": []
+    },
+    "build:renderer": {
+      "dependsOn": ["^source"],
+      "env": ["VITE_*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*", "src/renderer/.env", "src/renderer/.env.*"],
+      "outputs": ["out/renderer/**"]
+    }
+  }
+}

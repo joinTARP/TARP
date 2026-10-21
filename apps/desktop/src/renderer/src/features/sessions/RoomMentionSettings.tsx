@@ -1,5 +1,5 @@
+import { mentionReplyLimitSchema } from "@jointarp/core/shared/mentions";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { mentionReplyLimitSchema } from "@tarp/core/shared/mentions";
 
 import { Button } from "../../components/ui/button";
 import { desktopOrpc, desktopRpc } from "../../desktop-rpc";

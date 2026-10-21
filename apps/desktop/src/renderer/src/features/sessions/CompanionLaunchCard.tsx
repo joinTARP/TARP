@@ -1,5 +1,5 @@
+import type { CardData } from "@jointarp/core/shared/game";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { CardData } from "@tarp/core/shared/game";
 import { Check, ChevronRight, UserRound, UsersRound } from "lucide-react";
 import { useRef } from "react";
 

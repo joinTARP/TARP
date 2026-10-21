@@ -1,5 +1,5 @@
+import { roomConfiguration } from "@jointarp/core/shared/game-defaults";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { roomConfiguration } from "@tarp/core/shared/game-defaults";
 
 import { Button } from "../../components/ui/button";
 import { desktopOrpc, desktopRpc } from "../../desktop-rpc";

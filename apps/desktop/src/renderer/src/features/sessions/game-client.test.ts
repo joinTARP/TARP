@@ -1,7 +1,7 @@
 import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import type { SteeringSnapshot } from "@tarp/core/shared/game";
+import type { SteeringSnapshot } from "@jointarp/core/shared/game";
 
 import { errorMessage, type GameClient } from "./game-client";
 import { RoomChatStore } from "./room-chat-store";

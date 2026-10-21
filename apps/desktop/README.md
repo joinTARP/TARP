@@ -23,7 +23,7 @@ bun install --cwd ../..
 bun run dev
 ```
 
-本目录是 `@tarp/desktop` workspace 子包。依赖在 monorepo 根目录统一安装，仅维护根级 `bun.lock`；需要按锁文件安装时从根目录运行 `bun install --frozen-lockfile`。本页桌面命令在 `apps/desktop/` 执行。
+本目录是 `@jointarp/desktop` workspace 子包。依赖在 monorepo 根目录统一安装，仅维护根级 `bun.lock`；需要按锁文件安装时从根目录运行 `bun install --frozen-lockfile`。本页桌面命令在 `apps/desktop/` 执行。
 
 首次运行构建、开发或类型检查时，`electrobun prepare` 下载固定的 Electrobun 2.0.4 devkit、配套 Hutch 和 Bun 1.4.0，生成忽略提交的 `.hutch/devkit/`。开发机器的 Bun 负责 workspace 和脚本，随桌面分发的 Bun 由 Electrobun 固定，两者独立。所有依赖仍从仓库根目录安装，仅维护根级 `bun.lock`；`hutch.config.ts` 明确使用 Bun，不生成 `hutch.lock`。
 
@@ -70,7 +70,7 @@ GitHub Actions 的版本 tag、跨平台构建、签名配置和 Release 草稿�
 
 - `src/main/`：Electrobun 启动与桌面 RPC 入口。`config/` 负责用户配置；`modules/` 负责模组列表与导入；`sessions/` 接入本地房间资源与笔记接口；`game/` 管理本机模型配置、房间模型选择与订阅登录；`tts/` 维护语音服务。房间存档、聊天、状态、开局与 AI 执行位于 `packages/core/`，通用模组加载、校验和计算位于 `packages/module/`。
 - `src/renderer/src/native-bridge.ts`：Electrobun 页面桥，连接 oRPC、桌面事件和本地图片服务。
-- `src/shared/`：主进程和渲染进程之间的桌面契约。游戏共享契约从 `@tarp/core/shared/*` 导入，浏览器不引用 `node` 入口。
+- `src/shared/`：主进程和渲染进程之间的桌面契约。游戏共享契约从 `@jointarp/core/shared/*` 导入，浏览器不引用 `node` 入口。
 - `src/renderer/src/features/modules/`：模组库列表、打开模组与文档预览。
 - `src/renderer/src/features/settings/`：设置导航、常规设置与外观设置。
 - `src/renderer/src/components/`：跨功能复用的界面组件，`ui/` 存放基于 Base UI 或原生元素维护的基础组件。

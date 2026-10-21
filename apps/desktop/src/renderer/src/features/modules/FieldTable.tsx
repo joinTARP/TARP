@@ -1,10 +1,10 @@
-import type { DocumentField } from "@tarp/module/document-type";
-import { validateFieldTableRows, type FieldTableLayout } from "@tarp/module/field-table";
+import type { DocumentField } from "@jointarp/module/document-type";
+import { validateFieldTableRows, type FieldTableLayout } from "@jointarp/module/field-table";
 import {
   fieldErrorAtPath,
   getPublicDocumentField,
   shouldHideEmptyField,
-} from "@tarp/module/public-document-field";
+} from "@jointarp/module/public-document-field";
 import { useState } from "react";
 
 import { Input } from "../../components/ui/input";

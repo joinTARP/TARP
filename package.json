@@ -9,15 +9,15 @@
   ],
   "type": "module",
   "scripts": {
-    "dev": "bun run --filter @tarp/desktop dev",
+    "dev": "bun run --filter @jointarp/desktop dev",
     "cli": "bun packages/module-cli/out/index.js",
-    "build": "bun run --workspaces --if-present build",
-    "typecheck": "bun run --workspaces typecheck",
+    "build": "bun scripts/tasks.ts run build",
+    "typecheck": "bun scripts/tasks.ts run typecheck",
     "test": "bun scripts/test.ts",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "package": "bun run --filter @tarp/desktop package",
-    "dist": "bun run --filter @tarp/desktop dist",
+    "package": "bun run --filter @jointarp/desktop package",
+    "dist": "bun run --filter @jointarp/desktop dist",
     "prepare": "simple-git-hooks",
     "test:changed": "bun scripts/test.ts --changed"
   },
@@ -28,7 +28,8 @@
   "devDependencies": {
     "lint-staged": "^17.6.0",
     "oxfmt": "^0.68.0",
-    "simple-git-hooks": "^2.14.0"
+    "simple-git-hooks": "^2.14.0",
+    "turbo": "2.11.10"
   },
   "simple-git-hooks": {
     "pre-commit": "bunx --bun lint-staged"

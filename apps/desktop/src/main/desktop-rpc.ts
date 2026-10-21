@@ -1,8 +1,8 @@
+import { gameRouter } from "@jointarp/core/node";
+import { gameDefaultsPatchSchema } from "@jointarp/core/shared/game-defaults";
 import { onError } from "@orpc/server";
 import { RPCHandler } from "@orpc/server/message-port";
 import { appConfigSchema } from "@shared/app-config";
-import { gameRouter } from "@tarp/core/node";
-import { gameDefaultsPatchSchema } from "@tarp/core/shared/game-defaults";
 import { z } from "zod";
 
 import { readAppConfig, updateAppConfig } from "./config/app-config";

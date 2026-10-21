@@ -4,9 +4,9 @@ import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { waitFor } from "@tarp/module/testing/async";
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
-import { createTestModule } from "@tarp/module/testing/test-module";
+import { waitFor } from "@jointarp/module/testing/async";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { createTestModule } from "@jointarp/module/testing/test-module";
 
 import type { LaunchAction } from "../../shared/launch";
 import { advanceLaunch, launchState } from "../sessions/launch-store";

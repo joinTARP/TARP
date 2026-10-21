@@ -1,5 +1,5 @@
+import type { AgentContext } from "@jointarp/core/shared/agent-context";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import type { AgentContext } from "@tarp/core/shared/agent-context";
 import { Copy, RefreshCw } from "lucide-react";
 
 import { Button } from "../../components/ui/button";

@@ -1,6 +1,6 @@
+import type { EquipmentSlotsLayout } from "@jointarp/module/equipment-slots";
+import { isDocumentVisible } from "@jointarp/module/module-document";
 import type { ModuleDocument } from "@shared/desktop-api";
-import type { EquipmentSlotsLayout } from "@tarp/module/equipment-slots";
-import { isDocumentVisible } from "@tarp/module/module-document";
 import { CircleQuestionMark, Crown, Footprints, Gem, Hand, Shield, Shirt } from "lucide-react";
 
 import { RoomDocument } from "../sessions/room-document";

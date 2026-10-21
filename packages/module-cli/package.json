@@ -1,5 +1,5 @@
 {
-  "name": "@tarp/module-cli",
+  "name": "@jointarp/module-cli",
   "version": "0.1.0",
   "homepage": "https://jointarp.party",
   "license": "GPL-3.0-only",
@@ -14,9 +14,9 @@
     "cli": "bun out/index.js",
     "build": "bun scripts/build.mjs",
     "typecheck": "bun --bun x --no-install tsc --noEmit",
-    "test": "bun ../../scripts/test.ts --scope @tarp/module-cli",
-    "pack": "bun run build && bun pm pack --cwd out --filename tarp-module-cli.tgz",
-    "test:changed": "bun ../../scripts/test.ts --scope @tarp/module-cli --changed"
+    "test": "bun ../../scripts/test.ts --scope @jointarp/module-cli",
+    "pack": "bun ../../scripts/tasks.ts run build --filter=./packages/module-cli && bun pm pack --cwd out --filename tarp-module-cli.tgz",
+    "test:changed": "bun ../../scripts/test.ts --scope @jointarp/module-cli --changed"
   },
   "dependencies": {
     "smol-toml": "^1.9.0",
@@ -24,7 +24,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@tarp/module": "workspace:*",
+    "@jointarp/module": "workspace:*",
     "@types/bun": "^1.4.0",
     "typescript": "^7.0.2"
   },

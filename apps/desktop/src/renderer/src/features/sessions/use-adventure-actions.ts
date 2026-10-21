@@ -1,6 +1,6 @@
+import type { GameRoom } from "@jointarp/core/shared/session";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
-import type { GameRoom } from "@tarp/core/shared/session";
 import { useState } from "react";
 
 import { desktopOrpc, desktopRpc, queryClient } from "../../desktop-rpc";

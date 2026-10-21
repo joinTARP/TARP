@@ -1,5 +1,5 @@
+import type { gameContract, ChatMessage } from "@jointarp/core/shared/game";
 import type { ContractRouterClient } from "@orpc/contract";
-import type { gameContract, ChatMessage } from "@tarp/core/shared/game";
 
 export type GameClient = ContractRouterClient<typeof gameContract>;
 

@@ -1,5 +1,5 @@
+import type { Character } from "@jointarp/module/character";
 import type { ModuleDocument } from "@shared/desktop-api";
-import type { Character } from "@tarp/module/character";
 
 /** 内容修改仍属于同一草稿；房间、角色类型或来源切换则不能借用旧预览。 */
 export function roomDraftIdentity(roomId: string, draft: Character): string {

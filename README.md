@@ -47,10 +47,12 @@ bun run dev
 | `bun run package`   | 打包桌面应用目录                 |
 | `bun run dist`      | 生成桌面分发产物                 |
 
+类型检查与构建由 Turborepo 调度，可复用 CLI 和页面构建结果；缓存范围与 Actions 配置见[发布流程](docs/发布流程.md)。完整测试与桌面原生打包仍实际执行。
+
 构建 CLI 后，可以直接用 Bun 校验模组：
 
 ```sh
-bun run --filter @tarp/module-cli build
+bun run --filter @jointarp/module-cli build
 bun run cli module validate ./apps/desktop/examples/建卡控件演示 --json
 ```
 

@@ -7,15 +7,15 @@ import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { promisify } from "node:util";
 
-import { createSession } from "@tarp/core/node/sessions/session-store";
-import { loadDocumentTypes } from "@tarp/module/node/document-types";
+import { createSession } from "@jointarp/core/node/sessions/session-store";
+import { loadDocumentTypes } from "@jointarp/module/node/document-types";
 import {
   loadModuleDocuments,
   loadModuleLibraryDocuments,
-} from "@tarp/module/node/module-documents";
-import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
-import { loadModulePages } from "@tarp/module/node/module-pages";
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+} from "@jointarp/module/node/module-documents";
+import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
+import { loadModulePages } from "@jointarp/module/node/module-pages";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 
 import { documentMediaUrl } from "../../shared/document-media";
 import { resolveMediaRequestFile } from "../media-path";

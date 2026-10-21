@@ -4,8 +4,8 @@ import * as fs from "node:fs";
 import { lstat, mkdir, readFile, rename, rm, symlink } from "node:fs/promises";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
-import { createTestModule } from "@tarp/module/testing/test-module";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { createTestModule } from "@jointarp/module/testing/test-module";
 
 import { readCharacters } from "./character-db";
 import { updateGameDocument, readGameDocumentView, writeGameDocument } from "./game-state";

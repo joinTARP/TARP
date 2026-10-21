@@ -1,5 +1,5 @@
+import type { SessionActorMetrics, SessionMetrics } from "@jointarp/core/shared/session-metrics";
 import { useMutation } from "@tanstack/react-query";
-import type { SessionActorMetrics, SessionMetrics } from "@tarp/core/shared/session-metrics";
 import {
   Activity,
   Bot,

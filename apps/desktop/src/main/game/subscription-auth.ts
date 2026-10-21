@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 
 import { registerBunOAuthFlows } from "@earendil-works/pi-ai/bun-oauth";
-import type { ModelRuntime } from "@tarp/core/node/agent/models";
+import type { ModelRuntime } from "@jointarp/core/node/agent/models";
 
 // 桌面主进程会被 Bun 打包，pi 的变量路径动态导入无法随包发布。
 registerBunOAuthFlows();

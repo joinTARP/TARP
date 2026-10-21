@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 
+import { emptyFlowRun } from "@jointarp/module/flow";
 import { ORPCError } from "@orpc/server";
-import { emptyFlowRun } from "@tarp/module/flow";
 
 import type { Player } from "../../../shared/game";
 import type { LaunchAction } from "../../../shared/launch";

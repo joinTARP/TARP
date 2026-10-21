@@ -1,9 +1,9 @@
 import { onTestFinished, test } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import { DocumentEvaluator, type ParsedModuleDocument } from "@tarp/module/document-evaluator";
-import { documentIdentity } from "@tarp/module/document-path";
-import { validateDocumentLayout, validateDocumentType } from "@tarp/module/document-type";
+import { DocumentEvaluator, type ParsedModuleDocument } from "@jointarp/module/document-evaluator";
+import { documentIdentity } from "@jointarp/module/document-path";
+import { validateDocumentLayout, validateDocumentType } from "@jointarp/module/document-type";
 
 import { WorkerDocumentEvaluator, type WorkerEvaluatorOptions } from "./worker-document-evaluator";
 

@@ -1,8 +1,8 @@
 import { lstatSync } from "node:fs";
 import { dirname } from "node:path";
 
-import { documentIdentity, documentTypeId } from "@tarp/module/document-path";
-import type { DocumentType } from "@tarp/module/document-type";
+import { documentIdentity, documentTypeId } from "@jointarp/module/document-path";
+import type { DocumentType } from "@jointarp/module/document-type";
 
 import { overlayEntries, overlayPath } from "./game-overlay";
 

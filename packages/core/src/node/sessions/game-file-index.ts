@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 
-import { documentFormat, documentIdentity, documentTypeId } from "@tarp/module/document-path";
-import type { DocumentType } from "@tarp/module/document-type";
+import { documentFormat, documentIdentity, documentTypeId } from "@jointarp/module/document-path";
+import type { DocumentType } from "@jointarp/module/document-type";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { readAdventureState } from "./adventure-state";

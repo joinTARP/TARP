@@ -1,4 +1,4 @@
-import { parseModuleCommand, runModuleCommand } from "@tarp/module-cli/commands";
+import { parseModuleCommand, runModuleCommand } from "@jointarp/module-cli/commands";
 
 import manifest from "../../package.json";
 

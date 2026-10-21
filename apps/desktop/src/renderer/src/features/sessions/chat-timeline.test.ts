@@ -2,13 +2,13 @@ import { test, mock } from "bun:test";
 import { strict as assert } from "node:assert";
 
 import type { AssistantMessage } from "@earendil-works/pi-ai";
-import type { ChatMessage } from "@tarp/core/shared/game";
+import type { ChatMessage } from "@jointarp/core/shared/game";
 import {
   advanceTimersByTime,
   getTimerCount,
   useFakeTimers,
   useRealTimers,
-} from "@tarp/module/testing/async";
+} from "@jointarp/module/testing/async";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 

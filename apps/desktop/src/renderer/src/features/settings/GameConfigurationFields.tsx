@@ -1,17 +1,17 @@
-import { companionInitiativeOptions } from "@tarp/core/shared/companion-initiative";
+import { companionInitiativeOptions } from "@jointarp/core/shared/companion-initiative";
 import {
   companionRoleplayInstructions,
   maxCompanionRoleplayLength,
   resolveCompanionRoleplay,
-} from "@tarp/core/shared/companion-roleplay";
-import type { GameDefaults } from "@tarp/core/shared/game-defaults";
+} from "@jointarp/core/shared/companion-roleplay";
+import type { GameDefaults } from "@jointarp/core/shared/game-defaults";
 import {
   defaultHostSystemPrompt,
   maxHostSystemPromptLength,
   resolveHostSystemPrompt,
-} from "@tarp/core/shared/host-system-prompt";
-import { mentionReplyLimitSchema } from "@tarp/core/shared/mentions";
-import type { TtsVoiceOverride } from "@tarp/core/shared/voice";
+} from "@jointarp/core/shared/host-system-prompt";
+import { mentionReplyLimitSchema } from "@jointarp/core/shared/mentions";
+import type { TtsVoiceOverride } from "@jointarp/core/shared/voice";
 import { useState, type ReactNode } from "react";
 
 import { Button } from "../../components/ui/button";

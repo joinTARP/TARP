@@ -1,4 +1,4 @@
-import type { ChatMessage } from "@tarp/core/shared/game";
+import type { ChatMessage } from "@jointarp/core/shared/game";
 
 import { diceTimeline } from "./dice-timeline";
 

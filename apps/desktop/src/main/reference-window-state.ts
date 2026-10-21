@@ -1,4 +1,4 @@
-import { structuredFile } from "@tarp/core/node/storage/structured-file";
+import { structuredFile } from "@jointarp/core/node/storage/structured-file";
 import { z } from "zod";
 
 import type { WindowRectangle } from "./reference-window-bounds";

@@ -1,11 +1,11 @@
 import { mkdir } from "node:fs/promises";
 
+import { loadDocumentTypes } from "@jointarp/module/node/document-types";
+import { loadModuleLibraryDocuments } from "@jointarp/module/node/module-documents";
+import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
+import { loadModulePages } from "@jointarp/module/node/module-pages";
 import { ORPCError } from "@orpc/server";
 import type { ModulesDirectory, OpenModuleLibraryResult } from "@shared/desktop-api";
-import { loadDocumentTypes } from "@tarp/module/node/document-types";
-import { loadModuleLibraryDocuments } from "@tarp/module/node/module-documents";
-import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
-import { loadModulePages } from "@tarp/module/node/module-pages";
 import { z } from "zod";
 
 import {

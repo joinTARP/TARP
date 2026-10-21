@@ -1,5 +1,5 @@
-import type { ChatService } from "@tarp/core/node";
-import { deleteSession, setSessionStatus } from "@tarp/core/node/sessions/session-store";
+import type { ChatService } from "@jointarp/core/node";
+import { deleteSession, setSessionStatus } from "@jointarp/core/node/sessions/session-store";
 
 /** 本地冒险状态、运行连接与资料窗口的关闭顺序由宿主统一协调。 */
 export class LocalSessionLifecycle {

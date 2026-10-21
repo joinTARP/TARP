@@ -1,12 +1,12 @@
-import type { TtsVoiceOverride } from "@tarp/core/shared/voice";
+import type { TtsVoiceOverride } from "@jointarp/core/shared/voice";
 import { z } from "zod";
-export { roomTtsSettingsSchema, ttsVoiceOverrideSchema } from "@tarp/core/shared/voice";
-export type { TtsVoiceOverride } from "@tarp/core/shared/voice";
+export { roomTtsSettingsSchema, ttsVoiceOverrideSchema } from "@jointarp/core/shared/voice";
+export type { TtsVoiceOverride } from "@jointarp/core/shared/voice";
 
 /** 播放端只依赖通用音频与配置；服务商协议留在主进程。 */
-export { ttsConfigSchema } from "@tarp/core/shared/voice";
-export type { TtsConfig } from "@tarp/core/shared/voice";
-import { ttsConfigSchema, type TtsConfig } from "@tarp/core/shared/voice";
+export { ttsConfigSchema } from "@jointarp/core/shared/voice";
+export type { TtsConfig } from "@jointarp/core/shared/voice";
+import { ttsConfigSchema, type TtsConfig } from "@jointarp/core/shared/voice";
 export interface TtsProviderInfo {
   id: string;
   name: string;

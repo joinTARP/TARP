@@ -1,5 +1,5 @@
-import type { Character, CharacterDraft } from "@tarp/module/character";
-import type { DocumentType } from "@tarp/module/document-type";
+import type { Character, CharacterDraft } from "@jointarp/module/character";
+import type { DocumentType } from "@jointarp/module/document-type";
 
 import { DocumentDetail } from "../modules/DocumentDetail";
 import { DocumentReferences, type ReferenceDocument } from "../modules/DocumentReferences";

@@ -4,9 +4,9 @@ import { mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { initializeRoomSettings } from "@tarp/core/node/sessions/room-settings";
-import { initializeAdventure, updateAdventure } from "@tarp/core/node/sessions/room-storage";
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+import { initializeRoomSettings } from "@jointarp/core/node/sessions/room-settings";
+import { initializeAdventure, updateAdventure } from "@jointarp/core/node/sessions/room-storage";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 
 import { mimoTtsProvider } from "./mimo";
 import type { TtsProvider } from "./provider";

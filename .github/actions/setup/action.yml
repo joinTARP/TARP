@@ -33,6 +33,14 @@ runs:
         key: desktop-tools-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package.json', 'bun.lock', 'apps/desktop/package.json', 'apps/desktop/hutch.config.ts') }}
         restore-keys: |
           desktop-tools-v1-${{ runner.os }}-${{ runner.arch }}-
+    - name: 缓存 Turborepo 任务结果
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: .turbo/cache
+        key: turbo-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('bun.lock', 'turbo.json') }}-${{ github.sha }}-${{ github.job }}
+        restore-keys: |
+          turbo-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('bun.lock', 'turbo.json') }}-
+          turbo-v1-${{ runner.os }}-${{ runner.arch }}-
     - name: 从根目录安装依赖
       shell: bash
       env:

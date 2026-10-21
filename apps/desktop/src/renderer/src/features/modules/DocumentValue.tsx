@@ -1,9 +1,9 @@
-import type { DocumentField, DocumentListItem } from "@tarp/module/document-type";
+import type { DocumentField, DocumentListItem } from "@jointarp/module/document-type";
 import {
   fieldErrorAtPath,
   hasFieldErrors,
   shouldHideEmptyField,
-} from "@tarp/module/public-document-field";
+} from "@jointarp/module/public-document-field";
 import { Suspense } from "react";
 
 import { LoadingIndicator } from "../../components/ui/loading-indicator";

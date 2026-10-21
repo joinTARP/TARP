@@ -1,5 +1,5 @@
 {
-  "name": "@tarp/core",
+  "name": "@jointarp/core",
   "version": "0.1.0",
   "private": true,
   "license": "GPL-3.0-only",
@@ -19,16 +19,16 @@
   },
   "scripts": {
     "typecheck": "bun --bun x --no-install tsc --noEmit",
-    "test": "bun ../../scripts/test.ts --scope @tarp/core",
-    "test:changed": "bun ../../scripts/test.ts --scope @tarp/core --changed"
+    "test": "bun ../../scripts/test.ts --scope @jointarp/core",
+    "test:changed": "bun ../../scripts/test.ts --scope @jointarp/core --changed"
   },
   "dependencies": {
     "@colyseus/schema": "5.0.34",
     "@earendil-works/pi-ai": "1.2.0",
     "@earendil-works/pi-coding-agent": "1.2.0",
+    "@jointarp/module": "workspace:*",
     "@orpc/contract": "^2.0.0-beta.36",
     "@orpc/server": "^2.0.0-beta.36",
-    "@tarp/module": "workspace:*",
     "es-toolkit": "^1.52.0",
     "fast-json-patch": "^3.1.1",
     "kysely": "^0.29.6",

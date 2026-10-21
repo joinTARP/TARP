@@ -1,7 +1,7 @@
 import { test, mock } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import type { GameSession } from "@tarp/core/shared/session";
+import type { GameSession } from "@jointarp/core/shared/session";
 import type { ReactNode } from "react";
 import { renderToReadableStream } from "react-dom/server";
 

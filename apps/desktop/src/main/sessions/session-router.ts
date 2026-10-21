@@ -1,22 +1,22 @@
-import { ORPCError } from "@orpc/server";
-import { ttsVoiceOverrideSchema } from "@shared/tts";
 import {
   bindModuleSource,
   checkModuleUpdate,
   readModuleSource,
-} from "@tarp/core/node/sessions/module-sync";
-import { roomDisplaySettings } from "@tarp/core/node/sessions/room-display-settings";
-import { readRoomSettings, patchRoomSettings } from "@tarp/core/node/sessions/room-settings";
-import { roomDirectory, createSession } from "@tarp/core/node/sessions/session-store";
+} from "@jointarp/core/node/sessions/module-sync";
+import { roomDisplaySettings } from "@jointarp/core/node/sessions/room-display-settings";
+import { readRoomSettings, patchRoomSettings } from "@jointarp/core/node/sessions/room-settings";
+import { roomDirectory, createSession } from "@jointarp/core/node/sessions/session-store";
 import {
   compactionRoleSchema,
   compactionSettingsSchema,
-} from "@tarp/core/shared/compaction-settings";
-import { companionInputSchema } from "@tarp/core/shared/companion";
-import { companionInitiativeSchema } from "@tarp/core/shared/companion-initiative";
-import { thinkingLevelSchema } from "@tarp/core/shared/game";
-import { roomConfigurationPatchSchema } from "@tarp/core/shared/game-defaults";
-import { identityIdSchema } from "@tarp/core/shared/identity";
+} from "@jointarp/core/shared/compaction-settings";
+import { companionInputSchema } from "@jointarp/core/shared/companion";
+import { companionInitiativeSchema } from "@jointarp/core/shared/companion-initiative";
+import { thinkingLevelSchema } from "@jointarp/core/shared/game";
+import { roomConfigurationPatchSchema } from "@jointarp/core/shared/game-defaults";
+import { identityIdSchema } from "@jointarp/core/shared/identity";
+import { ORPCError } from "@orpc/server";
+import { ttsVoiceOverrideSchema } from "@shared/tts";
 import { z } from "zod";
 
 import { assertAbsolutePath } from "../config/app-config";

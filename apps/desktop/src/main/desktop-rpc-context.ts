@@ -1,5 +1,5 @@
+import type { GameContext } from "@jointarp/core/node";
 import { os, ORPCError } from "@orpc/server";
-import type { GameContext } from "@tarp/core/node";
 
 import { AppConfigError } from "./config/app-config";
 import type { LocalGameSettings } from "./game/local-settings";

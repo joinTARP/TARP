@@ -1,9 +1,9 @@
+import type { ChatMessage } from "@jointarp/core/shared/game";
+import type { GameSession, SessionModule } from "@jointarp/core/shared/session";
+import type { Character } from "@jointarp/module/character";
+import { documentIdentity } from "@jointarp/module/document-path";
 import type { SpeechPart } from "@shared/speech-text";
 import { useQuery } from "@tanstack/react-query";
-import type { ChatMessage } from "@tarp/core/shared/game";
-import type { GameSession, SessionModule } from "@tarp/core/shared/session";
-import type { Character } from "@tarp/module/character";
-import { documentIdentity } from "@tarp/module/document-path";
 import { BookOpen } from "lucide-react";
 import {
   useCallback,

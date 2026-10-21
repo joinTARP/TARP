@@ -1,10 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { CompanionModel } from "@tarp/core/shared/companion";
+import type { CompanionModel } from "@jointarp/core/shared/companion";
 import {
   defaultCompanionInitiative,
   type CompanionInitiative,
-} from "@tarp/core/shared/companion-initiative";
-import type { AiConfig } from "@tarp/core/shared/game";
+} from "@jointarp/core/shared/companion-initiative";
+import type { AiConfig } from "@jointarp/core/shared/game";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 import { Button } from "../../components/ui/button";

@@ -1,6 +1,6 @@
+import { defaultDocumentCard, type DocumentType } from "@jointarp/module/document-type";
+import { isDocumentVisible } from "@jointarp/module/module-document";
 import type { ModuleDocument } from "@shared/desktop-api";
-import { defaultDocumentCard, type DocumentType } from "@tarp/module/document-type";
-import { isDocumentVisible } from "@tarp/module/module-document";
 import type { SyntheticEvent } from "react";
 
 import { Tooltip } from "../../components/ui/tooltip";

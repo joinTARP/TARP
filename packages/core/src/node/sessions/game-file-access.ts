@@ -1,4 +1,4 @@
-import type { DocumentType } from "@tarp/module/document-type";
+import type { DocumentType } from "@jointarp/module/document-type";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { storedTypes } from "./character-db";

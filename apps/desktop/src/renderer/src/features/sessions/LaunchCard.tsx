@@ -1,5 +1,5 @@
-import type { ChatMessage } from "@tarp/core/shared/game";
-import type { Character } from "@tarp/module/character";
+import type { ChatMessage } from "@jointarp/core/shared/game";
+import type { Character } from "@jointarp/module/character";
 import { Check, ContactRound, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { memo, useLayoutEffect, useRef, useState, type ReactNode } from "react";

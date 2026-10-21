@@ -1,8 +1,8 @@
 import { mkdir, readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
 
+import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
 import type { ModuleSummary } from "@shared/desktop-api";
-import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
 
 import { allowDocumentMediaRoots } from "../media-path";
 import { resolveModuleRoot } from "./module-root";

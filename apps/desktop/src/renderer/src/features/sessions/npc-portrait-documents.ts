@@ -1,8 +1,8 @@
+import { visibleAgentMessages, publicAssistantText } from "@jointarp/core/shared/agent-message";
+import type { ChatMessage } from "@jointarp/core/shared/game";
+import { parseNarrative } from "@jointarp/core/shared/narrative";
+import { documentIdentity } from "@jointarp/module/document-path";
 import type { ModuleDocument } from "@shared/desktop-api";
-import { visibleAgentMessages, publicAssistantText } from "@tarp/core/shared/agent-message";
-import type { ChatMessage } from "@tarp/core/shared/game";
-import { parseNarrative } from "@tarp/core/shared/narrative";
-import { documentIdentity } from "@tarp/module/document-path";
 
 /** 只选取实际发言的文档，图片和名称仍须读取玩家可见投影。 */
 export function npcPortraitDocuments(

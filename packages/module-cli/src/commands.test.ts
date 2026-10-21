@@ -5,8 +5,8 @@ import { readFile, readdir, realpath, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { promisify } from "node:util";
 
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
-import { createTestModule } from "@tarp/module/testing/test-module";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { createTestModule } from "@jointarp/module/testing/test-module";
 
 import { version } from "../package.json";
 import { modulePreviewHash, parseModuleCommand, runModuleCommand } from "./commands";

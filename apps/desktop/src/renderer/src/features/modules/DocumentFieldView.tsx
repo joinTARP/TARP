@@ -1,6 +1,6 @@
-import type { DocumentFieldViewLayout } from "@tarp/module/document-field-view";
-import type { DocumentField } from "@tarp/module/document-type";
-import { fieldErrorAtPath, getDocumentField } from "@tarp/module/public-document-field";
+import type { DocumentFieldViewLayout } from "@jointarp/module/document-field-view";
+import type { DocumentField } from "@jointarp/module/document-type";
+import { fieldErrorAtPath, getDocumentField } from "@jointarp/module/public-document-field";
 
 import { DocumentValue } from "./DocumentValue";
 import { EquipmentSlots } from "./EquipmentSlots";

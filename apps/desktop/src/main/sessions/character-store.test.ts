@@ -5,17 +5,17 @@ import { access, mkdir, mkdtemp, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { readAdventureState } from "@tarp/core/node/sessions/adventure-state";
-import { readCharacters } from "@tarp/core/node/sessions/character-db";
+import { readAdventureState } from "@jointarp/core/node/sessions/adventure-state";
+import { readCharacters } from "@jointarp/core/node/sessions/character-db";
 import {
   characterSnapshot,
   characterViews,
   validateCharacterDraft,
   withCharacters,
-} from "@tarp/core/node/sessions/character-store";
-import { publicGameDocuments } from "@tarp/core/node/sessions/game-state";
-import { createSession } from "@tarp/core/node/sessions/session-store";
-import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+} from "@jointarp/core/node/sessions/character-store";
+import { publicGameDocuments } from "@jointarp/core/node/sessions/game-state";
+import { createSession } from "@jointarp/core/node/sessions/session-store";
+import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 
 import { documentMediaUrl } from "../../shared/document-media";
 import { resolveMediaRequestFile } from "../media-path";

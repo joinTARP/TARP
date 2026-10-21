@@ -2,13 +2,13 @@ import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
 import { Decoder } from "@colyseus/schema";
-import { ROOM_MAX_FRAME_BYTES, type RoomReplica } from "@tarp/core/shared/room-state";
-import { RoomStateSchema } from "@tarp/core/shared/room-state-schema";
+import { ROOM_MAX_FRAME_BYTES, type RoomReplica } from "@jointarp/core/shared/room-state";
+import { RoomStateSchema } from "@jointarp/core/shared/room-state-schema";
 import {
   createRoomReplica,
   createRoomBaseline,
   createRoomEncoder,
-} from "@tarp/core/testing/room-replica";
+} from "@jointarp/core/testing/room-replica";
 
 import { RoomStateStore } from "./room-state-store";
 function setFields(state: RoomReplica, fields: Record<string, unknown>) {

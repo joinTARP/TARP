@@ -1,6 +1,6 @@
 import { strict as assert } from "node:assert";
 
-import { SqliteDatabase } from "@tarp/core/node/storage/sqlite";
+import { SqliteDatabase } from "@jointarp/core/node/storage/sqlite";
 import { Kysely, SqliteDialect } from "kysely";
 import { getQuickJS } from "quickjs-emscripten";
 

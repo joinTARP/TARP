@@ -1,7 +1,7 @@
+import type { GameSession } from "@jointarp/core/shared/session";
+import { documentIdentity, typeFormatLabel } from "@jointarp/module/document-path";
 import type { ModuleDocument } from "@shared/desktop-api";
 import { searchItems } from "@shared/query";
-import type { GameSession } from "@tarp/core/shared/session";
-import { documentIdentity, typeFormatLabel } from "@tarp/module/document-path";
 import { BookOpenText, FileCode2, FileText, Library } from "lucide-react";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 

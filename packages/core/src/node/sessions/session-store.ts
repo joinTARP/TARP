@@ -12,15 +12,15 @@ import {
 } from "node:fs/promises";
 import { join, resolve } from "node:path";
 
+import { publicDocumentType } from "@jointarp/module/character";
+import { launchConfigSchema, validateLaunch } from "@jointarp/module/flow";
+import type { ModulePageDocument } from "@jointarp/module/module-document";
+import { loadDocumentTypes } from "@jointarp/module/node/document-types";
+import { validateInitialGameState } from "@jointarp/module/node/game-state-validation";
+import { loadModuleDocuments } from "@jointarp/module/node/module-documents";
+import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
+import { loadModulePages } from "@jointarp/module/node/module-pages";
 import { ORPCError } from "@orpc/server";
-import { publicDocumentType } from "@tarp/module/character";
-import { launchConfigSchema, validateLaunch } from "@tarp/module/flow";
-import type { ModulePageDocument } from "@tarp/module/module-document";
-import { loadDocumentTypes } from "@tarp/module/node/document-types";
-import { validateInitialGameState } from "@tarp/module/node/game-state-validation";
-import { loadModuleDocuments } from "@tarp/module/node/module-documents";
-import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
-import { loadModulePages } from "@tarp/module/node/module-pages";
 import type { z } from "zod";
 
 import type { gameDefaultsSchema } from "../../shared/game-defaults";

@@ -1,25 +1,28 @@
 import { lstat, mkdir, realpath } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative, sep } from "node:path";
 
-import type { Character } from "@tarp/module/character";
-import { hasComputedFields } from "@tarp/module/computed-fields";
+import type { Character } from "@jointarp/module/character";
+import { hasComputedFields } from "@jointarp/module/computed-fields";
 import {
   resolveDocumentComputations,
   documentSourceValues,
-} from "@tarp/module/document-computations";
-import { resolveModuleDocuments, type ParsedModuleDocument } from "@tarp/module/document-evaluator";
-import { documentFormat, documentIdentity } from "@tarp/module/document-path";
-import type { DocumentType } from "@tarp/module/document-type";
+} from "@jointarp/module/document-computations";
+import {
+  resolveModuleDocuments,
+  type ParsedModuleDocument,
+} from "@jointarp/module/document-evaluator";
+import { documentFormat, documentIdentity } from "@jointarp/module/document-path";
+import type { DocumentType } from "@jointarp/module/document-type";
 import {
   assertInstanceChanges,
   instancePointerType,
   validateInstanceBindings,
-} from "@tarp/module/instance-state";
-import { stringifyDocumentContent } from "@tarp/module/node/document-codec";
+} from "@jointarp/module/instance-state";
+import { stringifyDocumentContent } from "@jointarp/module/node/document-codec";
 import {
   parseGameDocumentContent as parseContent,
   validateGameDocumentReferences,
-} from "@tarp/module/node/game-state-validation";
+} from "@jointarp/module/node/game-state-validation";
 
 import { assertRoomOverlayAdmission } from "../game/room-state-projection";
 import { createIdentityId } from "../identity";

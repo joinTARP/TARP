@@ -1,7 +1,7 @@
-import { documentIdentity } from "@tarp/module/document-path";
-import type { DocumentField } from "@tarp/module/document-type";
-import { shouldHideEmptyField } from "@tarp/module/public-document-field";
-import type { ReferenceCollectionLayout } from "@tarp/module/reference-collection";
+import { documentIdentity } from "@jointarp/module/document-path";
+import type { DocumentField } from "@jointarp/module/document-type";
+import { shouldHideEmptyField } from "@jointarp/module/public-document-field";
+import type { ReferenceCollectionLayout } from "@jointarp/module/reference-collection";
 
 import type { ReferenceDocument } from "./DocumentReferences";
 

@@ -1,7 +1,7 @@
+import type { RoomEntity, RoomLaunchState } from "@jointarp/core/shared/room-state";
+import type { WorkbenchView } from "@jointarp/module/creation-workbench";
+import { documentIdentity } from "@jointarp/module/document-path";
 import type { ModuleDocument } from "@shared/desktop-api";
-import type { RoomEntity, RoomLaunchState } from "@tarp/core/shared/room-state";
-import type { WorkbenchView } from "@tarp/module/creation-workbench";
-import { documentIdentity } from "@tarp/module/document-path";
 
 /** 仅供下一条命令使用，不作为界面展示缓存。 */
 export type LaunchCommandProgress = Pick<RoomLaunchState, "room" | "progress"> & { roomId: string };

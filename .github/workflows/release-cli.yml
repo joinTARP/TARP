@@ -31,7 +31,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           if [[ -z "$NPM_TOKEN" ]]; then
-            echo '::error::请在仓库 Actions Secrets 配置有 @tarp/module-cli 发布权限的 NPM_TOKEN。'
+            echo '::error::请在仓库 Actions Secrets 配置有 @jointarp/module-cli 发布权限的 NPM_TOKEN。'
             exit 1
           fi
       - uses: ./.github/actions/setup
@@ -52,7 +52,7 @@ jobs:
           const npmTag = version.split('+')[0].includes('-') ? 'next' : 'latest';
           appendFileSync(process.env.GITHUB_OUTPUT, `npm-tag=${npmTag}\n`);
           JS
-      - run: bun run --filter @tarp/module-cli pack
+      - run: bun run --filter @jointarp/module-cli pack
       - run: bun scripts/release/smoke.ts cli
       - name: 整理发布包、对应源码和校验和
         run: |

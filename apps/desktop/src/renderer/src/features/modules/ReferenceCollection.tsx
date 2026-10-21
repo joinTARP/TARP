@@ -1,5 +1,5 @@
-import type { DocumentField } from "@tarp/module/document-type";
-import type { ReferenceCollectionLayout } from "@tarp/module/reference-collection";
+import type { DocumentField } from "@jointarp/module/document-type";
+import type { ReferenceCollectionLayout } from "@jointarp/module/reference-collection";
 import { LayoutGrid, List, PanelsTopLeft, Search } from "lucide-react";
 import { lazy, Suspense, useMemo, useState } from "react";
 

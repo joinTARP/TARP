@@ -2,18 +2,18 @@ import { join } from "node:path";
 
 import type { AuthContext, Provider } from "@earendil-works/pi-ai";
 import { builtinProviders } from "@earendil-works/pi-ai/providers/all";
-import { ORPCError } from "@orpc/server";
-import { ModelRuntime, InMemoryModelsStore } from "@tarp/core/node/agent/models";
-import { createIdentityId } from "@tarp/core/node/identity";
-import { structuredFile, StructuredFileError } from "@tarp/core/node/storage/structured-file";
+import { ModelRuntime, InMemoryModelsStore } from "@jointarp/core/node/agent/models";
+import { createIdentityId } from "@jointarp/core/node/identity";
+import { structuredFile, StructuredFileError } from "@jointarp/core/node/storage/structured-file";
 import {
   playerSchema,
   customAiApis,
   type AiSettings,
   type ThinkingLevel,
   type AvailableAiModel,
-} from "@tarp/core/shared/game";
-import { gameDefaultsSchema, type GameDefaultsPatch } from "@tarp/core/shared/game-defaults";
+} from "@jointarp/core/shared/game";
+import { gameDefaultsSchema, type GameDefaultsPatch } from "@jointarp/core/shared/game-defaults";
+import { ORPCError } from "@orpc/server";
 import { z } from "zod";
 
 import {

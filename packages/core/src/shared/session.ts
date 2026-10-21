@@ -1,5 +1,5 @@
-import type { DocumentType } from "@tarp/module/document-type";
-import type { ModuleDocument, ModulePageDocument } from "@tarp/module/module-document";
+import type { DocumentType } from "@jointarp/module/document-type";
+import type { ModuleDocument, ModulePageDocument } from "@jointarp/module/module-document";
 import { z } from "zod";
 
 export const gameRoomSchema = z.object({

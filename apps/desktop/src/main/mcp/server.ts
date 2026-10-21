@@ -3,9 +3,9 @@ import { rm } from "node:fs/promises";
 import { createServer } from "node:http";
 import { join } from "node:path";
 
+import { writeFileAtomic } from "@jointarp/core/node/storage/write-file-atomic";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { writeFileAtomic } from "@tarp/core/node/storage/write-file-atomic";
 import { z } from "zod";
 
 import { PlaytestService, playtestCreateSchema } from "./playtest";

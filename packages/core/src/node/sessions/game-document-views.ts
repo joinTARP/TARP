@@ -1,14 +1,14 @@
 import { dirname } from "node:path";
 
-import { publicValues } from "@tarp/module/character";
+import { publicValues } from "@jointarp/module/character";
 import {
   DocumentEvaluator,
   resolveModuleDocuments,
   type ParsedModuleDocument,
-} from "@tarp/module/document-evaluator";
-import { documentIdentity } from "@tarp/module/document-path";
-import { visibleDocumentProjection, type ModuleDocument } from "@tarp/module/module-document";
-import { publicFieldErrors } from "@tarp/module/public-document-field";
+} from "@jointarp/module/document-evaluator";
+import { documentIdentity } from "@jointarp/module/document-path";
+import { visibleDocumentProjection, type ModuleDocument } from "@jointarp/module/module-document";
+import { publicFieldErrors } from "@jointarp/module/public-document-field";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { storedTypes } from "./character-db";

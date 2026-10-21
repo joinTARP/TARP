@@ -1,7 +1,7 @@
-import { documentDetailTemplate } from "@tarp/module/document-templates";
-import type { DocumentPresentation } from "@tarp/module/document-templates";
-import type { DocumentType } from "@tarp/module/document-type";
-import type { ModuleDocument } from "@tarp/module/module-document";
+import { documentDetailTemplate } from "@jointarp/module/document-templates";
+import type { DocumentPresentation } from "@jointarp/module/document-templates";
+import type { DocumentType } from "@jointarp/module/document-type";
+import type { ModuleDocument } from "@jointarp/module/module-document";
 
 export interface DocumentSheetModel {
   template: DocumentPresentation;

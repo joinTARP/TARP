@@ -8,9 +8,9 @@ import {
   type RoomReplica,
   type RoomSections,
   type RoomStateFrame,
-} from "@tarp/core/shared/room-state";
-import { applyRoomEntityOverlay } from "@tarp/core/shared/room-state-overlay";
-import { RoomStateSchema, stableJson } from "@tarp/core/shared/room-state-schema";
+} from "@jointarp/core/shared/room-state";
+import { applyRoomEntityOverlay } from "@jointarp/core/shared/room-state-overlay";
+import { RoomStateSchema, stableJson } from "@jointarp/core/shared/room-state-schema";
 
 /** Decoder 保存累计覆盖；只有合并模组基线并校验成功后才发布当前视图。 */
 export class RoomStateStore {

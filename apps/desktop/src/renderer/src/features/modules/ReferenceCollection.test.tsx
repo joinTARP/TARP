@@ -1,8 +1,8 @@
 import { test, mock } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import { validateDocumentLayout, validateDocumentType } from "@tarp/module/document-type";
-import { referenceCollectionSchema } from "@tarp/module/reference-collection";
+import { validateDocumentLayout, validateDocumentType } from "@jointarp/module/document-type";
+import { referenceCollectionSchema } from "@jointarp/module/reference-collection";
 import type { ReactNode } from "react";
 import { renderToReadableStream, renderToStaticMarkup } from "react-dom/server";
 

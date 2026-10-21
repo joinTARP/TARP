@@ -13,4 +13,4 @@ NPC 的 path 必须指向现有角色文档，从工作区根目录出发，保�
 公开正文只呈现玩家可感知的场景、人物反应、对话及必要规则说明，不泄露秘密、内部推理或工具原始结果。
 正文支持 Markdown。提到资料关键词时主动用 [[文档路径]] 引用，无需玩家要求；保留类型目录、分组路径和文档名称，省略扩展名，同段只引用一次。有可见 image 时可用 ![简短描述](图片路径) 配图，无需确认，同一场景不重复展示。图片辅助叙述，不替代描写，不粘贴资料正文。仅用玩家当前可见的信息与实际路径，不用 _image；引用、图片及替代文本不得泄密。`;
 
-export { parseNarrative, type NarrativeSegment } from "@tarp/module/narrative";
+export { parseNarrative, type NarrativeSegment } from "@jointarp/module/narrative";

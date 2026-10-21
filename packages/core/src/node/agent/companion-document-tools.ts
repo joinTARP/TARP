@@ -1,9 +1,9 @@
 import { basename, dirname, join } from "node:path";
 
 import type { ToolDefinition } from "@earendil-works/pi-coding-agent";
-import { documentIdentity } from "@tarp/module/document-path";
-import { normalizeInstanceDefinition, type DocumentField } from "@tarp/module/document-type";
-import { isDocumentVisible, type ModuleDocument } from "@tarp/module/module-document";
+import { documentIdentity } from "@jointarp/module/document-path";
+import { normalizeInstanceDefinition, type DocumentField } from "@jointarp/module/document-type";
+import { isDocumentVisible, type ModuleDocument } from "@jointarp/module/module-document";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { gfmFromMarkdown, gfmToMarkdown } from "mdast-util-gfm";
 import { toMarkdown } from "mdast-util-to-markdown";

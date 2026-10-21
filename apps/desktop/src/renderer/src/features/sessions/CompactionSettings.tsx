@@ -1,9 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   compactionSettingsSchema,
   resolveCompaction,
   type CompactionRole,
-} from "@tarp/core/shared/compaction-settings";
+} from "@jointarp/core/shared/compaction-settings";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useId, useState } from "react";
 
 import { Button } from "../../components/ui/button";

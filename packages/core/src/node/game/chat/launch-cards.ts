@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-import { finishIntroductionRun } from "@tarp/module/flow";
+import { finishIntroductionRun } from "@jointarp/module/flow";
 
 import { messageSchema } from "../../../shared/game";
 import type { Player } from "../../../shared/game";

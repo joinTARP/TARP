@@ -1,5 +1,5 @@
-import { parseDice } from "@tarp/core/shared/dice";
-import type { ChatMessage, Player } from "@tarp/core/shared/game";
+import { parseDice } from "@jointarp/core/shared/dice";
+import type { ChatMessage, Player } from "@jointarp/core/shared/game";
 import { Dices } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";

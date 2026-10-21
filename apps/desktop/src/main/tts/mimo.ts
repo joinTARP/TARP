@@ -1,4 +1,4 @@
-import { defaultTtsConfig } from "@tarp/core/shared/voice";
+import { defaultTtsConfig } from "@jointarp/core/shared/voice";
 
 import { TtsError, type TtsRequest, type TtsProvider } from "./provider";
 import { readSse } from "./sse";

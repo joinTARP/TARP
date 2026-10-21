@@ -1,6 +1,6 @@
-import { chatText, publicAssistantText } from "@tarp/core/shared/agent-message";
-import type { ChatMessage } from "@tarp/core/shared/game";
-import { parseNarrative } from "@tarp/core/shared/narrative";
+import { chatText, publicAssistantText } from "@jointarp/core/shared/agent-message";
+import type { ChatMessage } from "@jointarp/core/shared/game";
+import { parseNarrative } from "@jointarp/core/shared/narrative";
 
 import type { TtsSpeaker } from "./tts";
 import { ttsTextLimit } from "./tts";

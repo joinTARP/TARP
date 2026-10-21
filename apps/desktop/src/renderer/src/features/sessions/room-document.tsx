@@ -1,5 +1,5 @@
+import type { Character } from "@jointarp/module/character";
 import type { ModuleDocument } from "@shared/desktop-api";
-import type { Character } from "@tarp/module/character";
 import { createContext, lazy, Suspense, useContext, type ReactNode } from "react";
 
 import { DocumentImageScope } from "../modules/document-image";

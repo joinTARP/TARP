@@ -77,7 +77,7 @@ if (process.platform === "darwin") {
     }
   }
 }
-await run(["bun", "--bun", "x", "--no-install", "vite", "build"]);
+await run(["bun", "../../scripts/tasks.ts", "run", "build:renderer", "--filter=./apps/desktop"]);
 if (mode === "dev") {
   // Vite 提供页面热更新；Electrobun 监听主进程并重启。
   const vite = Bun.spawn(["bun", "--bun", "x", "--no-install", "vite"], {

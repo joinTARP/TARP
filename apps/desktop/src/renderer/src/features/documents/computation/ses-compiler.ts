@@ -1,4 +1,4 @@
-import type { DocumentComputationCompiler } from "@tarp/module/document-evaluator";
+import type { DocumentComputationCompiler } from "@jointarp/module/document-evaluator";
 import type {} from "ses";
 
 const names = [

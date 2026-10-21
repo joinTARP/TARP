@@ -1,6 +1,6 @@
+import type { GameRoomSummary } from "@jointarp/core/shared/session";
 import { documentMediaUrl } from "@shared/document-media";
 import { Link } from "@tanstack/react-router";
-import type { GameRoomSummary } from "@tarp/core/shared/session";
 import { cn } from "cn";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";

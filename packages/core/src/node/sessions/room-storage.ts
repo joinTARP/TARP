@@ -1,6 +1,6 @@
 import { join } from "node:path";
 
-import { characterDraftSchema } from "@tarp/module/character";
+import { characterDraftSchema } from "@jointarp/module/character";
 import { z } from "zod";
 
 import { companionModelSchema } from "../../shared/companion";
