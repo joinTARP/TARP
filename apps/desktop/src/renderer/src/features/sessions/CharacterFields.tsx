@@ -1,6 +1,6 @@
-import { documentIdentity } from "@jointarp/module/document-path";
-import type { DocumentField } from "@jointarp/module/document-type";
 import type { ModuleDocument } from "@shared/desktop-api";
+import { documentIdentity } from "@tarp/module/document-path";
+import type { DocumentField } from "@tarp/module/document-type";
 import { useId } from "react";
 
 import { Button } from "../../components/ui/button";

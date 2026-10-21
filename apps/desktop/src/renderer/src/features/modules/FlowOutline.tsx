@@ -1,11 +1,6 @@
-import { documentIdentity, sameDocumentIdentity } from "@jointarp/module/document-path";
-import {
-  nodeOptions,
-  type CreationFlow,
-  type FlowNode,
-  type PreludeFlow,
-} from "@jointarp/module/flow";
 import type { ModuleDocument } from "@shared/desktop-api";
+import { documentIdentity, sameDocumentIdentity } from "@tarp/module/document-path";
+import { nodeOptions, type CreationFlow, type FlowNode, type PreludeFlow } from "@tarp/module/flow";
 import { ArrowRight, BookOpen } from "lucide-react";
 
 import { DocumentReference } from "./DocumentReferences";

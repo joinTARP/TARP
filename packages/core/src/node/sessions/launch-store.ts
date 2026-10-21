@@ -5,11 +5,11 @@ import {
   publicValues,
   type Character,
   type CharacterDraft,
-} from "@jointarp/module/character";
-import { evaluateCreation, newCreationProgress } from "@jointarp/module/creation-workbench";
-import { documentFormat, sameDocumentIdentity } from "@jointarp/module/document-path";
-import { advanceFlow, backFlow, currentNode, finishIntroductionRun } from "@jointarp/module/flow";
-import type { ModuleDocument } from "@jointarp/module/module-document";
+} from "@tarp/module/character";
+import { evaluateCreation, newCreationProgress } from "@tarp/module/creation-workbench";
+import { documentFormat, sameDocumentIdentity } from "@tarp/module/document-path";
+import { advanceFlow, backFlow, currentNode, finishIntroductionRun } from "@tarp/module/flow";
+import type { ModuleDocument } from "@tarp/module/module-document";
 
 import { messageSchema } from "../../shared/game";
 import { launchActionSchema, type LaunchAction, type LaunchState } from "../../shared/launch";

@@ -1,8 +1,8 @@
-import { parseConfig, stringifyConfig } from "@jointarp/module/node/config-file";
+import { parseConfig, stringifyConfig } from "@tarp/module/node/config-file";
 
 import type { FileCodec } from "./structured-file";
 
-export { configFilePath } from "@jointarp/module/node/config-file";
+export { configFilePath } from "@tarp/module/node/config-file";
 
 export const configFileCodec: FileCodec = {
   format: "JSON/TOML",

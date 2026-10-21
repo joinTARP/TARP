@@ -1,5 +1,5 @@
-import type { DocumentType } from "@jointarp/module/document-type";
-import { instancePointerType, type InstanceResolver } from "@jointarp/module/instance-state";
+import type { DocumentType } from "@tarp/module/document-type";
+import { instancePointerType, type InstanceResolver } from "@tarp/module/instance-state";
 import jsonPatch from "fast-json-patch";
 import { z } from "zod";
 

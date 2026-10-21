@@ -2,13 +2,13 @@ import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 import { randomUUID } from "node:crypto";
 
-import { advanceTimersByTime, useFakeTimers, useRealTimers } from "@jointarp/module/testing/async";
 import type { ChatMessage, RoomNotification } from "@tarp/core/shared/game";
 import {
   createRoomReplica,
   createRoomBaseline,
   createRoomEncoder,
 } from "@tarp/core/testing/room-replica";
+import { advanceTimersByTime, useFakeTimers, useRealTimers } from "@tarp/module/testing/async";
 
 import type { GameClient } from "./game-client";
 import { RoomConnection, type LocalRoomModuleLoader } from "./room-connection";
@@ -371,7 +371,7 @@ test("取消单个读取者不影响其他面板，旧版结果自动重读", as
       revision = version;
     },
     evaluateDocument: async (
-      item: import("@jointarp/module/document-evaluator").ParsedModuleDocument,
+      item: import("@tarp/module/document-evaluator").ParsedModuleDocument,
     ) => item.document,
     readDocument: async () => {
       if (revision === initialRevision) return first;
@@ -415,7 +415,7 @@ test("取消单个读取者不影响其他面板，旧版结果自动重读", as
 
 test("草稿同版读取共享，单方取消不影响图片及计算，旧版本结果被丢弃", async () => {
   const f = fixture();
-  const { validateDocumentType } = await import("@jointarp/module/document-type");
+  const { validateDocumentType } = await import("@tarp/module/document-type");
   const type = validateDocumentType("角色", { fields: { strength: { type: "number" } } });
   const resources = await f.localModule.resources();
   const localModule: LocalRoomModuleLoader = {
@@ -427,14 +427,14 @@ test("草稿同版读取共享，单方取消不影响图片及计算，旧版�
   const first = new Promise<import("@shared/desktop-api").ModuleDocument>((done) => {
     resolve = done;
   });
-  const engine = new (await import("@jointarp/module/document-evaluator")).DocumentEvaluator();
+  const engine = new (await import("@tarp/module/document-evaluator")).DocumentEvaluator();
   const evaluator = {
     setSnapshot: engine.setSnapshot.bind(engine),
     updateSnapshot: engine.updateSnapshot.bind(engine),
     readDocument: engine.readDocument.bind(engine),
     readDocumentName: engine.readDocumentName.bind(engine),
     evaluateDocument: async (
-      item: import("@jointarp/module/document-evaluator").ParsedModuleDocument,
+      item: import("@tarp/module/document-evaluator").ParsedModuleDocument,
     ) => {
       reads++;
       if (reads === 1) return first;
@@ -448,7 +448,7 @@ test("草稿同版读取共享，单方取消不影响图片及计算，旧版�
     () => evaluator,
   );
   const release = connection.retain();
-  const draft: import("@jointarp/module/character").Character = {
+  const draft: import("@tarp/module/character").Character = {
     id: "draft",
     typeId: type.id,
     name: "草稿",
@@ -499,7 +499,7 @@ test("NPC名称候选共享版本缓存与取消读取，不解析候选图片�
       revision = version;
     },
     evaluateDocument: async (
-      item: import("@jointarp/module/document-evaluator").ParsedModuleDocument,
+      item: import("@tarp/module/document-evaluator").ParsedModuleDocument,
     ) => item.document,
     readDocument: async () => {
       fullReads++;
@@ -589,7 +589,7 @@ test("同版计算失败可显式重建计算器重试，共享模组资源不�
 
 test("房间同步将公式配置独立交给计算器，配置变化与删除刷新展示", async () => {
   const f = fixture();
-  const { validateDocumentType } = await import("@jointarp/module/document-type");
+  const { validateDocumentType } = await import("@tarp/module/document-type");
   const monsterType = validateDocumentType("怪物", {
     fields: {
       attack: { type: "number", compute: "1" },

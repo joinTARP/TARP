@@ -16,7 +16,6 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 import {
   beginAdventureEdit,
   commitAdventureEdit,
@@ -35,6 +34,7 @@ import {
   saveRoomNotes,
   setSessionStatus,
 } from "@tarp/core/node/sessions/session-store";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 
 import { documentMediaUrl } from "../../shared/document-media";
 import { resolveMediaRequestFile } from "../media-path";

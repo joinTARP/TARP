@@ -1,12 +1,12 @@
 import { lstat, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { documentIdentity } from "@jointarp/module/document-path";
-import { configFilePath, parseConfig } from "@jointarp/module/node/config-file";
-import { parseDocumentContent } from "@jointarp/module/node/document-codec";
-import { loadDocumentTypes } from "@jointarp/module/node/document-types";
-import { loadModuleDocuments } from "@jointarp/module/node/module-documents";
-import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
+import { documentIdentity } from "@tarp/module/document-path";
+import { configFilePath, parseConfig } from "@tarp/module/node/config-file";
+import { parseDocumentContent } from "@tarp/module/node/document-codec";
+import { loadDocumentTypes } from "@tarp/module/node/document-types";
+import { loadModuleDocuments } from "@tarp/module/node/module-documents";
+import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
 
 /** 只编译 staging 副本；保留作者原值、公式及引用，阅读页和附件不转换。 */
 export async function compileModule(directory: string): Promise<void> {

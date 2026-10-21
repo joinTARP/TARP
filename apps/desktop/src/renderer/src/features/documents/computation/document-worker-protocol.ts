@@ -1,5 +1,5 @@
-import type { ParsedModuleDocument } from "@jointarp/module/document-evaluator";
-import type { ModuleDocument } from "@jointarp/module/module-document";
+import type { ParsedModuleDocument } from "@tarp/module/document-evaluator";
+import type { ModuleDocument } from "@tarp/module/module-document";
 
 export type DocumentSnapshotItem = ParsedModuleDocument | ModuleDocument;
 export type DocumentWorkerCommand =

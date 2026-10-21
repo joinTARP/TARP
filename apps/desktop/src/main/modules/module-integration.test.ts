@@ -4,7 +4,6 @@ import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { createTestModule, type TestComputedCharacter } from "@jointarp/module/testing/test-module";
 import { createGameTools } from "@tarp/core/node/agent/game-tools";
 import { ChatService } from "@tarp/core/node/game/chat-service";
 import {
@@ -20,6 +19,7 @@ import {
   openSessionDatabase,
   roomDirectory,
 } from "@tarp/core/node/sessions/session-store";
+import { createTestModule, type TestComputedCharacter } from "@tarp/module/testing/test-module";
 
 test("模组选角与开场隔离秘密，主持可读取资料，字段揭示与结算持久化且失败不写入", async () => {
   const f = await createTestModule();

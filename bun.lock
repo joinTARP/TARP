@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "jointarp",
+      "name": "tarp",
       "dependencies": {
         "fast-json-patch": "^3.1.1",
         "nanoid": "^6.0.2",
@@ -15,7 +15,7 @@
       },
     },
     "apps/desktop": {
-      "name": "@jointarp/desktop",
+      "name": "@tarp/desktop",
       "version": "0.1.0",
       "dependencies": {
         "@base-ui/react": "^1.8.0",
@@ -31,8 +31,8 @@
         "@tanstack/react-router": "^1.170.17",
         "@tanstack/react-virtual": "^3.14.13",
         "@tarp/core": "workspace:*",
-        "@jointarp/module": "workspace:*",
-        "@jointarp/module-cli": "workspace:*",
+        "@tarp/module": "workspace:*",
+        "@tarp/module-cli": "workspace:*",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.2.6",
         "es-toolkit": "^1.52.0",
@@ -80,7 +80,7 @@
         "@earendil-works/pi-coding-agent": "1.2.0",
         "@orpc/contract": "^2.0.0-beta.36",
         "@orpc/server": "^2.0.0-beta.36",
-        "@jointarp/module": "workspace:*",
+        "@tarp/module": "workspace:*",
         "es-toolkit": "^1.52.0",
         "fast-json-patch": "^3.1.1",
         "kysely": "^0.29.6",
@@ -100,7 +100,7 @@
       },
     },
     "packages/module": {
-      "name": "@jointarp/module",
+      "name": "@tarp/module",
       "version": "0.1.0",
       "dependencies": {
         "handlebars": "^4.7.10",
@@ -118,7 +118,7 @@
       },
     },
     "packages/module-cli": {
-      "name": "@jointarp/module-cli",
+      "name": "@tarp/module-cli",
       "version": "0.1.0",
       "bin": {
         "tarp": "./out/index.js",
@@ -129,7 +129,7 @@
         "zod": "^4.6.5",
       },
       "devDependencies": {
-        "@jointarp/module": "workspace:*",
+        "@tarp/module": "workspace:*",
         "@types/bun": "^1.4.0",
         "typescript": "^7.0.2",
       },
@@ -434,11 +434,11 @@
 
     "@tarp/core": ["@tarp/core@workspace:packages/core"],
 
-    "@jointarp/desktop": ["@jointarp/desktop@workspace:apps/desktop"],
+    "@tarp/desktop": ["@tarp/desktop@workspace:apps/desktop"],
 
-    "@jointarp/module": ["@jointarp/module@workspace:packages/module"],
+    "@tarp/module": ["@tarp/module@workspace:packages/module"],
 
-    "@jointarp/module-cli": ["@jointarp/module-cli@workspace:packages/module-cli"],
+    "@tarp/module-cli": ["@tarp/module-cli@workspace:packages/module-cli"],
 
     "@types/bun": ["@types/bun@1.4.3", "", { "dependencies": { "bun-types": "1.4.3" } }, "sha512-N67Pqy8JXbAY/j0tNraS3V5mubGvc6rrrNDmDCtZLlFzccbUJPDb0tvgUBC5q4m8ybkP93Jcn1QB+RYQ6PvBhw=="],
 

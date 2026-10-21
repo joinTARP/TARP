@@ -1,7 +1,7 @@
-import { typeFormatLabel } from "@jointarp/module/document-path";
 import { searchItems } from "@shared/query";
 import { useQuery } from "@tanstack/react-query";
 import { useSearch } from "@tanstack/react-router";
+import { typeFormatLabel } from "@tarp/module/document-path";
 import { BookOpenText, FileCode2, FileText, TriangleAlert } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 

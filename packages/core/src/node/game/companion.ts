@@ -1,4 +1,4 @@
-import { documentIdentity } from "@jointarp/module/document-path";
+import { documentIdentity } from "@tarp/module/document-path";
 
 import { chatText, publicAssistantText, visibleAgentMessages } from "../../shared/agent-message";
 import { companionSchema, type Companion } from "../../shared/companion";

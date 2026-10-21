@@ -6,7 +6,7 @@ import { join } from "node:path";
 
 import type { OAuthCredential, OAuthAuth } from "@earendil-works/pi-ai";
 import { openaiCodexProvider } from "@earendil-works/pi-ai/providers/openai-codex";
-import { waitFor } from "@jointarp/module/testing/async";
+import { waitFor } from "@tarp/module/testing/async";
 
 import { LocalGameSettings } from "./local-settings";
 import { SubscriptionAuth } from "./subscription-auth";

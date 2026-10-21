@@ -4,7 +4,7 @@ import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 
 import { typeFormatLabel } from "../schema/document-path";
 import { validateDocumentLayout, validateDocumentType } from "../schema/document-type";

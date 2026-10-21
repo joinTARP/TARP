@@ -1,8 +1,8 @@
 import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import { validateDocumentLayout, validateDocumentType } from "@jointarp/module/document-type";
-import type { EquipmentSlotsLayout } from "@jointarp/module/equipment-slots";
+import { validateDocumentLayout, validateDocumentType } from "@tarp/module/document-type";
+import type { EquipmentSlotsLayout } from "@tarp/module/equipment-slots";
 import type { ReactNode } from "react";
 import { renderToReadableStream } from "react-dom/server";
 

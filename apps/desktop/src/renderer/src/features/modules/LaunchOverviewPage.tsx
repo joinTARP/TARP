@@ -1,8 +1,8 @@
-import type { DocumentType } from "@jointarp/module/document-type";
-import type { GameStart } from "@jointarp/module/flow";
-import { parseNarrative } from "@jointarp/module/narrative";
 import type { ModuleDocument, ModuleMetadata } from "@shared/desktop-api";
 import { Link } from "@tanstack/react-router";
+import type { DocumentType } from "@tarp/module/document-type";
+import type { GameStart } from "@tarp/module/flow";
+import { parseNarrative } from "@tarp/module/narrative";
 import { cn } from "cn";
 import { ArrowLeft, UserRound } from "lucide-react";
 

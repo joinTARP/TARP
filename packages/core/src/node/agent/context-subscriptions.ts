@@ -1,7 +1,7 @@
 import { basename, dirname, join } from "node:path";
 
 import type { ToolDefinition } from "@earendil-works/pi-coding-agent";
-import { documentIdentity } from "@jointarp/module/document-path";
+import { documentIdentity } from "@tarp/module/document-path";
 import { Type } from "typebox";
 import { z } from "zod";
 

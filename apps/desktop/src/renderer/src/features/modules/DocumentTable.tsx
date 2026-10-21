@@ -1,14 +1,14 @@
-import { documentIdentity } from "@jointarp/module/document-path";
-import type { DocumentListLayout, DocumentType } from "@jointarp/module/document-type";
-import { isDocumentVisible } from "@jointarp/module/module-document";
+import type { ModuleDocument } from "@shared/desktop-api";
+import { documentIdentity } from "@tarp/module/document-path";
+import type { DocumentListLayout, DocumentType } from "@tarp/module/document-type";
+import { isDocumentVisible } from "@tarp/module/module-document";
 import {
   fieldErrorAtPath,
   getDocumentField,
   hasFieldErrors,
   getPublicDocumentField,
   shouldHideEmptyField,
-} from "@jointarp/module/public-document-field";
-import type { ModuleDocument } from "@shared/desktop-api";
+} from "@tarp/module/public-document-field";
 
 import { RoomDocument } from "../sessions/room-document";
 import { useDocumentLibrary } from "./document-library-context";

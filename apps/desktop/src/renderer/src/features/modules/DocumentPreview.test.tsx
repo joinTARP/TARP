@@ -1,11 +1,11 @@
 import { test } from "bun:test";
 import { strict as assert } from "node:assert";
 
-import { publicValues } from "@jointarp/module/character";
-import { evaluateComputedFields } from "@jointarp/module/computed-fields";
-import { validateDocumentLayout, validateDocumentType } from "@jointarp/module/document-type";
-import { equipmentSlotsSchema } from "@jointarp/module/equipment-slots";
 import type { ModuleDocument } from "@shared/desktop-api";
+import { publicValues } from "@tarp/module/character";
+import { evaluateComputedFields } from "@tarp/module/computed-fields";
+import { validateDocumentLayout, validateDocumentType } from "@tarp/module/document-type";
+import { equipmentSlotsSchema } from "@tarp/module/equipment-slots";
 import type { ReactNode } from "react";
 import { renderToReadableStream, renderToStaticMarkup } from "react-dom/server";
 

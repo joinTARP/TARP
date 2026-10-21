@@ -3,17 +3,14 @@ import { lstatSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { lstat, mkdir, mkdtemp, readFile, readdir, rm } from "node:fs/promises";
 import { isAbsolute, join } from "node:path";
 
-import {
-  resolveModuleDocuments,
-  type ParsedModuleDocument,
-} from "@jointarp/module/document-evaluator";
-import { documentIdentity } from "@jointarp/module/document-path";
-import { validateDocumentValues } from "@jointarp/module/document-type";
-import { validateAnswer } from "@jointarp/module/flow";
-import { stringifyDocumentContent } from "@jointarp/module/node/document-codec";
-import { validateInitialGameState } from "@jointarp/module/node/game-state-validation";
-import { loadModuleMetadata } from "@jointarp/module/node/module-metadata";
 import { ORPCError } from "@orpc/server";
+import { resolveModuleDocuments, type ParsedModuleDocument } from "@tarp/module/document-evaluator";
+import { documentIdentity } from "@tarp/module/document-path";
+import { validateDocumentValues } from "@tarp/module/document-type";
+import { validateAnswer } from "@tarp/module/flow";
+import { stringifyDocumentContent } from "@tarp/module/node/document-codec";
+import { validateInitialGameState } from "@tarp/module/node/game-state-validation";
+import { loadModuleMetadata } from "@tarp/module/node/module-metadata";
 import { z } from "zod";
 
 import { forgetRoomProjection, projectEntities } from "../game/room-state-projection";

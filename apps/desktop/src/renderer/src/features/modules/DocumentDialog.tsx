@@ -1,6 +1,6 @@
-import type { DocumentType } from "@jointarp/module/document-type";
-import { isDocumentVisible } from "@jointarp/module/module-document";
 import type { ModuleDocument } from "@shared/desktop-api";
+import type { DocumentType } from "@tarp/module/document-type";
+import { isDocumentVisible } from "@tarp/module/module-document";
 import { useEffect, useRef, type ReactElement, type ReactNode } from "react";
 import { preload } from "react-dom";
 

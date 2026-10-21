@@ -1,13 +1,13 @@
 import { basename } from "node:path";
 
-import type { Character } from "@jointarp/module/character";
-import { documentIdentity } from "@jointarp/module/document-path";
+import type { Character } from "@tarp/module/character";
+import { documentIdentity } from "@tarp/module/document-path";
 import {
   documentMetadataSchema,
   validateDocumentValues,
   type DocumentType,
-} from "@jointarp/module/document-type";
-import { parseDocumentContent } from "@jointarp/module/node/document-codec";
+} from "@tarp/module/document-type";
+import { parseDocumentContent } from "@tarp/module/node/document-codec";
 
 import { createIdentityId } from "../identity";
 import type { SessionDatabase } from "../storage/session-database";

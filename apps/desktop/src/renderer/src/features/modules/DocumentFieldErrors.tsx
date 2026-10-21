@@ -1,5 +1,5 @@
-import type { DocumentType } from "@jointarp/module/document-type";
-import { getDocumentField } from "@jointarp/module/public-document-field";
+import type { DocumentType } from "@tarp/module/document-type";
+import { getDocumentField } from "@tarp/module/public-document-field";
 
 import { FieldCalculationError } from "./FieldCalculationError";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@jointarp/module",
+  "name": "@tarp/module",
   "version": "0.1.0",
   "private": true,
   "license": "GPL-3.0-only",
@@ -11,8 +11,8 @@
   },
   "scripts": {
     "typecheck": "bun --bun x --no-install tsc --noEmit",
-    "test": "bun ../../scripts/test.ts --scope @jointarp/module",
-    "test:changed": "bun ../../scripts/test.ts --scope @jointarp/module --changed"
+    "test": "bun ../../scripts/test.ts --scope @tarp/module",
+    "test:changed": "bun ../../scripts/test.ts --scope @tarp/module --changed"
   },
   "dependencies": {
     "handlebars": "^4.7.10",

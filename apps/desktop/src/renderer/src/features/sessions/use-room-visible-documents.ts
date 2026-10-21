@@ -1,7 +1,7 @@
-import { documentIdentity } from "@jointarp/module/document-path";
 import type { ModuleDocument } from "@shared/desktop-api";
 import { useQueries } from "@tanstack/react-query";
 import type { ChatMessage } from "@tarp/core/shared/game";
+import { documentIdentity } from "@tarp/module/document-path";
 import { useMemo } from "react";
 
 import { desktopRpc } from "../../desktop-rpc";

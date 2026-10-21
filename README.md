@@ -50,7 +50,7 @@ bun run dev
 构建 CLI 后，可以直接用 Bun 校验模组：
 
 ```sh
-bun run --filter @jointarp/module-cli build
+bun run --filter @tarp/module-cli build
 bun run cli module validate ./apps/desktop/examples/建卡控件演示 --json
 ```
 

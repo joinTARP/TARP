@@ -5,7 +5,6 @@ import { access, mkdir, mkdtemp, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 import { readAdventureState } from "@tarp/core/node/sessions/adventure-state";
 import { readCharacters } from "@tarp/core/node/sessions/character-db";
 import {
@@ -16,6 +15,7 @@ import {
 } from "@tarp/core/node/sessions/character-store";
 import { publicGameDocuments } from "@tarp/core/node/sessions/game-state";
 import { createSession } from "@tarp/core/node/sessions/session-store";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
 
 import { documentMediaUrl } from "../../shared/document-media";
 import { resolveMediaRequestFile } from "../media-path";

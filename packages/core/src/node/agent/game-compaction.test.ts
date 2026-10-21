@@ -18,7 +18,7 @@ import {
   SessionManager,
   SettingsManager,
 } from "@earendil-works/pi-coding-agent";
-import { createTestModule } from "@jointarp/module/testing/test-module";
+import { createTestModule } from "@tarp/module/testing/test-module";
 
 import type { CompactionRole } from "../../shared/compaction-settings";
 import { initializeRoomSettings } from "../sessions/room-settings";

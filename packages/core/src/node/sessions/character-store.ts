@@ -1,21 +1,17 @@
-import {
-  characterDraftSchema,
-  type Character,
-  type CharacterDraft,
-} from "@jointarp/module/character";
+import { characterDraftSchema, type Character, type CharacterDraft } from "@tarp/module/character";
 import {
   resolveDocumentComputations,
   documentSourceValues,
-} from "@jointarp/module/document-computations";
-import { resolveModuleDocuments } from "@jointarp/module/document-evaluator";
-import { documentFormat, documentIdentity } from "@jointarp/module/document-path";
-import { validateDocumentValues, type DocumentField } from "@jointarp/module/document-type";
+} from "@tarp/module/document-computations";
+import { resolveModuleDocuments } from "@tarp/module/document-evaluator";
+import { documentFormat, documentIdentity } from "@tarp/module/document-path";
+import { validateDocumentValues, type DocumentField } from "@tarp/module/document-type";
 import {
   resolveInstanceDefinition,
   validateInstanceBindings,
   type InstanceResolver,
-} from "@jointarp/module/instance-state";
-import type { ModuleDocument } from "@jointarp/module/module-document";
+} from "@tarp/module/instance-state";
+import type { ModuleDocument } from "@tarp/module/module-document";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { readCharacters, storedTypes } from "./character-db";

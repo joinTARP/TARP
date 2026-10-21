@@ -2,12 +2,12 @@ import { lstatSync } from "node:fs";
 import { lstat, readFile, realpath } from "node:fs/promises";
 import { basename } from "node:path";
 
-import { resolveDocumentComputations } from "@jointarp/module/document-computations";
-import type { ParsedModuleDocument } from "@jointarp/module/document-evaluator";
-import { documentFormat, documentIdentity, documentTypeId } from "@jointarp/module/document-path";
-import type { DocumentType } from "@jointarp/module/document-type";
-import type { InstanceResolver } from "@jointarp/module/instance-state";
-import { parseGameDocumentContent as parseContent } from "@jointarp/module/node/game-state-validation";
+import { resolveDocumentComputations } from "@tarp/module/document-computations";
+import type { ParsedModuleDocument } from "@tarp/module/document-evaluator";
+import { documentFormat, documentIdentity, documentTypeId } from "@tarp/module/document-path";
+import type { DocumentType } from "@tarp/module/document-type";
+import type { InstanceResolver } from "@tarp/module/instance-state";
+import { parseGameDocumentContent as parseContent } from "@tarp/module/node/game-state-validation";
 
 import type { SessionDatabase } from "../storage/session-database";
 import { readAdventureState } from "./adventure-state";

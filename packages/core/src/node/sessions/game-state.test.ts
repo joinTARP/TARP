@@ -4,11 +4,11 @@ import { access, chmod, mkdir, mkdtemp, readFile, readdir, rm } from "node:fs/pr
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 
-import { stringifyConfig } from "@jointarp/module/node/config-file";
-import { validateModule } from "@jointarp/module/node/validate-module";
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
-import { createTestModule } from "@jointarp/module/testing/test-module";
-import { createWorldStateDefinition } from "@jointarp/module/testing/world-state";
+import { stringifyConfig } from "@tarp/module/node/config-file";
+import { validateModule } from "@tarp/module/node/validate-module";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+import { createTestModule } from "@tarp/module/testing/test-module";
+import { createWorldStateDefinition } from "@tarp/module/testing/world-state";
 
 import { createCompanionDocumentTools } from "../agent/companion-document-tools";
 import { ContextSubscriptions } from "../agent/context-subscriptions";

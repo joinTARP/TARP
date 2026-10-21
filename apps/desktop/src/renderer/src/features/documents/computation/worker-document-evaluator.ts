@@ -1,6 +1,6 @@
-import type { ParsedModuleDocument } from "@jointarp/module/document-evaluator";
-import { documentIdentity } from "@jointarp/module/document-path";
-import type { ModuleDocument } from "@jointarp/module/module-document";
+import type { ParsedModuleDocument } from "@tarp/module/document-evaluator";
+import { documentIdentity } from "@tarp/module/document-path";
+import type { ModuleDocument } from "@tarp/module/module-document";
 
 import type {
   DocumentSnapshotItem,

@@ -23,7 +23,7 @@ bun install --cwd ../..
 bun run dev
 ```
 
-本目录是 `@jointarp/desktop` workspace 子包。依赖在 monorepo 根目录统一安装，仅维护根级 `bun.lock`；需要按锁文件安装时从根目录运行 `bun install --frozen-lockfile`。本页桌面命令在 `apps/desktop/` 执行。
+本目录是 `@tarp/desktop` workspace 子包。依赖在 monorepo 根目录统一安装，仅维护根级 `bun.lock`；需要按锁文件安装时从根目录运行 `bun install --frozen-lockfile`。本页桌面命令在 `apps/desktop/` 执行。
 
 首次运行构建、开发或类型检查时，`electrobun prepare` 下载固定的 Electrobun 2.0.4 devkit、配套 Hutch 和 Bun 1.4.0，生成忽略提交的 `.hutch/devkit/`。开发机器的 Bun 负责 workspace 和脚本，随桌面分发的 Bun 由 Electrobun 固定，两者独立。所有依赖仍从仓库根目录安装，仅维护根级 `bun.lock`；`hutch.config.ts` 明确使用 Bun，不生成 `hutch.lock`。
 

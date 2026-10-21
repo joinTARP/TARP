@@ -12,9 +12,9 @@ import {
   useFakeTimers,
   useRealTimers,
   waitFor,
-} from "@jointarp/module/testing/async";
-import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
-import { createWorldStateDefinition } from "@jointarp/module/testing/world-state";
+} from "@tarp/module/testing/async";
+import { writeTestFile as writeFile } from "@tarp/module/testing/files";
+import { createWorldStateDefinition } from "@tarp/module/testing/world-state";
 
 import { chatText, companionDisplayText } from "../../shared/agent-message";
 import { companionRulingFromToolCall } from "../../shared/companion";
