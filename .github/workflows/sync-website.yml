@@ -1,6 +1,9 @@
 name: 同步官网桌面版本与更新记录
 
 on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/sync-website.yml]
   workflow_dispatch:
     inputs:
       tag:
@@ -14,10 +17,18 @@ permissions:
   contents: read
 
 concurrency:
-  group: sync-website-${{ github.event.release.tag_name || inputs.tag }}
+  group: sync-website-${{ github.event.release.tag_name || inputs.tag || github.ref }}
   cancel-in-progress: false
 
 jobs:
+  check:
+    name: 检查官网同步入口
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    steps:
+      - run: echo '工作流配置已加载，可从 Run workflow 指定正式桌面 Release 标签。'
+
   sync:
     name: 提交官网桌面版本与更新记录
     if: github.event_name == 'workflow_dispatch' || (startsWith(github.event.release.tag_name, 'desktop-v') && !github.event.release.draft && !github.event.release.prerelease)
