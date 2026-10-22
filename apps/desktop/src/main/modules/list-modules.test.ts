@@ -3,7 +3,7 @@ import { strict as assert } from "node:assert";
 import { execFile } from "node:child_process";
 import { mkdir, mkdtemp, readdir, readFile, realpath, rename, rm, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { promisify } from "node:util";
 
@@ -19,9 +19,14 @@ import { writeTestFile as writeFile } from "@jointarp/module/testing/files";
 
 import { documentMediaUrl } from "../../shared/document-media";
 import { resolveMediaRequestFile } from "../media-path";
-import { importGitModule } from "./import-git-module";
+import {
+  importGitModule,
+  ExistingGitModuleError,
+  findImportedRepository,
+} from "./import-git-module";
 import { importLocalModule } from "./import-local-module";
 import { listModules } from "./list-modules";
+import { publishModule } from "./module-import";
 
 async function runGit(directory: string, ...args: string[]) {
   return (
@@ -253,7 +258,7 @@ describe("从 Git 导入模组", () => {
 
   it("手动拉取更新后列表与新冒险使用新内容，已有冒险副本不变", async () => {
     const f = await gitFixture();
-    const imported = await importGitModule(f.directory, { url: f.url, ref: "main" });
+    const imported = await importGitModule(f.directory, { url: f.url });
     const repository = dirname(imported.path);
     const sessions = join(f.root, "冒险");
     const before = await createSession(sessions, imported.path, "更新前");
@@ -275,41 +280,142 @@ describe("从 Git 导入模组", () => {
     assert.ok(!(await readdir(join(sessions, after.id, "module"))).includes(".git"));
   });
 
-  it("标签导入保留仓库及固定版本，并发重复导入保留已有文件", async () => {
+  it("默认分支导入保留仓库，并发重复导入保留已有文件", async () => {
     const f = await gitFixture();
-    const input = { url: f.url, ref: "v1" };
+    const input = { url: f.url };
     const results = await Promise.allSettled([
       importGitModule(f.directory, input),
       importGitModule(f.directory, input),
     ]);
     assert.equal(results.filter((result) => result.status === "fulfilled").length, 1);
     const rejected = results.find((result) => result.status === "rejected");
-    assert.ok(rejected?.status === "rejected" && /已存在/.test(rejected.reason.message));
+    assert.ok(rejected?.status === "rejected" && /已导入/.test(rejected.reason.message));
     const repository = join(f.directory, "测试仓库");
     assert.equal(
       JSON.parse(await readFile(join(repository, "module", "地点/入口.json"), "utf8")).name,
-      "旧入口",
+      "新入口",
     );
     assert.ok((await readdir(repository)).includes(".git"));
-    assert.equal(await runGit(repository, "rev-parse", "HEAD"), await f.git("rev-parse", "v1"));
-    assert.equal(await runGit(repository, "rev-parse", "--abbrev-ref", "HEAD"), "HEAD");
+    assert.equal(await runGit(repository, "rev-parse", "HEAD"), await f.git("rev-parse", "HEAD"));
+    assert.equal(await runGit(repository, "rev-parse", "--abbrev-ref", "HEAD"), "main");
     assert.equal((await listModules(f.directory))[0]?.path, join(repository, "module"));
     assert.deepEqual(await readdir(f.directory), ["测试仓库"]);
   });
 
   it("下载和配置失败清理半成品，修复后可以重试", async () => {
     const f = await gitFixture();
-    await assert.rejects(
-      importGitModule(f.directory, { url: f.url, ref: "不存在的分支" }),
-      /Git 下载失败/,
-    );
+    await assert.rejects(importGitModule(f.directory, { url: `${f.url}-missing` }), /Git 下载失败/);
     await writeFile(join(f.module, ".types", "地点.fields.json"), "{invalid}");
     await f.git("add", ".");
     await f.git("commit", "-m", "损坏类型配置");
     await assert.rejects(importGitModule(f.directory, { url: f.url }), /地点.fields.json/);
     assert.deepEqual(await readdir(f.directory), []);
-    await importGitModule(f.directory, { url: f.url, ref: "v1" });
+    await writeFile(join(f.module, ".types", "地点.fields.json"), '{"fields":{}}');
+    await f.git("add", ".");
+    await f.git("commit", "-m", "修复类型");
+    await importGitModule(f.directory, { url: f.url });
     assert.equal((await listModules(f.directory)).length, 1);
+  });
+
+  it("同源重导须确认，失败保留本地修改，成功替换不改变已有冒险", async () => {
+    const f = await gitFixture();
+    const first = await importGitModule(f.directory, { url: f.url });
+    const repository = dirname(first.path);
+    const before = await createSession(join(f.root, "sessions"), first.path, "替换前");
+    await writeFile(join(first.path, "本地修改.txt"), "玩家的本地修改");
+    await assert.rejects(importGitModule(f.directory, { url: f.url }), ExistingGitModuleError);
+    await writeFile(join(f.module, ".types", "地点.fields.json"), "invalid");
+    await f.git("add", ".");
+    await f.git("commit", "-m", "损坏配置");
+    await assert.rejects(
+      importGitModule(f.directory, { url: f.url, replacePath: repository }),
+      /地点.fields.json/,
+    );
+    assert.equal(await readFile(join(first.path, "本地修改.txt"), "utf8"), "玩家的本地修改");
+    await writeFile(join(f.module, ".types", "地点.fields.json"), '{"fields":{}}');
+    await writeFile(join(f.module, "地点/入口.json"), '{"name":"替换后的入口"}');
+    await f.git("add", ".");
+    await f.git("commit", "-m", "修复并更新");
+    const result = await importGitModule(f.directory, { url: f.url, replacePath: repository });
+    assert.equal(result.path, first.path);
+    assert.equal(result.revision, await f.git("rev-parse", "HEAD"));
+    assert.equal(
+      JSON.parse(await readFile(join(result.path, "地点/入口.json"), "utf8")).name,
+      "替换后的入口",
+    );
+    await assert.rejects(readFile(join(result.path, "本地修改.txt")));
+    assert.equal(
+      JSON.parse(
+        await readFile(join(f.root, "sessions", before.id, "module/地点/入口.json"), "utf8"),
+      ).name,
+      "新入口",
+    );
+    assert.deepEqual(await readdir(f.directory), ["测试仓库"]);
+  });
+
+  it("已有 GitHub 来源统一 HTTPS 与 SSH，不同作者的同名仓库分别识别", async () => {
+    const f = await gitFixture();
+    const first = await importGitModule(f.directory, { url: f.url });
+    await runGit(
+      dirname(first.path),
+      "remote",
+      "set-url",
+      "origin",
+      "git@github.com:Alice/adventure.git",
+    );
+    const second = await importGitModule(f.directory, { url: f.url });
+    await runGit(
+      dirname(second.path),
+      "remote",
+      "set-url",
+      "origin",
+      "https://github.com/Bob/adventure.git",
+    );
+    assert.equal(
+      await findImportedRepository(f.directory, "https://github.com/alice/adventure"),
+      dirname(first.path),
+    );
+    assert.equal(
+      await findImportedRepository(f.directory, "ssh://git@github.com/bob/adventure.git"),
+      dirname(second.path),
+    );
+    assert.equal(
+      await findImportedRepository(f.directory, "https://github.com/other/adventure.git"),
+      undefined,
+    );
+  });
+
+  it("无关同名目录保留，发布切换失败恢复原目录", async () => {
+    const f = await gitFixture();
+    await mkdir(join(f.directory, "测试仓库"), { recursive: true });
+    await writeFile(join(f.directory, "测试仓库/本地.txt"), "不要覆盖");
+    const imported = await importGitModule(f.directory, { url: f.url });
+    assert.equal(basename(dirname(imported.path)), "测试仓库-2");
+    assert.equal(await readFile(join(f.directory, "测试仓库/本地.txt"), "utf8"), "不要覆盖");
+    // 候选目录在切换时消失，触发发布失败，检查旧内容完整恢复。
+    await assert.rejects(
+      publishModule(f.directory, "测试仓库-2", async () => imported.path, { replace: true }),
+    );
+    assert.equal(
+      JSON.parse(await readFile(join(imported.path, "地点/入口.json"), "utf8")).name,
+      "新入口",
+    );
+    assert.deepEqual((await readdir(f.directory)).sort(), ["测试仓库", "测试仓库-2"]);
+  });
+
+  it("替换用户改名的长目录时保留真实路径，不覆盖同名前缀目录", async () => {
+    const f = await gitFixture();
+    const first = await importGitModule(f.directory, { url: f.url });
+    const name = "a".repeat(105);
+    const renamed = join(f.directory, name);
+    const prefix = join(f.directory, name.slice(0, 100));
+    await rename(dirname(first.path), renamed);
+    await mkdir(prefix);
+    await writeFile(join(prefix, "本地.txt"), "不要覆盖");
+    const result = await importGitModule(f.directory, { url: f.url, replacePath: renamed });
+    assert.equal(result.path, join(renamed, "module"));
+    assert.equal(await readFile(join(prefix, "本地.txt"), "utf8"), "不要覆盖");
+    assert.deepEqual((await readdir(f.directory)).sort(), [name.slice(0, 100), name]);
   });
 
   it("Git 仓库必须提供固定 module/，拒绝根目录清单和双层清单", async () => {
@@ -346,8 +452,8 @@ describe("从 Git 导入模组", () => {
       /格式无效/,
     );
     await assert.rejects(
-      importGitModule(f.directory, { url: f.url, ref: "--upload-pack=恶意命令" }),
-      /格式无效/,
+      importGitModule(f.directory, { url: f.url, replacePath: join(f.directory, "外部目录") }),
+      /来源已变化/,
     );
     const outside = join(f.root, "本机秘密.txt");
     await writeFile(outside, "本机资料");

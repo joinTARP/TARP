@@ -15,25 +15,26 @@ import { Input } from "../../components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { desktopOrpc, desktopRpc, queryClient } from "../../desktop-rpc";
 
-type ImportSource = { kind: "zip" | "folder" } | { kind: "git"; url: string; ref: string };
+type ImportSource = { kind: "zip" | "folder" } | { kind: "git"; url: string };
 
 export function ImportModuleButton({ directory }: { directory?: string }) {
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
-  const [ref, setRef] = useState("");
   const [importedName, setImportedName] = useState<string | null>(null);
   const importer = useMutation({
-    mutationFn: (source: ImportSource) =>
+    mutationFn: async (source: ImportSource) =>
       source.kind === "git"
-        ? desktopRpc.modules.importGit(source)
-        : desktopRpc.modules.importLocal(source),
+        ? await desktopRpc.modules.importGit({ url: source.url })
+        : await desktopRpc.modules.importLocal(source),
     onSuccess: async (module) => {
-      if (!module) return;
+      if (!module) {
+        setOpen(false);
+        return;
+      }
       setImportedName(module.name);
       await queryClient.invalidateQueries(desktopOrpc.modules.list.queryOptions());
       setOpen(false);
       setUrl("");
-      setRef("");
     },
   });
   return (
@@ -131,7 +132,6 @@ export function ImportModuleButton({ directory }: { directory?: string }) {
                     importer.mutate({
                       kind: "git",
                       url: url.trim(),
-                      ref: ref.trim(),
                     });
                 }}
               >
@@ -158,20 +158,9 @@ export function ImportModuleButton({ directory }: { directory?: string }) {
                   </FieldDescription>
                   <FieldError />
                 </Field>
-                <label className="block space-y-2 text-sm">
-                  <span>
-                    分支或标签 <span className="text-muted-foreground">（可选）</span>
-                  </span>
-                  <Input
-                    maxLength={255}
-                    placeholder="留空使用默认分支"
-                    value={ref}
-                    disabled={importer.isPending}
-                    onChange={(event) => setRef(event.target.value)}
-                  />
-                </label>
                 <p className="text-muted-foreground text-xs leading-5">
-                  仓库须在 module/ 中提供完整模组。导入会保留 Git 仓库，方便以后手动更新。
+                  导入默认分支的最新内容，仓库须在 module/
+                  中提供完整模组。同一仓库已导入时会询问是否替换，替换会丢弃本地修改。
                 </p>
                 <Button type="submit" className="w-full" disabled={importer.isPending}>
                   {importer.isPending ? (

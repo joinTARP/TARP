@@ -94,13 +94,16 @@ if (mode === "dev") {
     vite.kill();
   }
 } else {
-  await run([
-    "bun",
-    "--bun",
-    "x",
-    "--no-install",
-    "electrobun",
-    "build",
-    `--env=${mode === "dist" ? "stable" : "dev"}`,
-  ]);
+  await run(
+    [
+      "bun",
+      "--bun",
+      "x",
+      "--no-install",
+      "electrobun",
+      "build",
+      `--env=${mode === "dist" ? "stable" : "dev"}`,
+    ],
+    { ...process.env, TARP_BUILD_CHANNEL: mode === "dist" ? "stable" : "dev" },
+  );
 }

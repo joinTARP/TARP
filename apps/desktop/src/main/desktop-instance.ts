@@ -4,11 +4,20 @@ import { connect, createServer } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-/** 配置目录隔离实例；第二次启动仅唤醒现有窗口，模组预览路径仍交给原宿主。 */
+import { z } from "zod";
+
+const activationSchema = z.discriminatedUnion("kind", [
+  z.strictObject({ kind: z.literal("activate") }),
+  z.strictObject({ kind: z.literal("preview"), path: z.string().min(1).max(8192) }),
+  z.strictObject({ kind: z.literal("import"), url: z.string().min(1).max(2048) }),
+]);
+export type DesktopActivation = z.infer<typeof activationSchema>;
+
+/** 配置目录隔离实例；第二次启动将唤醒、预览或导入请求交给原宿主。 */
 export async function acquireDesktopInstance(
   directory: string,
-  modulePath: string | undefined,
-  activate: (path?: string) => void,
+  activation: DesktopActivation,
+  activate: (request: DesktopActivation) => void,
 ) {
   await mkdir(directory, { recursive: true, mode: 0o700 });
   const identifier = createHash("sha256").update(directory).digest("hex").slice(0, 32);
@@ -24,7 +33,7 @@ export async function acquireDesktopInstance(
       const client = connect(endpoint);
       client.setTimeout(3000);
       client.once("connect", () => {
-        client.end(`${JSON.stringify({ modulePath })}\n`);
+        client.end(`${JSON.stringify(activation)}\n`);
       });
       client.once("data", (data) => {
         client.destroy();
@@ -52,9 +61,8 @@ export async function acquireDesktopInstance(
       }
       if (!input.includes("\n")) return;
       try {
-        const value = JSON.parse(input.trim());
-        const path = typeof value.modulePath === "string" ? value.modulePath : undefined;
-        activate(path);
+        const value = activationSchema.parse(JSON.parse(input.trim()));
+        activate(value);
         socket.end("ok");
       } catch {
         socket.destroy();

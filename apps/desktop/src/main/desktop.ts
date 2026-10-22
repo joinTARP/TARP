@@ -3,8 +3,9 @@ import { isAbsolute, join } from "node:path";
 import { ChatService, createPiRuntime } from "@jointarp/core/node";
 import { narrationGapMs } from "@jointarp/core/shared/narration";
 import { modulePreviewHash } from "@jointarp/module-cli/commands";
+import { parseModuleImportLink } from "@shared/module-import";
 import { NativeMessagePort, type NativeBridge } from "@shared/native-bridge";
-import Electrobun, { BrowserView, Updater, Utils } from "electrobun/main";
+import Electrobun, { BrowserView, BuildConfig, Updater, Utils } from "electrobun/main";
 
 import manifest from "../../package.json";
 import { AppUpdateService, createAcceleratedUpdater } from "./app-update";
@@ -15,9 +16,12 @@ import { createDesktopRpcHandler } from "./desktop-rpc";
 import { LocalGameSettings } from "./game/local-settings";
 import { RoomAiSettingsStore } from "./game/room-ai-settings";
 import { SubscriptionAuth } from "./game/subscription-auth";
+import { registerImportProtocol } from "./import-protocol";
 import { PlaytestService } from "./mcp/playtest";
 import { McpService } from "./mcp/service";
 import { createMediaServer } from "./media-protocol";
+import { ModuleImportService } from "./modules/import-service";
+import { readModulesDirectory } from "./modules/module-router";
 import {
   configureDesktopWindows,
   createDesktopWindow,
@@ -38,7 +42,15 @@ import { LocalSessionLifecycle } from "./sessions/local-session-lifecycle";
 import { TtsService } from "./tts/service";
 import { openHttpLink } from "./window-security";
 
-export async function startDesktop(modulePath?: string): Promise<void> {
+// 尽早订阅原生事件，初始化期间的请求留给完成启动的宿主。
+const earlyImportLinks: string[] = [];
+let importLinkHandler: ((url: string) => void) | undefined;
+Electrobun.events.on("open-url", (event) => {
+  if (importLinkHandler) importLinkHandler(event.data.url);
+  else if (earlyImportLinks.length < 2) earlyImportLinks.push(event.data.url);
+});
+
+export async function startDesktop(modulePath?: string, importUrl?: string): Promise<void> {
   let mainWindow: DesktopWindow | null = null;
   let shuttingDown = false;
   let shutdownComplete = false;
@@ -47,20 +59,60 @@ export async function startDesktop(modulePath?: string): Promise<void> {
   const configLocation = resolveAppConfigLocation();
   let pendingPreview = modulePath;
   let initialized = false;
-  const instance = await acquireDesktopInstance(configLocation.directory, modulePath, (path) => {
-    if (path && isAbsolute(path)) pendingPreview = path;
-    if (!initialized) return;
-    if (!isWindowOpen(mainWindow)) mainWindow = createMainWindow();
-    else {
-      if (path && isAbsolute(path)) loadWindow(mainWindow, modulePreviewHash(path));
-      showWindow(mainWindow);
-    }
-  });
+  const pendingImports = [
+    ...new Set([importUrl, ...earlyImportLinks].filter((url): url is string => Boolean(url))),
+  ];
+  earlyImportLinks.length = 0;
+  const firstImportUrl = pendingImports[0];
+  const instance = await acquireDesktopInstance(
+    configLocation.directory,
+    firstImportUrl
+      ? { kind: "import", url: firstImportUrl }
+      : modulePath
+        ? { kind: "preview", path: modulePath }
+        : { kind: "activate" },
+    (request) => {
+      if (request.kind === "import") {
+        if (!initialized) {
+          if (pendingImports.length < 2) pendingImports.push(request.url);
+        } else receiveImport(request.url);
+        return;
+      }
+      const path = request.kind === "preview" ? request.path : undefined;
+      if (path && isAbsolute(path)) pendingPreview = path;
+      if (!initialized) return;
+      if (!isWindowOpen(mainWindow)) mainWindow = createMainWindow();
+      else {
+        if (path && isAbsolute(path)) loadWindow(mainWindow, modulePreviewHash(path));
+        showWindow(mainWindow);
+      }
+    },
+  );
   if (!instance) {
     process.exit(0);
   }
 
   await readAppConfig(configLocation.filePath);
+  const moduleImports = new ModuleImportService(
+    async () => (await readModulesDirectory(configLocation.filePath)).path,
+  );
+  function receiveImport(url: string) {
+    if (shuttingDown) return;
+    if (!initialized) {
+      if (pendingImports.length < 2) pendingImports.push(url);
+      return;
+    }
+    if (!isWindowOpen(mainWindow)) mainWindow = createMainWindow();
+    else showWindow(mainWindow);
+    try {
+      moduleImports.start(parseModuleImportLink(url));
+    } catch (error) {
+      moduleImports.report(error);
+    }
+  }
+  importLinkHandler = receiveImport;
+  // 实例锁初始化时到达的原生事件也必须交给当前任务服务。
+  pendingImports.push(...earlyImportLinks.splice(0));
   const media = createMediaServer();
   const gameSettings = new LocalGameSettings(configLocation.directory);
   const subscriptionAuth = new SubscriptionAuth(
@@ -159,6 +211,7 @@ export async function startDesktop(modulePath?: string): Promise<void> {
                 chat,
                 mcp,
                 updates,
+                moduleImports,
                 isHost: true,
                 player: await gameSettings.player(),
               }),
@@ -242,6 +295,16 @@ export async function startDesktop(modulePath?: string): Promise<void> {
   });
   initialized = true;
   mainWindow = createMainWindow();
+  for (const url of pendingImports) receiveImport(url);
+  void registerImportProtocol(BuildConfig.getSync().channel).catch((error) => {
+    console.error("注册官网导入协议失败", error);
+    void Utils.showMessageBox({
+      type: "error",
+      title: "无法启用官网一键导入",
+      message: "你仍可在模组库中手动导入。请重新启动应用后重试。",
+      detail: error instanceof Error ? error.message : String(error),
+    });
+  });
   await mcp.initialize();
   void updates.check();
 }

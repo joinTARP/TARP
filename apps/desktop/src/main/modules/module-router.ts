@@ -18,11 +18,10 @@ import {
 import { desktopProcedure as procedure } from "../desktop-rpc-context";
 import { allowDocumentMediaRoots } from "../media-path";
 import { documentsPath, showPathPicker } from "../native-dialog";
-import { importGitModule } from "./import-git-module";
 import { importLocalModule } from "./import-local-module";
 import { listModules } from "./list-modules";
 
-async function readModulesDirectory(configFilePath: string): Promise<ModulesDirectory> {
+export async function readModulesDirectory(configFilePath: string): Promise<ModulesDirectory> {
   const documentsDir = documentsPath();
   const config = await readAppConfig(configFilePath);
   return {
@@ -55,20 +54,34 @@ async function loadLibraryFromPath(path: string): Promise<OpenModuleLibraryResul
 }
 
 export const moduleRouter = {
+  importState: procedure.handler(({ context }) => context.moduleImports.get()),
+  confirmImport: procedure
+    .input(z.object({ id: z.number().int(), replace: z.boolean() }))
+    .handler(({ context, input }) => context.moduleImports.confirm(input.id, input.replace)),
+  retryImport: procedure
+    .input(z.object({ id: z.number().int() }))
+    .handler(({ context, input }) => context.moduleImports.retry(input.id)),
+  dismissImport: procedure
+    .input(z.object({ id: z.number().int() }))
+    .handler(({ context, input }) => context.moduleImports.dismiss(input.id)),
   importLocal: procedure
     .input(z.object({ kind: z.enum(["zip", "folder"]) }))
     .handler(async ({ context, input }) => {
       try {
-        const selection = await showPathPicker({
-          title: input.kind === "zip" ? "选择模组 ZIP 文件" : "选择模组文件夹",
-          properties: [input.kind === "zip" ? "openFile" : "openDirectory"],
-          ...(input.kind === "zip"
-            ? { filters: [{ name: "ZIP 压缩包", extensions: ["zip"] }] }
-            : {}),
-        });
-        if (selection.canceled || !selection.filePaths[0]) return null;
-        const directory = await readModulesDirectory(context.configFilePath);
-        return await importLocalModule(directory.path, selection.filePaths[0], input.kind);
+        return await context.moduleImports.local(
+          input.kind === "zip" ? "ZIP 文件" : "本地文件夹",
+          async (directory) => {
+            const selection = await showPathPicker({
+              title: input.kind === "zip" ? "选择模组 ZIP 文件" : "选择模组文件夹",
+              properties: [input.kind === "zip" ? "openFile" : "openDirectory"],
+              ...(input.kind === "zip"
+                ? { filters: [{ name: "ZIP 压缩包", extensions: ["zip"] }] }
+                : {}),
+            });
+            if (selection.canceled || !selection.filePaths[0]) return null;
+            return await importLocalModule(directory, selection.filePaths[0], input.kind);
+          },
+        );
       } catch (error) {
         throw new ORPCError("BAD_REQUEST", {
           message: error instanceof Error ? error.message : "导入模组失败，请重试。",
@@ -77,15 +90,13 @@ export const moduleRouter = {
     }),
   importGit: procedure
     .input(
-      z.object({
+      z.strictObject({
         url: z.string().trim().min(1).max(2048),
-        ref: z.string().trim().max(255).optional(),
       }),
     )
     .handler(async ({ context, input }) => {
       try {
-        const directory = await readModulesDirectory(context.configFilePath);
-        return await importGitModule(directory.path, input);
+        context.moduleImports.start(input);
       } catch (error) {
         throw new ORPCError("BAD_REQUEST", {
           message: error instanceof Error ? error.message : "导入模组失败，请重试。",
