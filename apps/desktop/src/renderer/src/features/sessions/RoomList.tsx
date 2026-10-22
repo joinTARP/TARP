@@ -55,7 +55,7 @@ function FeaturedAdventure({
         data-ui-control
         to="/game/$roomId"
         params={{ roomId: room.id }}
-        className="relative flex h-full flex-col justify-end p-8 text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.45)] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white/70 dark:[text-shadow:none]"
+        className="relative flex h-full flex-col justify-end p-4 text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.45)] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white/70 sm:p-8 dark:[text-shadow:none]"
       >
         <p className="text-xs text-white/80 dark:text-white/55">
           {room.moduleName}
@@ -65,7 +65,7 @@ function FeaturedAdventure({
         <h2 className="mt-2 max-w-xl truncate text-[26px] font-semibold tracking-tight">
           {room.name}
         </h2>
-        <span className="mt-6 inline-flex h-9 w-fit items-center gap-2 rounded-lg bg-white px-4 text-xs font-medium text-zinc-900 transition-colors group-hover:bg-white/90">
+        <span className="mt-3 inline-flex h-9 w-fit shrink-0 items-center gap-2 rounded-lg bg-white px-4 text-xs font-medium text-zinc-900 transition-colors group-hover:bg-white/90 sm:mt-6">
           继续冒险
           <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
@@ -92,7 +92,7 @@ function AdventureCard({
       <CoverImage
         src={documentMediaUrl(`room-module:${room.id}`, "", room.cover)}
         title={room.moduleName}
-        className="size-11 shrink-0 rounded-lg text-base"
+        className="aspect-video w-20 shrink-0 rounded-lg text-base"
       />
       <div className="min-w-0 flex-1">
         <h3 className="truncate text-sm font-medium">

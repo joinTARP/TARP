@@ -50,7 +50,7 @@ export function ReadyLobby({
       className={`relative min-h-0 flex-1 overflow-x-hidden overflow-y-auto ${styles.stage}`}
       aria-label="准备开始"
     >
-      <div className="relative h-[clamp(220px,48vh,480px)] overflow-hidden">
+      <div className="relative h-[clamp(180px,32vh,320px)] overflow-hidden">
         <DocumentCover
           src={module.cover}
           scope={`room-module:${roomId}`}

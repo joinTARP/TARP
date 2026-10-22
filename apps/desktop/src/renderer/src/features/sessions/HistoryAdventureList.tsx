@@ -100,7 +100,7 @@ function HistoryAdventureRow({
       <CoverImage
         src={documentMediaUrl(`room-module:${room.id}`, "", room.cover)}
         title={room.moduleName}
-        className="size-14 shrink-0 rounded-lg text-lg"
+        className="aspect-video w-24 shrink-0 rounded-lg text-lg"
       />
       <div className="min-w-0 flex-1">
         <h3 className="truncate text-sm font-medium">
