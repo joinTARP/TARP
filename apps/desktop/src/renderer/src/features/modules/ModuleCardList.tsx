@@ -84,7 +84,7 @@ function ModuleCard({ module, opening }: { module: ModuleSummary; opening: boole
       aria-busy={opening}
       className={`group relative flex h-full flex-col transition-opacity ${opening ? "opacity-60" : ""}`}
     >
-      <div className="bg-muted ring-foreground/5 relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-inset">
+      <div className="bg-muted ring-foreground/5 relative aspect-video overflow-hidden rounded-xl ring-1 ring-inset">
         <DocumentCover
           src={module.cover}
           scope={`module:${module.path}`}
@@ -151,7 +151,7 @@ export function HomeCatalogSkeleton() {
     <div className={gridClassName} aria-label="正在读取模组">
       {Array.from({ length: 3 }, (_, index) => (
         <div key={index}>
-          <div className="bg-muted/60 aspect-[4/3] animate-pulse rounded-xl" />
+          <div className="bg-muted/60 aspect-video animate-pulse rounded-xl" />
           <div className="bg-muted/60 mt-3 h-4 w-2/3 animate-pulse rounded" />
         </div>
       ))}
