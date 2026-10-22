@@ -9,6 +9,7 @@ export default {
     identifier: appId,
     version: manifest.version,
     description: manifest.description,
+    urlSchemes: process.env.TARP_BUILD_CHANNEL === "stable" ? ["tarp"] : [],
   },
   release: { baseUrl: "https://github.com/joinTARP/TARP/releases/latest/download" },
   build: {

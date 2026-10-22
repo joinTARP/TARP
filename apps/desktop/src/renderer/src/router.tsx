@@ -13,6 +13,7 @@ import { SettingsLayer } from "./components/SettingsLayer";
 import { desktopOrpc, queryClient } from "./desktop-rpc";
 import { HomePage, ModuleLibraryPage } from "./features/modules/HomePage";
 import { HomeCatalogSkeleton } from "./features/modules/ModuleCardList";
+import { ModuleImportNotice } from "./features/modules/ModuleImportNotice";
 import { ModulePage } from "./features/modules/ModulePage";
 import { ModulePagePending } from "./features/modules/ModuleWorkspace";
 import { GamePage } from "./features/sessions/GamePage";
@@ -30,6 +31,7 @@ function RootLayout() {
       <Outlet />
       <SettingsLayer />
       <AppUpdateNotice />
+      <ModuleImportNotice />
     </>
   );
 }

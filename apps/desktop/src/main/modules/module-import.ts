@@ -1,5 +1,5 @@
 import { lstat, mkdir, mkdtemp, readdir, rename, rm } from "node:fs/promises";
-import { join, relative } from "node:path";
+import { basename, join, relative } from "node:path";
 
 import { isMissingFile, withFileMutation } from "@jointarp/core/node/storage/file-queue";
 import { loadDocumentTypes } from "@jointarp/module/node/document-types";
@@ -34,17 +34,22 @@ export async function publishModule(
   directory: string,
   folderName: string,
   prepare: (staging: string) => Promise<string>,
+  options: { replace?: boolean } = {},
 ): Promise<{ path: string; name: string }> {
   await mkdir(directory, { recursive: true });
-  const destination = join(directory, moduleFolderName(folderName));
+  if (options.replace && (basename(folderName) !== folderName || [".", ".."].includes(folderName)))
+    throw new Error("替换目标必须是模组库中的直接子目录。");
+  // 已有仓库可能被用户改名，替换时必须保留真实目录名。
+  const destination = join(directory, options.replace ? folderName : moduleFolderName(folderName));
   return withFileMutation(destination, async () => {
     try {
       await lstat(destination);
-      throw new Error(`模组目录「${folderName}」已存在，请勿重复导入。`);
+      if (!options.replace) throw new Error(`模组目录「${folderName}」已存在，请勿重复导入。`);
     } catch (error) {
       if (!isMissingFile(error)) throw error;
     }
     const staging = await mkdtemp(join(directory, ".module-import-"));
+    let preserveBackup = false;
     try {
       const ready = await prepare(staging);
       const content = await resolveModuleRoot(ready);
@@ -52,10 +57,24 @@ export async function publishModule(
         loadModuleMetadata(content),
         loadDocumentTypes(content),
       ]);
-      await rename(ready, destination);
+      const backup = join(staging, "previous");
+      if (options.replace) await rename(destination, backup);
+      try {
+        await rename(ready, destination);
+      } catch (error) {
+        if (options.replace) {
+          try {
+            await rename(backup, destination);
+          } catch {
+            preserveBackup = true;
+            throw new Error(`替换失败且无法自动恢复。原模组保留在：${backup}`);
+          }
+        }
+        throw error;
+      }
       return { path: join(destination, relative(ready, content)), name: metadata.name };
     } finally {
-      await rm(staging, { recursive: true, force: true });
+      if (!preserveBackup) await rm(staging, { recursive: true, force: true });
     }
   });
 }
