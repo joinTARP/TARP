@@ -94,6 +94,10 @@ try {
       process.platform === "darwin"
         ? join(directory, `${appName}.app/Contents`)
         : join(directory, appName);
+    if (process.platform === "darwin" && channel !== "dev") {
+      await execute("codesign", ["--verify", "--deep", "--strict", "--verbose=2", dirname(bundle)]);
+      console.log("macOS 更新归档中的应用签名验收通过。");
+    }
     const bin = join(bundle, process.platform === "darwin" ? "MacOS" : "bin");
     desktopApp = join(bundle, "Resources/app");
     executable = join(bin, process.platform === "win32" ? "bun.exe" : "bun");
